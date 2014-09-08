@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D1C87A01-B089-4D06-8A44-FF94178DEE73}</ProjectGuid>
+    <ProjectGuid>{6D6F4AE3-3FFD-4605-9DB6-72B52A93B4CA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MT.ModelEntities</RootNamespace>
-    <AssemblyName>MT.ModelEntities</AssemblyName>
+    <RootNamespace>MT.DataAccess.EntityFramework</RootNamespace>
+    <AssemblyName>MT.DataAccess.EntityFramework</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -46,12 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\User.cs" />
+    <Compile Include="MentorDataContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MT.ModelEntities\MT.ModelEntities.csproj">
+      <Project>{D1C87A01-B089-4D06-8A44-FF94178DEE73}</Project>
+      <Name>MT.ModelEntities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
