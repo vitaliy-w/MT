@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using MT.DataAccess.EntityFramework;
 using MT.ModelEntities.Entities;
-using MT.ModelEntities;
+using MT.DataAccess.EntityFramework;
 
 namespace MT.Web.Controllers
 {
     public class TestController : Controller
     {
-        private MentorDataContext db = new MentorDataContext("MentorConnectionString");
+        private MentorDataContext db = new MentorDataContext();
 
         // GET: /Test/
         public ActionResult Index()
@@ -47,8 +42,9 @@ namespace MT.Web.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Login,PaswordHash")] User user)
+        //[ValidateAntiForgeryToken]
+        //[Bind(Include = "Id,UserName")]
+        public ActionResult Create( User user)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +76,7 @@ namespace MT.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Login,PaswordHash")] User user)
+        public ActionResult Edit([Bind(Include="Id,UserName")] User user)
         {
             if (ModelState.IsValid)
             {

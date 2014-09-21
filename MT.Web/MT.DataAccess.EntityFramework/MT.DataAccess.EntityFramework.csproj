@@ -47,6 +47,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MentorDataContext.cs" />
+    <Compile Include="Migrations\201409191051227_create_table_user.cs" />
+    <Compile Include="Migrations\201409191051227_create_table_user.Designer.cs">
+      <DependentUpon>201409191051227_create_table_user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201409191052348_user_remove_dtStamp.cs" />
+    <Compile Include="Migrations\201409191052348_user_remove_dtStamp.Designer.cs">
+      <DependentUpon>201409191052348_user_remove_dtStamp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -59,6 +67,14 @@
       <Project>{D1C87A01-B089-4D06-8A44-FF94178DEE73}</Project>
       <Name>MT.ModelEntities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201409191051227_create_table_user.resx">
+      <DependentUpon>201409191051227_create_table_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409191052348_user_remove_dtStamp.resx">
+      <DependentUpon>201409191052348_user_remove_dtStamp.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

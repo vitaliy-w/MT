@@ -1,49 +1,42 @@
-﻿@model MT.ModelEntities.Entities.User
+﻿@using MT.Web.Infrastructure.Extensions
+@model MT.ModelEntities.Entities.User
 
 @{
     ViewBag.Title = "Create";
+    var formName = "editForm";
 }
 
 <h2>Create</h2>
+<div id="main" ng-controller="createTestController">
+    <form id="@formName" name="@formName" validable-form>
+        <div class="form-horizontal">
+            <h4>User</h4>
+            <hr />
 
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxDirectiveFor(model => model.UserName)
+                </div>
+            </div>
+            <div>
+                {{test}}
+            </div>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>User</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Login, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Login)
-                @Html.ValidationMessageFor(model => model.Login)
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ButtonDirective("Create", new
+                {
+                    ng_click = String.Format("create('{0}')", formName)
+                })
+                </div>
             </div>
         </div>
+    </form>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PaswordHash, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PaswordHash)
-                @Html.ValidationMessageFor(model => model.PaswordHash)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Views/Test/CreateController.js"></script>

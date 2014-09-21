@@ -6,7 +6,10 @@ namespace MT.DataAccess.EntityFramework
 {
     public class MentorDataContext: DbContext
     {
-        public MentorDataContext(): base() { }
+        public MentorDataContext() : base("MentorConnectionString")
+        {
+            //Database.SetInitializer<MentorDataContext>(new CreateDatabaseIfNotExists<MentorDataContext>());
+        }
 
         public MentorDataContext(string connectionString)
             : base(connectionString)
@@ -14,6 +17,7 @@ namespace MT.DataAccess.EntityFramework
             // Sets the default command timeout 1.5 minutes.
             ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = 90;
         }
+
         public DbSet<User> Users { get; set; } 
     }
 }

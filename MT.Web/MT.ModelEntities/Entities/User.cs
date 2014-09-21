@@ -8,7 +8,7 @@ namespace MT.ModelEntities.Entities
         public int Id { get; set; }
 
         [MaxLength(50)]
-        public string Login { get; set; }
-        public string PaswordHash { get; set; }
+        [Required]
+        public string UserName { get; set; }
     }
 }

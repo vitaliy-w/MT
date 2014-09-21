@@ -1,0 +1,9 @@
+﻿<div class="exceptionContainer clear" ng-if="error.show">
+    <h2 class="exceptionContainer-title" ng-bind-html="error.title" ng-show="error.title.length > 0"></h2>
+    <!--<img class="exceptionContainer-icon" ng-src="img/errors_icon.gif" ng-attr-alt="error.title" ng-show="error.title.length > 0" />-->
+    <div class="exceptionContainer-content clear" ng-show="error.messages.length > 0">
+        <ol ng-class="{'error-list': error.isError}">
+            <li ng-repeat="message in error.messages track by $index" ng-bind-html="message"></li>
+        </ol>
+    </div>
+</div>
