@@ -4,14 +4,12 @@
 
     return {
         restrict: 'A',
-        scope: true,
-        controller: ['$scope', function($scope) {
+        controller: ['$scope', function ($scope) {
             $scope.error = {
                 show: false
             };
 
             function validationHighlight(obj) {
-                debugger;
 
                 // Highlights validation-fail DOM elements.
                 if (obj && obj.errorProperties) {
@@ -24,13 +22,12 @@
             }
 
             function setupErrorOrValidation(event, obj) {
-                debugger;
                 event.stopPropagation();
 
                 var err = $scope.error;
 
                 if (inputErrorProperties) {
-                    $.each(inputErrorProperties, function(idx, item) {
+                    $.each(inputErrorProperties, function (idx, item) {
                         item.removeClass('input-validation-error').closest('.fieldset').removeClass('invalid-fieldset');
                     });
                     inputErrorProperties = null;
@@ -64,19 +61,17 @@
                         err.iconUrl = obj.iconUrl;
                 }
 
-                
+
                 err.show = true;
                 angular.safeApply($scope);
             }
             
             $scope.$on(broadcastIds.error, function (event, obj) {
-                debugger;
                 setupErrorOrValidation(event, obj);
                 validationHighlight(obj);
             });
 
             $scope.$on(broadcastIds.validation, function (event, obj) {
-                debugger;
                 setupErrorOrValidation(event, obj);
                 validationHighlight(obj);
             });

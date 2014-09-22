@@ -1,17 +1,16 @@
-﻿
-// validation - form-level attribute
+﻿// Inits a validation - form-level attribute.
 angular.module('mtApp').directive('validableForm', ['validationService', function (validationService) {
     return {
         restrict: 'A',
         require: '^form',
         link: function (scope, element, attrs, form) {
-            // if the form inside template, it can be recreated by angular, so re-init validation
+            // If the form is contained inside template, it should be recreated by angular to re-init validation.
             if ($.validator && $.validator.unobtrusive && !element.data('unobtrusiveValidation'))
                 $.validator.unobtrusive.parse(element);
             
             var validator = validationService.create(scope, element, form.$name);
 
-            // intercept into jquery unobtrusive validation 
+            // Intercepts into jquery unobtrusive validation.
             var vlidator = element.validate();
             var origFunc = vlidator.settings.errorPlacement;
             var onError = function (error, inputElement) {
@@ -37,12 +36,11 @@ angular.module('mtApp').directive('validableForm', ['validationService', functio
 
             vlidator.settings.errorPlacement = $.proxy(onError, element);
             vlidator.settings.success = $.proxy(onSuccess, form);
-            //vlidator.settings.invalidHandler = $.proxy(onErrors, form);
         }
     };
 }]);
 
-// disable validation if hidden
+// Disables validation if the element is hidden.
 angular.module('mtApp').directive('noValidateHidden', ['validationService', function (validationService) {
     return {
         restrict: 'A',

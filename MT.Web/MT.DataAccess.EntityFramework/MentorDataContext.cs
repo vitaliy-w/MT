@@ -8,7 +8,7 @@ namespace MT.DataAccess.EntityFramework
     {
         public MentorDataContext() : base("MentorConnectionString")
         {
-            //Database.SetInitializer<MentorDataContext>(new CreateDatabaseIfNotExists<MentorDataContext>());
+            Database.SetInitializer<MentorDataContext>(new DropCreateDatabaseAlways<MentorDataContext>());
         }
 
         public MentorDataContext(string connectionString)

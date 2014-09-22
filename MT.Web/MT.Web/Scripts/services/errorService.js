@@ -33,6 +33,7 @@
             }
             scope.$emit(broadcastIds.error, obj);
         },
+        
         showValidationError: function (scope, messages) {
             if (!messages || !angular.isArray(messages) || messages.length == 0)
                 return;
@@ -45,8 +46,11 @@
                 show: true,
                 isError: false
             };
+            
             scope.$emit(broadcastIds.validation, err);
+            scope.$emit(broadcastIds.error, err);
         },
+        
         hideError: function (scope) {
             scope.$emit(broadcastIds.error, null);
         }

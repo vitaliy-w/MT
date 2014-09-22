@@ -2,14 +2,14 @@
     function ($scope, validationService) {
 
         $scope.create = function (formName) {
-            debugger;
             if (!validationService.isValid(formName))
                 return;
-            
-
+           
         };
 
+     
         $scope.test = "test";
+       
     });
 
 

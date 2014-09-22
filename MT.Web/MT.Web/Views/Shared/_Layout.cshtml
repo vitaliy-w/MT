@@ -24,12 +24,13 @@
     <script>
         angular.module('mtApp').value('rootPath', '@Url.Content("~/")');
 
-        angular.module('mtApp').value('broadcastIds', { error: 'error', validation: 'validation' });
+        // It's a listener of errors and validation errors events.
+        angular.module('mtApp').value('broadcastIds', { error: 'errorEvent', validation: 'validationEvent' });
 
         angular.module('mtApp').factory('errorModel', function () {
             return {
                 model: {},
-                validationTitle: 'Text'
+                validationTitle: 'Validation Error(s)'
             };
         });
     </script>
@@ -53,7 +54,7 @@
     </div>
 
     <div class="container body-content">
-        <div mt-error-container>
+        <div mt-error-container class="mrg-top-st">
             <div mt-error-message></div>
             <div ng-controller="errorController"></div>
         </div>
