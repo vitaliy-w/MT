@@ -18,6 +18,7 @@ namespace MT.DataAccess.EntityFramework
             ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = 90;
         }
 
-        public DbSet<User> Users { get; set; } 
+        public DbSet<User> Users { get; set; }
+        public DbSet<Resource> Resources { get; set; }
     }
 }
