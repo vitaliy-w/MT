@@ -55,6 +55,42 @@ namespace MT.Web.Infrastructure.Extensions
             }
         }
 
+        /// <summary>
+        /// Метод для добавления css класса для AlertDirective в зависимости от AlertsEnum.
+        /// </summary>
+        /// <param name="attributes"></param>
+        /// <param name="type">Перечисление типа AlertsEnum задающее стилевое оформление сообщения.  </param>
+
+        public static void AddAlertClassAttribute(IDictionary<string, object> attributes, AlertsEnum type)
+        {
+
+            string htmlClass = String.Empty;
+            switch (type)
+            {
+                case AlertsEnum.Danger:
+                    htmlClass = "alert-danger";
+                    break;
+                case AlertsEnum.Succes:
+                    htmlClass = "alert-success";
+                    break;
+
+                case AlertsEnum.Warning:
+                    htmlClass = "alert-warning";
+                    break;
+
+            }
+
+            if (attributes.ContainsKey("class"))
+            {
+                attributes["class"] += " " + htmlClass;
+            }
+            else
+            {
+                attributes["class"] = htmlClass;
+            }
+
+        }
+
         private static string BuildPath(string name, NgModelPathOptions ngModelPathOptions)
         {
             var jsOpt = ngModelPathOptions ?? new NgModelPathOptions();
