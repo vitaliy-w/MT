@@ -6,7 +6,8 @@ namespace MT.DataAccess.EntityFramework
 {
     public class MentorDataContext: DbContext
     {
-        public MentorDataContext() : base("MentorConnectionString")
+        public MentorDataContext()
+            : base("MentorConnectionString")
         {
             Database.SetInitializer<MentorDataContext>(new DropCreateDatabaseAlways<MentorDataContext>());
         }
@@ -19,6 +20,8 @@ namespace MT.DataAccess.EntityFramework
         }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<PostYourRequest> PostYourRequests { get; set; }
 
         public DbSet<Resource> Resources { get; set; }
 

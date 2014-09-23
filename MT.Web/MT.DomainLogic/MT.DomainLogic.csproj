@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D1C87A01-B089-4D06-8A44-FF94178DEE73}</ProjectGuid>
+    <ProjectGuid>{62EA038E-C21A-40E2-8508-EC4A1C16C704}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MT.ModelEntities</RootNamespace>
-    <AssemblyName>MT.ModelEntities</AssemblyName>
+    <RootNamespace>MT.DomainLogic</RootNamespace>
+    <AssemblyName>MT.DomainLogic</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -46,12 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\LocalizationResource.cs" />
-    <Compile Include="Entities\PostYourRequest.cs" />
-    <Compile Include="Entities\Resource.cs" />
-    <Compile Include="Entities\User.cs" />
-    <Compile Include="Enums\AccessLevelsEnum.cs" />
+    <Compile Include="PostYourRequestLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MT.DataAccess.EntityFramework\MT.DataAccess.EntityFramework.csproj">
+      <Project>{6d6f4ae3-3ffd-4605-9db6-72b52a93b4ca}</Project>
+      <Name>MT.DataAccess.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MT.ModelEntities\MT.ModelEntities.csproj">
+      <Project>{d1c87a01-b089-4d06-8a44-ff94178dee73}</Project>
+      <Name>MT.ModelEntities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
