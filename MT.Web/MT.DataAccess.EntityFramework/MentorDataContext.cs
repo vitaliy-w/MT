@@ -20,6 +20,8 @@ namespace MT.DataAccess.EntityFramework
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Resource> Resources { get; set; }
+
         public DbSet<MT.ModelEntities.Entities.LocalisationResource>  LocalisationResources { get; set; }
     }
 }
