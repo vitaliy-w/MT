@@ -47,8 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\LocalizationResource.cs" />
-    <Compile Include="Entities\Testing.cs" />
+    <Compile Include="Entities\Resource.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Enums\AccessLevelsEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
