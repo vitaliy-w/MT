@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using MT.ModelEntities.Enums;
 using MT.Web.Infrastructure.Extensions.HtmlElementTypes;
 
 namespace MT.Web.Infrastructure.Extensions
@@ -42,5 +43,29 @@ namespace MT.Web.Infrastructure.Extensions
             builder.MergeAttributes(attributes);
             return MvcHtmlString.Create(builder.ToString());
         }
+
+
+        /// <summary>
+        /// Контрол предназначен для показа сообщения пользователю в виде HTML разметки типа div.
+        /// Контрол подключает к себе CSS стили из Bootstrap.css и из MT.css и использует перечисление AlertsEnum для определения стилевого оформления.
+        ///  </summary>
+        /// <param name="text">Текст, который будет выведен пользователю.</param>
+        /// <param name="type">Перечисление типа AlertsEnum задающее стилевое оформление сообщения.</param>
+
+        public static MvcHtmlString AlertDirective(this HtmlHelper helper, string text, object htmlAttributes = null, AlertTypesEnum type = AlertTypesEnum.Warning)
+        {
+            var alertDiv = new TagBuilder("div");
+            var attributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            AttributeManager.AddClassAttribute(attributes, type);
+            AttributeManager.AddClassAttribute(attributes, "alert alert-box-width");
+
+            alertDiv.InnerHtml = text;
+            alertDiv.MergeAttributes(attributes);
+            return new MvcHtmlString(alertDiv.ToString());
+        }
     }
+
+
+
 }
+
