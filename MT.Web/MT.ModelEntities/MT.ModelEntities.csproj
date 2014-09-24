@@ -51,6 +51,7 @@
     <Compile Include="Entities\LocalizationResource.cs" />
     <Compile Include="Entities\Resource.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserPrivateInfo.cs" />
     <Compile Include="Enums\AccessLevelsEnum.cs" />
     <Compile Include="Enums\AlertTypesEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
