@@ -11,6 +11,11 @@ namespace MT.Web.Controllers
     {
         private MentorDataContext db = new MentorDataContext();
 
+        public TestController(IUnitOfWork unitOfWork)
+        {
+            var test = unitOfWork;
+        }
+
         // GET: /Test/
         public ActionResult Index()
         {

@@ -48,6 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccessFactory.cs" />
+    <Compile Include="IDataAccessFactory.cs" />
+    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="UnitOfWork.cs" />
     <Compile Include="MentorDataContext.cs" />
     <Compile Include="Migrations\201409191051227_create_table_user.cs" />
     <Compile Include="Migrations\201409191051227_create_table_user.Designer.cs">
