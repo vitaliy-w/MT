@@ -176,6 +176,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ControlsController.cs" />
+    <Compile Include="Controllers\PostYourRequestController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -202,6 +203,7 @@
     <Content Include="Views\Controls\Alert.cshtml" />
     <Content Include="Views\Test\Copy of Create.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\PostYourRequest\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -218,6 +220,10 @@
     <ProjectReference Include="..\MT.DataAccess.EntityFramework\MT.DataAccess.EntityFramework.csproj">
       <Project>{6D6F4AE3-3FFD-4605-9DB6-72B52A93B4CA}</Project>
       <Name>MT.DataAccess.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MT.DomainLogic\MT.DomainLogic.csproj">
+      <Project>{62ea038e-c21a-40e2-8508-ec4a1c16c704}</Project>
+      <Name>MT.DomainLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\MT.ModelEntities\MT.ModelEntities.csproj">
       <Project>{d1c87a01-b089-4d06-8a44-ff94178dee73}</Project>
