@@ -1,13 +1,14 @@
 ﻿angular.module('mtApp').controller('createTestController',
-    function ($scope, validationService) {
+    function ($scope, validationService, createTestService) {
 
         $scope.create = function (formName) {
             if (!validationService.isValid(formName))
                 return;
-           
+
+            createTestService.saveUser($scope);
         };
 
-     
+        
         $scope.test = "test";
        
     });
