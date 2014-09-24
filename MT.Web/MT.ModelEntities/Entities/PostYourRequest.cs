@@ -8,25 +8,28 @@ using System.Threading.Tasks;
 
 namespace MT.ModelEntities.Entities
 {
-    public class PostYourRequest
+    /// <summary>
+    /// Класс для создание запроса на новый проект
+    /// </summary>
+    public class PostRequest
     {
         /// <summary>
-        /// Уникальный эдинтификатор моего запроса
+        /// Уникальный эдинтификатор запроса
         /// </summary>
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int RequestId { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Имя самого запроса
         /// </summary>
         [Display(Name = "Name")]
-        [Required, MinLength(3), MaxLength(50)]
+        [Required, MinLength(3), MaxLength(100)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Описание моего запроса
+        /// Описание запроса
         /// </summary>
-        [Display(Name = "Description"),]
+        [Display(Name = "Description")]
         [Required]
         public string Description { get; set; }
 
@@ -47,15 +50,17 @@ namespace MT.ModelEntities.Entities
         /// <summary>
         /// Запостить этот запрос на определенное количество дней
         /// </summary>
-        [Display(Name = "Post This Request For")]
+        [Display(Name = "Post This Request For"), DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}",ApplyFormatInEditMode = true)]
         [Required]
-        public int PostThisRequestFor { get; set; }
+        public DateTime PostPeriod { get; set; }
 
         /// <summary>
         /// Предпологаемая дата начала
         /// </summary>
-        [Display(Name = "Proposed Start Date")]
+        [Display(Name = "Proposed Start Date"), DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Required]
-        public bool ProposedStartDate { get; set; }
+        public DateTime StartDate { get; set; }
     }
 }

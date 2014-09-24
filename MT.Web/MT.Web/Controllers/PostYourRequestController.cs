@@ -12,13 +12,13 @@ namespace MT.Web.Controllers
         // GET: PostYourRequest
         public ActionResult Index()
         {
-            PostYourRequest postYourRequest = new PostYourRequest();
+            PostRequest postYourRequest = new PostRequest();
 
             return View(postYourRequest);
         }
 
         [HttpPost]
-        public ActionResult SaveFormRequest(PostYourRequest postYourRequest)
+        public ActionResult SaveFormRequest(PostRequest postYourRequest)
         {
             PostYourRequestLogic logic = new PostYourRequestLogic();
             logic.SaveRequest(postYourRequest);
