@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MT.ModelEntities.Enums;
 using MT.Utility;
 using MT.Web.Infrastructure.Extensions.HtmlElementTypes;
 
@@ -67,5 +68,60 @@ namespace MT.Web.Infrastructure.Extensions
             var path = string.Join(".", parts);
             return path;
         }
+
+        /// <summary>
+        /// AddClassAttribute метод для безопасного добавления CSS класса к словарю атрибут-значение.
+        /// </summary>
+        /// <param name="attributes"> Словарь атрибутов CSS елемента.</param>
+        /// <param name="cssClass"> Название CSS класса, которое требуется добавить. </param>
+        
+        public static void AddClassAttribute(IDictionary<string, object> attributes, string cssClass)
+        {
+            if (attributes.ContainsKey("class"))
+            {
+                attributes["class"] += " " + cssClass;
+            }
+            else
+            {
+                attributes["class"] = cssClass;
+            }
+        }
+
+        
+        /// <summary>
+        /// Перегруженный метод AddClassAttribute для добавления CSS класса в зависимости от значения AlertTypesEnum
+        /// </summary>
+        
+        public static void AddClassAttribute(IDictionary<string, object> attributes, AlertTypesEnum type)
+        {
+
+            string htmlClass = String.Empty;
+            switch (type)
+            {
+                case AlertTypesEnum.Danger:
+                    htmlClass = "alert-danger";
+                    break;
+                case AlertTypesEnum.Succes:
+                    htmlClass = "alert-success";
+                    break;
+
+                case AlertTypesEnum.Warning:
+                    htmlClass = "alert-warning";
+                    break;
+
+            }
+
+            if (attributes.ContainsKey("class"))
+            {
+                attributes["class"] += " " + htmlClass;
+            }
+            else
+            {
+                attributes["class"] = htmlClass;
+            }
+
+        }
+
+
     }
 }

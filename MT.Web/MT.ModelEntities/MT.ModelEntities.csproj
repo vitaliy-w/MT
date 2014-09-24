@@ -50,6 +50,7 @@
     <Compile Include="Entities\Resource.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\AccessLevelsEnum.cs" />
+    <Compile Include="Enums\AlertTypesEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
