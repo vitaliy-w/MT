@@ -10,7 +10,7 @@ angular.module('mtApp').controller('createTestController',
 
             // Вызываем метод сервиса работы с запросамы к серверу и передаем ему данные о юзере.
             // $scope в данном варианте содержит необходимое поле userName, которое принимает модель в параметре екшена.
-            createTestService.saveUser($scope);
+            createTestService.saveUser({userName: $scope.userName});
         };
 
         // Просто проверяем дата байдинг.
