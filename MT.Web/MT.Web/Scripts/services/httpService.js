@@ -1,21 +1,25 @@
 ﻿angular.module('mtApp').factory('httpService', [
-    '$http', '$q', '$interval', 'rootPath', '$window', function ($http, $q, $interval, rootPath, $window) {
+    '$http', '$q', '$interval', 'rootPath', '$window', 'angularShamNotification', function ($http, $q, $interval, rootPath, $window, angularShamNotification) {
 
         $window.downloadErrors = {};
 
-        var doQuery = function(methodFunc) {
+        var doQuery = function (methodFunc) {
+            angularShamNotification.requestStarted();
             var deferred = $q.defer();
-            methodFunc().success(deferred.resolve).error(deferred.reject);
+            methodFunc().success(deferred.resolve)
+                .error(deferred.reject)
+                .finally(angularShamNotification.requestEnded);
+
             return deferred.promise;
         };
 
         return {
-            post: function(url, data) {
-                return doQuery(function() { return $http.post(rootPath + url, data); });
+            post: function (url, data) {
+                return doQuery(function () { return $http.post(rootPath + url, data); });
             },
-            
-            get: function(url) {
-                return doQuery(function() { return $http.get(rootPath + url); });
+
+            get: function (url) {
+                return doQuery(function () { return $http.get(rootPath + url); });
             },
 
             postAsForm: function (url, data) {

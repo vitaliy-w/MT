@@ -20,7 +20,8 @@ namespace MT.Web.App_Start
             bundles.Add(new StyleBundle("~/Content/styles").Include(
                 "~/Content/Site.css",
                 "~/Content/Mt.css",
-                "~/Content/bootstrap.css"));
+                "~/Content/bootstrap.css",
+                "~/Content/libs/angular-sham-spinner-0.0.10.css"));
         }
 
         private static void RegisterAngular(BundleCollection bundles)
@@ -32,7 +33,9 @@ namespace MT.Web.App_Start
                 "~/Scripts/services/*.js",
                 "~/Scripts/filters/*.js",
                 "~/Scripts/directives/*.js",
-                "~/Scripts/controllers/*.js"));
+                "~/Scripts/controllers/*.js",
+
+                "~/Scripts/libs/angular-sham-spinner-0.0.10.js"));
         }
 
         //private static void RegisterJSON(BundleCollection bundles)
