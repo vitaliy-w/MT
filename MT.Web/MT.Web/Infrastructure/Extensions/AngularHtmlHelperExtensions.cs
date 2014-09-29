@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
@@ -44,6 +45,19 @@ namespace MT.Web.Infrastructure.Extensions
             return MvcHtmlString.Create(builder.ToString());
         }
 
+
+        /// <summary>
+        /// Контрол формує в HTML розмітці елемент DropDownList з заданого типу Enum із заданими параметрами
+        /// </summary>
+        /// <param name="name">Ім'я контрола</param>
+        /// <param name="enumType">Тип Enum з якого потрібно зформувати DropDownList</param>
+        
+        public static MvcHtmlString DropDownListDirective(this HtmlHelper htmlHelper, string name, Enum enumType, object htmlAttributes = null, NgModelPathOptions ngModelPathOptions = null)
+        {
+            var attributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            var accessLevelList = new SelectList(Enum.GetNames(enumType.GetType()));
+            return htmlHelper.DropDownList(name, accessLevelList, "Access", attributes);
+        }
 
         /// <summary>
         /// Контрол предназначен для показа сообщения пользователю в виде HTML разметки типа div.

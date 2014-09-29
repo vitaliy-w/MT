@@ -1,0 +1,58 @@
+﻿@using MT.ModelEntities.Enums
+@using MT.Web.Infrastructure.Extensions
+@model MT.ModelEntities.Entities.Resource
+
+@{
+    ViewBag.Title = "Create Resource";
+    var formName = "createResourceForm";
+}
+
+<h2>Create Resource</h2>
+
+<div id="main" ng-controller="createResourceController">
+    <form id="@formName" name="@formName" validable-form>
+        <div class="form-horizontal">
+            <h4>New Resource</h4>
+            <hr />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxDirectiveFor(model => model.Name, new { ng_model = "Name" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Access, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListDirective("Access", new AccessLevelsEnum(), new { ng_model = "Access" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Link, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxDirectiveFor(model => model.Link, new { ng_model = "Link" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxDirectiveFor(model => model.Description, new { ng_model = "Description" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ButtonDirective("Create", new
+                        {
+                            ng_click = String.Format("create('{0}')", formName)
+                        })
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+</div>
+<script src="~/Views/Resource/CreateResourceController.js"></script>
