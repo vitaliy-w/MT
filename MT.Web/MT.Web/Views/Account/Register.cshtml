@@ -1,0 +1,71 @@
+﻿@using MT.Web.Infrastructure.Extensions
+@model MT.ModelEntities.Entities.User
+
+@{
+    ViewBag.Title = "Registration";
+    var formName = "editForm";
+    
+}
+
+<h2>Регистрация</h2>
+<div id="main" ng-controller="registerController">
+    <form id="@formName" name="@formName" validable-form>
+        <div class="form-horizontal">
+            
+            <hr />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserName, "Имя пользователя", new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.TextBoxDirectiveFor(model => model.UserName, new {ng_model = "userName"})
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, "Email", new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.TextBoxDirectiveFor(model => model.Email, new {ng_model = "email"})
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, "Пароль", new {  @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.TextBoxDirectiveFor(model => model.Password, new {ng_model = "password", @type = "password"})
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ConfirmPassword, "Повторите пароль", new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.TextBoxDirectiveFor(model => model.ConfirmPassword, new {ng_model = "confirmPassword", @type = "password"})
+                </div>
+            </div>>
+            <div>
+            
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-5 col-md-7">
+                    @Html.ButtonDirective("Регистрация", new
+                    {
+                        ng_click = String.Format("create('{0}')", formName)
+                    })
+                    
+                </div>
+            </div>
+        </div>
+    </form>
+    <div id="reg-text">
+        Для быстрой регистрации вы можете использовать сервисы:
+    </div>
+    <hr/>
+  
+        <ul id="reg-service" class="nav">
+            <li class="col-md-2"></li>
+            <li class="col-md-2">Google</li>
+            <li class="col-md-2">Facebook</li>
+            <li class="col-md-2">Twiter</li>
+            <li class="col-md-2">LinkedIn</li>
+        </ul>
+
+
+</div>
+<script src="~/Views/Account/RegisterController.js"></script>
