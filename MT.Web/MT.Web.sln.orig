@@ -11,12 +11,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MT.ModelEntities", "MT.Mode
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MT.DataAccess.EntityFramework", "MT.DataAccess.EntityFramework\MT.DataAccess.EntityFramework.csproj", "{6D6F4AE3-3FFD-4605-9DB6-72B52A93B4CA}"
 EndProject
+<<<<<<< HEAD
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C779417F-813A-4EB1-9322-B341E5B86397}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MT.DomainLogic", "MT.DomainLogic\MT.DomainLogic.csproj", "{62EA038E-C21A-40E2-8508-EC4A1C16C704}"
+>>>>>>> 0bc2e531cd9d9ae2c1e319293a7c9d0abfbef2bb
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
