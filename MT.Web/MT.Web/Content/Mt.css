@@ -1,4 +1,15 @@
-﻿
+﻿#reg-service
+{
+    text-align:center;
+    font-family: fantasy; 
+}
+
+#reg-text 
+{
+    font-family: cursive;
+     text-align: center;
+}
+
 
 .mrg-top-st {
     margin-top: 20px;
