@@ -1,10 +1,14 @@
 ﻿@using MT.ModelEntities.Enums
+@using MT.Web.Infrastructure
 @using MT.Web.Infrastructure.Extensions
 @model MT.ModelEntities.Entities.Resource
 
 @{
     ViewBag.Title = "Create Resource";
     var formName = "createResourceForm";
+    
+    NgModelPathOptions resource = new NgModelPathOptions();
+    resource.Prefix = "resource";
 }
 
 <h2>Create Resource</h2>
@@ -17,25 +21,25 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxDirectiveFor(model => model.Name, new { ng_model = "Name" })
+                    @Html.TextBoxDirectiveFor(model => model.Name, new { ng_model = "resource.name" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Access, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListDirective("Access", new AccessLevelsEnum(), new { ng_model = "Access" })
+                    @Html.DropDownListDirective("Access", new AccessLevelsEnum(), new { ng_model = "resource.access" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Link, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxDirectiveFor(model => model.Link, new { ng_model = "Link" })
+                    @Html.TextBoxDirectiveFor(model => model.Link, new { ng_model = "resource.link" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxDirectiveFor(model => model.Description, new { ng_model = "Description" })
+                    @Html.TextBoxDirectiveFor(model => model.Description, new { ng_model = "resource.description" })
                 </div>
             </div>
             <div class="form-group">

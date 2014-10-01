@@ -1,20 +1,24 @@
-﻿using System.Data.Entity;
-using System.Linq;
-using System.Net;
+﻿using System.Linq;
 using System.Web.Mvc;
 using MT.ModelEntities.Entities;
 using MT.DataAccess.EntityFramework;
+using MT.DomainLogic;
 
 namespace MT.Web.Controllers
 {
     public class ResourceController : Controller
     {
-        private UnitOfWork db = new UnitOfWork(new MentorDataContext());
+        private readonly IUnitOfWork _db;
+
+        public ResourceController(IUnitOfWork db)
+        {
+            _db = db;
+        }
 
         // GET: /Resource/
         public ActionResult Index()
         {
-            return View(db.Get<Resource>().ToList());
+            return View(_db.Get<Resource>().ToList());
         }
 
         // GET: /Resource/Create
@@ -28,23 +32,9 @@ namespace MT.Web.Controllers
         [HttpPost]
         public ActionResult Create(Resource resource)
         {
-            if (ModelState.IsValid)
-            {
-                db.Add<Resource>(resource);
-                db.Commit();
-                return RedirectToAction("Index");
-            }
-
-            return View(resource);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            if (!ModelState.IsValid) return View(resource);
+            ResourceLogic.SaveResource(_db, resource);
+            return RedirectToAction("Index");
         }
     }
 }

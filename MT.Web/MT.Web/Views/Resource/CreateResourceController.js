@@ -1,10 +1,14 @@
 ﻿angular.module('mtApp').controller('createResourceController',
    function ($scope, validationService, createResourceService) {
 
+       //Test data for emulation userId fields
+       $scope.resource = { userId: 1};
+       
        $scope.create = function (formName) {
            if (!validationService.isValid(formName))
                return;
-           createResourceService.saveResource({ Name: $scope.Name, Access: $scope.Access, Link: $scope.Link, Description: $scope.Description, UserId: 1, User: { Id: 1, UserName: "Test" } });
+           
+           createResourceService.saveResource($scope.resource);
        };
    });
 
