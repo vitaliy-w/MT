@@ -184,9 +184,8 @@
     <Content Include="Scripts\services\httpService.js" />
     <Content Include="Scripts\services\navigationService.js" />
     <Content Include="Scripts\services\validationService.js" />
-	<Content Include="Views\Resource\CreateResourceController.js" />
-	<Content Include="Views\Account\RegisterController.js" />
-	<Content Include="Views\Templates\error-message.html" />
+    <Content Include="Views\Account\RegisterController.js" />
+    <Content Include="Views\Templates\error-message.html" />
     <Content Include="Views\Test\CreateController.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -196,9 +195,8 @@
     <Compile Include="Areas\Management\ManagementAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ControlsController.cs" />
-	<Compile Include="Controllers\ResourceController.cs" />
-	<Compile Include="Controllers\PostYourRequestController.cs" />
-	<Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\PostYourRequestController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -227,11 +225,13 @@
     <Content Include="Scripts\version.json" />
 
     <Content Include="Scripts\libs\angular-sham-spinner-0.0.10.js" />
-	<Content Include="Views\Resource\Create.cshtml" />
-    <Content Include="Views\Resource\Index.cshtml" />
-	<Content Include="Views\Account\Register.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Views\Account\Register.cshtml" />
+=======
+
     <Content Include="Views\PostYourRequest\Index.cshtml" />
-	<None Include="Web.Debug.config">
+>>>>>>> Merge branch 'master' of https://github.com/ArkadiyGetmantsev/MT into ArkadiyGetmantsev-master
+    <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
