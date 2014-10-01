@@ -1,0 +1,17 @@
+﻿@using MT.Web.Infrastructure.Extensions
+@model IEnumerable<MT.ModelEntities.Entities.LocalisationResource>
+
+
+<div ng-app="" ng-controller="customersController">
+    {{locals}}
+</div>
+
+<script>
+    function customersController($scope) {
+        $scope.locals = @Html.ReturnSmth();
+
+    }
+</script>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>

@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using MT.ModelEntities.Enums;
 using MT.Web.Infrastructure.Extensions.HtmlElementTypes;
+using Newtonsoft.Json;
 
 namespace MT.Web.Infrastructure.Extensions
 {
@@ -62,6 +63,21 @@ namespace MT.Web.Infrastructure.Extensions
             alertDiv.InnerHtml = text;
             alertDiv.MergeAttributes(attributes);
             return new MvcHtmlString(alertDiv.ToString());
+        }
+
+        public static string ToJson(this HtmlHelper helper, object obj)
+        {
+
+            return JsonConvert.SerializeObject(obj);
+
+        }
+
+        public static string ReturnSmth(this HtmlHelper helper)
+        {
+
+            return "Hello";
+            return "10";
+
         }
     }
 
