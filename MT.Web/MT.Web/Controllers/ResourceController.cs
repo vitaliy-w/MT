@@ -18,7 +18,8 @@ namespace MT.Web.Controllers
         // GET: /Resource/
         public ActionResult Index()
         {
-            return View(_db.Get<Resource>().ToList());
+            var model = _db.Get<Resource>().ToList();
+            return View(model);
         }
 
         // GET: /Resource/Create
@@ -29,11 +30,16 @@ namespace MT.Web.Controllers
         }
 
         // POST: /Resource/Create
+        /// <summary>
+        /// Action for creating new Resource
+        /// </summary>
+        /// <param name="resource">Data represent new Resource getting from form</param>
         [HttpPost]
         public ActionResult Create(Resource resource)
         {
             if (!ModelState.IsValid) return View(resource);
-            ResourceLogic.SaveResource(_db, resource);
+            var service = new ResourceService();
+            service.SaveResource(_db, resource);
             return RedirectToAction("Index");
         }
     }
