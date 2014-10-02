@@ -1,4 +1,5 @@
-﻿using MT.DataAccess.EntityFramework;
+﻿using System;
+using MT.DataAccess.EntityFramework;
 using MT.ModelEntities.Entities;
 
 namespace MT.DomainLogic
@@ -10,7 +11,7 @@ namespace MT.DomainLogic
         {
             if (db == null || user == null)    
                 return;
-            
+            user.Created = DateTime.Now; 
             db.Add(user);
             db.Commit();
         }
