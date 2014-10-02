@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MT.DataAccess.EntityFramework;
+using MT.DomainLogic;
 using MT.ModelEntities.Entities;
 
 namespace MT.Web.Controllers
@@ -11,11 +12,11 @@ namespace MT.Web.Controllers
     public class AccountController : Controller
     {
 
-        private IUnitOfWork db;
+        private readonly IUnitOfWork _db;
 
         public AccountController(IUnitOfWork unitOfWork)
         {
-            this.db = unitOfWork;
+            _db = unitOfWork;
         }
 
         //
@@ -25,15 +26,14 @@ namespace MT.Web.Controllers
             return View();
         }
 
+        // POST: /Account/Register
         [HttpPost]
         public ActionResult Register(User user)
         {
+            var service = new RegisterService();
             if (ModelState.IsValid)
             {
-                user.Created = DateTime.Now;
-                db.Add(user);
-                db.Commit();
-                return RedirectToAction("Index", "Test");
+                service.SaveUser(_db, user);
             }
 
             return View(user);
@@ -41,13 +41,13 @@ namespace MT.Web.Controllers
 
         public JsonResult CheckUserName(string userName)
         {
-            var result = db.Get<User>().Any(u => u.UserName == userName);
+            var result = _db.Get<User>().Any(u => u.UserName == userName);
             return Json(!result, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult CheckEmail(string email)
         {
-            var result = db.Get<User>().Any(u => u.Email == email);
+            var result = _db.Get<User>().Any(u => u.Email == email);
             return Json(!result, JsonRequestBehavior.AllowGet);
         }
 	}
