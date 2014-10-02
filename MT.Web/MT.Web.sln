@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MT.Web", "MT.Web\MT.Web.csproj", "{89FA3BCB-3261-41E8-9957-3414E8D47005}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MT.Utility", "MT.Utility\MT.Utility.csproj", "{1CFD78B1-8DBB-4507-B82E-0CD016C45571}"
@@ -15,8 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C77941
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MT.DomainLogic", "MT.DomainLogic\MT.DomainLogic.csproj", "{62EA038E-C21A-40E2-8508-EC4A1C16C704}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

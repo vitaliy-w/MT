@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="PostYourRequestLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResourceService.cs" />
+    <Compile Include="ResourceLogic.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MT.DataAccess.EntityFramework\MT.DataAccess.EntityFramework.csproj">
