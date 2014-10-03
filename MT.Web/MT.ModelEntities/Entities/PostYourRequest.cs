@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MT.ModelEntities.Entities
 {
     /// <summary>
     /// Класс для создание запроса на новый проект
     /// </summary>
-    public class PostRequest
+    public class ProjectRequest
     {
         /// <summary>
         /// Уникальный эдинтификатор запроса

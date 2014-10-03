@@ -21,7 +21,7 @@ namespace MT.DataAccess.EntityFramework
      
         public DbSet<User> Users { get; set; }
 
-        public DbSet<PostRequest> PostYourRequests { get; set; }
+        public DbSet<ProjectRequest> PostYourRequests { get; set; }
 
         public DbSet<Resource> Resources { get; set; }
 

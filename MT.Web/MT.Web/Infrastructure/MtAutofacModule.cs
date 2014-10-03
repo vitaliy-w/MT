@@ -2,6 +2,7 @@
 using Autofac;
 using Autofac.Integration.Mvc;
 using MT.DataAccess.EntityFramework;
+using MT.DomainLogic;
 
 namespace MT.Web.Infrastructure
 {
@@ -19,6 +20,8 @@ namespace MT.Web.Infrastructure
 
             builder.RegisterType<DataAccessFactory<MentorDataContext>>().As<IDataAccessFactory>().WithParameter("connectionString", dbConnectionString).SingleInstance();
             builder.Register(c => c.Resolve<IDataAccessFactory>().CreateUnitOfWork()).As<IUnitOfWork>();
+
+            builder.RegisterType<ProjectRequestService>().As<IProjectRequestService>();
         }
     }
 }
