@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MT.Utility.Attributes
+namespace MT.DomainLogic.Attributes
 {
     /// <summary>
     /// Validates if the input is an email

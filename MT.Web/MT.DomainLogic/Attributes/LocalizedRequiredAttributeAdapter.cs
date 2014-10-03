@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace MT.Utility.Attributes
+namespace MT.DomainLogic.Attributes
 {
     public class LocalizedRequiredAttributeAdapter : DataAnnotationsModelValidator<LocalizedRequiredAttribute>
     {

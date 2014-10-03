@@ -53,15 +53,6 @@
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="UnitOfWork.cs" />
     <Compile Include="MentorDataContext.cs" />
-    <Compile Include="Migrations\201409191051227_create_table_user.cs" />
-    <Compile Include="Migrations\201409191051227_create_table_user.Designer.cs">
-      <DependentUpon>201409191051227_create_table_user.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201409191052348_user_remove_dtStamp.cs" />
-    <Compile Include="Migrations\201409191052348_user_remove_dtStamp.Designer.cs">
-      <DependentUpon>201409191052348_user_remove_dtStamp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,14 +64,10 @@
       <Project>{D1C87A01-B089-4D06-8A44-FF94178DEE73}</Project>
       <Name>MT.ModelEntities</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201409191051227_create_table_user.resx">
-      <DependentUpon>201409191051227_create_table_user.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201409191052348_user_remove_dtStamp.resx">
-      <DependentUpon>201409191052348_user_remove_dtStamp.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\MT.Utility\MT.Utility.csproj">
+      <Project>{1CFD78B1-8DBB-4507-B82E-0CD016C45571}</Project>
+      <Name>MT.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

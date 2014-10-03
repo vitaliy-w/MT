@@ -33,7 +33,7 @@ namespace MT.ModelEntities.Entities
         /// Url посилання на ресурс
         /// </summary>
         [Url]
-        public string Link { get; set; }
+        public string Url { get; set; }
 
         /// <summary>
         /// Детальний опис ресурсу. 

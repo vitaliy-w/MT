@@ -1,5 +1,5 @@
 ﻿angular.module('mtApp').controller('createLibraryResourceController',
-   function ($scope, validationService, createResourceService) {
+   function ($scope, validationService, createLibraryResourceService) {
 
        //Test data for emulation userId fields
        $scope.resource = { userId: 1 };
@@ -9,7 +9,7 @@
            if (!validationService.isValid(formName))
                return;
            
-           createResourceService.saveResource($scope.resource);
+           createLibraryResourceService.saveResource($scope.resource);
        };
    });
 

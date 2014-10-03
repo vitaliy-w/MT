@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MT.DomainLogic.Localization;
 
-namespace MT.Utility.Attributes
+namespace MT.DomainLogic.Attributes
 {
     public class LocalizedRequiredAttribute : RequiredAttribute
     {
@@ -9,7 +9,6 @@ namespace MT.Utility.Attributes
 
         public LocalizedRequiredAttribute(string errorMessageResourceKey)
         {
-
             ErrorMessage = LocalizationResourceService.GetValue(errorMessageResourceKey);
         }
     }

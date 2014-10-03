@@ -6,13 +6,13 @@ using MT.DataAccess.EntityFramework;
 
 namespace MT.Web.Controllers
 {
-    public class ResourceController : Controller
+    public class LibraryResourceController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILibraryResourceService _libraryResourceService;
 
 
-        public ResourceController(IUnitOfWork unitOfWork, ILibraryResourceService libraryResourceService)
+        public LibraryResourceController(IUnitOfWork unitOfWork, ILibraryResourceService libraryResourceService)
         {
             _unitOfWork = unitOfWork;
             _libraryResourceService = libraryResourceService;

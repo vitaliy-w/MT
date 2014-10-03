@@ -1,4 +1,5 @@
-﻿using MT.DataAccess.EntityFramework;
+﻿
+using MT.DataAccess.EntityFramework;
 using MT.ModelEntities.Entities;
 
 namespace MT.DomainLogic.Localization

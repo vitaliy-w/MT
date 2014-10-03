@@ -31,9 +31,9 @@
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.Link, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Url, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxDirectiveFor(model => model.Link, new { ng_model = "resource.link" })
+                    @Html.TextBoxDirectiveFor(model => model.Url, new { ng_model = "resource.link" })
                 </div>
             </div>
             <div class="form-group">
@@ -59,4 +59,4 @@
     </div>
 
 </div>
-<script src="~/Views/Resource/CreateResourceController.js"></script>
+<script src="~/Views/LibraryResource/CreateResourceController.js"></script>
