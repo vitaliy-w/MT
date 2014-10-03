@@ -1,4 +1,4 @@
-﻿angular.module('mtApp').controller('createResourceController',
+﻿angular.module('mtApp').controller('createLibraryResourceController',
    function ($scope, validationService, createResourceService) {
 
        //Test data for emulation userId fields
@@ -13,11 +13,11 @@
        };
    });
 
-// Fabric method for saving Resource instance using httpService
-angular.module('mtApp').factory('createResourceService', function (httpService) {
+// Fabric method for saving LibraryResource instance using httpService
+angular.module('mtApp').factory('createLibraryResourceService', function (httpService) {
     return {
         saveResource: function (resource) {
-            return httpService.post('Resource/Create', resource);
+            return httpService.post('LibraryResource/Create', resource);
         }
     };
 });

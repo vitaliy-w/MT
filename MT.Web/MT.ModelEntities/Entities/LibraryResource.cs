@@ -5,9 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MT.ModelEntities.Entities
 {
-    public class Resource
+    public class LibraryResource
     {
-
         /// <summary>
         /// Унікальний цифровий ідентифікатор для даної сутності.
         /// </summary>

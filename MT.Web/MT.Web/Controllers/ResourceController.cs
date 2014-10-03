@@ -1,45 +1,47 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using MT.DomainLogic;
 using MT.ModelEntities.Entities;
 using MT.DataAccess.EntityFramework;
-using MT.DomainLogic;
 
 namespace MT.Web.Controllers
 {
     public class ResourceController : Controller
     {
-        private readonly IUnitOfWork _db;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ILibraryResourceService _libraryResourceService;
 
-        public ResourceController(IUnitOfWork db)
+
+        public ResourceController(IUnitOfWork unitOfWork, ILibraryResourceService libraryResourceService)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
+            _libraryResourceService = libraryResourceService;
         }
 
-        // GET: /Resource/
         public ActionResult Index()
         {
-            var model = _db.Get<Resource>().ToList();
+            var model = _unitOfWork.Get<LibraryResource>().ToList();
             return View(model);
         }
 
-        // GET: /Resource/Create
         public ActionResult Create()
         {
-
             return View();
         }
 
-        // POST: /Resource/Create
         /// <summary>
-        /// Action for creating new Resource
+        /// Creates a new library resource.
         /// </summary>
-        /// <param name="resource">Data represent new Resource getting from form</param>
+        /// <param name="libraryResource">A new library resource which is passed from a user form.</param>
         [HttpPost]
-        public ActionResult Create(Resource resource)
+        public ActionResult Create(LibraryResource libraryResource)
         {
-            if (!ModelState.IsValid) return View(resource);
-            var service = new ResourceService();
-            service.SaveResource(_db, resource);
+            if (!ModelState.IsValid) 
+                return View(libraryResource);
+
+
+            _libraryResourceService.Create(libraryResource);
+            _unitOfWork.Commit();
             return RedirectToAction("Index");
         }
     }

@@ -1,22 +1,22 @@
 ﻿@using MT.ModelEntities.Enums
 @using MT.Web.Infrastructure
 @using MT.Web.Infrastructure.Extensions
-@model MT.ModelEntities.Entities.Resource
+@model MT.ModelEntities.Entities.LibraryResource
 
 @{
-    ViewBag.Title = "Create Resource";
-    var formName = "createResourceForm";
+    ViewBag.Title = "Create LibraryResource";
+    var formName = "createLibraryResourceForm";
     
     NgModelPathOptions resource = new NgModelPathOptions();
     resource.Prefix = "resource";
 }
 
-<h2>Create Resource</h2>
+<h2>Create LibraryResource</h2>
 
-<div id="main" ng-controller="createResourceController">
+<div id="main" ng-controller="createLibraryResourceController">
     <form id="@formName" name="@formName" validable-form>
         <div class="form-horizontal">
-            <h4>New Resource</h4>
+            <h4>New LibraryResource</h4>
             <hr />
             <div class="form-group">
                 @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })

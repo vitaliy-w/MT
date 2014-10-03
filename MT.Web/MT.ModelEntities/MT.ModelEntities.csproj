@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="Entities\LocalizationResource.cs" />
     <Compile Include="Entities\PostYourRequest.cs" />
-    <Compile Include="Entities\Resource.cs" />
+    <Compile Include="Entities\LibraryResource.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\AccessLevelsEnum.cs" />
     <Compile Include="Enums\AlertTypesEnum.cs" />
