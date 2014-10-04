@@ -25,8 +25,8 @@ angular.module('mtApp').factory('registerService', function (httpService) {
     return {
         // В фабрике описываем только 1 метод - сохранение пользователя.
         saveUser: function (user) {
-            // Посылаем пост в екшен Create контроллера Test на cервер с данными о юзере.
-            return httpService.post('Account/Register', user);
+            // Посылаем пост в екшен Create контроллера Test на cервер с данными о юзере и если успешно делаем редирект на Test/Index
+            return httpService.postWithRedirect('Account/Register', user, 'Test/Index');
 
         }
     };
