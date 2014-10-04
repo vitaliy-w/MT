@@ -77,15 +77,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\EmailAttribute.cs" />
-    <Compile Include="Attributes\LocalizedDisplayNameAttribute.cs" />
-    <Compile Include="Attributes\LocalizedRequiredAttribute.cs" />
-    <Compile Include="Attributes\LocalizedRequiredAttributeAdapter.cs" />
     <Compile Include="ILibraryResourceService.cs" />
     <Compile Include="IProjectRequestService.cs" />
     <Compile Include="LibraryResourceService.cs" />
-    <Compile Include="Localization\ILocalizationResourceService.cs" />
     <Compile Include="Localization\LocalizationResourceService.cs" />
+    <Compile Include="Localization\ILocalizationResourceService.cs" />
     <Compile Include="ProjectRequestService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -97,6 +93,10 @@
     <ProjectReference Include="..\MT.ModelEntities\MT.ModelEntities.csproj">
       <Project>{d1c87a01-b089-4d06-8a44-ff94178dee73}</Project>
       <Name>MT.ModelEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MT.Utility\MT.Utility.csproj">
+      <Project>{1cfd78b1-8dbb-4507-b82e-0cd016c45571}</Project>
+      <Name>MT.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

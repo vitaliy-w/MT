@@ -1,5 +1,4 @@
-﻿
-using MT.DataAccess.EntityFramework;
+﻿using MT.DataAccess.EntityFramework;
 using MT.ModelEntities.Entities;
 
 namespace MT.DomainLogic.Localization
@@ -11,11 +10,6 @@ namespace MT.DomainLogic.Localization
         public LocalizationResourceService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-        }
-
-        public string GetValue(string resourceKey, string resourceClass)
-        {
-            return "Missing Key";
         }
 
         public void Create(LocalizationResource libraryResource)

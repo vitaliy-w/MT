@@ -1,7 +1,7 @@
 ﻿using MT.ModelEntities.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using MT.Utility.Localization.Attributes;
 
 namespace MT.ModelEntities.Entities
 {
@@ -18,20 +18,22 @@ namespace MT.ModelEntities.Entities
         /// Обов'язкове поле.
         /// Максимальна довжина 100 смволів.
         /// </summary>
-        [Required, MaxLength(100)]
+        [LocalizedDisplayName(Constants.Entities.LibraryResourceName)]
+        [LocalizedRequired(Constants.Entities.LibraryResourceNameRequiredValidationMsg)]
+        [LocalizedRange(2, 100, Constants.Entities.LibraryResourceNameRangeValidationMsg)]
         public string Name { get; set; }
 
         /// <summary>
         /// Рівень доступу до ресурсу.
-        /// Private = 1   - доступний лише для власника.
-        /// Protected = 2 - доступний для власника та користувачів з якими у нього взаємний "follow".
-        /// Public = 3    - доступний для всіх користувачів.
         /// </summary>
+        [LocalizedDisplayName(Constants.Entities.LibraryResourceAccess)]
         public AccessLevelsEnum Access { get; set; }
 
         /// <summary>
         /// Url посилання на ресурс
         /// </summary>
+        [LocalizedDisplayName(Constants.Entities.LibraryResourceUrl)]
+        [LocalizedRequired(Constants.Entities.LibraryResourceUrlRequiredValidationMsg)]
         [Url]
         public string Url { get; set; }
 
@@ -40,7 +42,9 @@ namespace MT.ModelEntities.Entities
         /// Обов'язкове поле.
         /// Максимальна довжина 500 смволів.
         /// </summary>
-        [Required, MaxLength(500)]
+        [LocalizedDisplayName(Constants.Entities.LibraryResourceDescription)]
+        [LocalizedRequired(Constants.Entities.LibraryResourceDescriptionRequiredValidationMsg)]
+        [LocalizedRange(2, 500, Constants.Entities.LibraryResourceDescriptionRangeValidationMsg)]
         public string Description { get; set; }
 
         /// <summary>

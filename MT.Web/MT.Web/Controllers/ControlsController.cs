@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using MT.Utility.Localization.Services;
 
 namespace MT.Web.Controllers
 {
@@ -10,5 +11,11 @@ namespace MT.Web.Controllers
         {
             return View();
         }
-	}
+
+        public ActionResult ResetCache()
+        {
+            LocalizationResourceServiceSingleton.Reset();
+            return Content("~");
+        }
+    }
 }

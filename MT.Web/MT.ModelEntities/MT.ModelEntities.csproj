@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="Entities\LocalizationResource.cs" />
     <Compile Include="Entities\ProjectRequest.cs" />
     <Compile Include="Entities\LibraryResource.cs" />
