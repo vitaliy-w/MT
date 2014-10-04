@@ -14,3 +14,7 @@
 .mrg-top-st {
     margin-top: 20px;
 }
+
+.ng-table {
+	border: 1px solid #000;
+ }
