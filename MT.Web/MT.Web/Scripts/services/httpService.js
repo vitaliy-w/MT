@@ -22,16 +22,6 @@
                 return doQuery(function () { return $http.get(rootPath + url); });
             },
 
-            postWithRedirect: function(url, data, redir) {
-                return doQuery(function() {
-                    return $http.post(rootPath + url, data).success(function() {
-                        window.location = rootPath + redir;
-
-
-                    });
-                });
-
-            },
 
             postAsForm: function (url, data) {
                 var form = $('<form></form>');

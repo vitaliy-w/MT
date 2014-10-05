@@ -15,12 +15,6 @@
             <hr />
 
             <div class="form-group">
-                @Html.LabelFor(model => model.UserName, "Имя пользователя", new { @class = "control-label col-md-5" })
-                <div class="col-md-7">
-                    @Html.TextBoxDirectiveFor(model => model.UserName, new {ng_model = "userName"})
-                </div>
-            </div>
-            <div class="form-group">
                 @Html.LabelFor(model => model.Email, "Email", new { @class = "control-label col-md-5" })
                 <div class="col-md-7">
                     @Html.TextBoxDirectiveFor(model => model.Email, new {ng_model = "email"})
@@ -58,14 +52,16 @@
     </div>
     <hr/>
   
-        <ul id="reg-service" class="nav">
-            <li class="col-md-2"></li>
-            <li class="col-md-2">Google</li>
-            <li class="col-md-2">Facebook</li>
-            <li class="col-md-2">Twiter</li>
-            <li class="col-md-2">LinkedIn</li>
-        </ul>
-
+   @using (Html.BeginForm("ExternalRegister", "Account"))
+   {
+       <ul id="reg-service" class="nav">
+           <li class="col-md-2"></li>
+           <li class="col-md-2"><button type="submit"  name="provider" value="facebook" style="width: 104px; height: 43px">Facebook</button></li>
+           <li class="col-md-2">Google</li>
+           <li class="col-md-2">Twiter</li>
+           <li class="col-md-2">LinkedIn</li>
+       </ul>
+   }
 
 </div>
 <script src="~/Views/Account/RegisterController.js"></script>
