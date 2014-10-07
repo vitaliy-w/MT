@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using MT.ModelEntities.Enums;
 using MT.Web.Infrastructure.Extensions.HtmlElementTypes;
+using Newtonsoft.Json;
 
 namespace MT.Web.Infrastructure.Extensions
 {
@@ -51,7 +52,7 @@ namespace MT.Web.Infrastructure.Extensions
         /// </summary>
         /// <param name="name">Ім'я контрола</param>
         /// <param name="enumType">Тип Enum з якого потрібно зформувати DropDownList</param>
-        
+
         public static MvcHtmlString DropDownListDirective(this HtmlHelper htmlHelper, string name, Enum enumType, object htmlAttributes = null, NgModelPathOptions ngModelPathOptions = null)
         {
             var attributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
@@ -77,6 +78,12 @@ namespace MT.Web.Infrastructure.Extensions
             alertDiv.MergeAttributes(attributes);
             return new MvcHtmlString(alertDiv.ToString());
         }
+
+        public static HtmlString ToJson(this HtmlHelper helper, object obj)
+        {
+            return new HtmlString(JsonConvert.SerializeObject(obj));
+        }
+
     }
 
 

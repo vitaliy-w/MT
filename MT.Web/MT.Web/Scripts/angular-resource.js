@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @license AngularJS v1.2.25
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
@@ -50,18 +50,18 @@ function shallowClearAndCopy(src, dst) {
 
 /**
  * @ngdoc module
- * @name ngResource
+ * @name ngLibraryResource
  * @description
  *
- * # ngResource
+ * # ngLibraryResource
  *
- * The `ngResource` module provides interaction support with RESTful services
+ * The `ngLibraryResource` module provides interaction support with RESTful services
  * via the $resource service.
  *
  *
- * <div doc-module-components="ngResource"></div>
+ * <div doc-module-components="ngLibraryResource"></div>
  *
- * See {@link ngResource.$resource `$resource`} for usage.
+ * See {@link ngLibraryResource.$resource `$resource`} for usage.
  */
 
 /**
@@ -76,7 +76,7 @@ function shallowClearAndCopy(src, dst) {
  * The returned resource object has action methods which provide high-level behaviors without
  * the need to interact with the low level {@link ng.$http $http} service.
  *
- * Requires the {@link ngResource `ngResource`} module to be installed.
+ * Requires the {@link ngLibraryResource `ngLibraryResource`} module to be installed.
  *
  * @param {string} url A parametrized URL template with parameters prefixed by `:` as in
  *   `/user/:username`. If you are using a URL with a port number (e.g.
@@ -189,8 +189,8 @@ function shallowClearAndCopy(src, dst) {
  *   The action methods on the class object or instance object can be invoked with the following
  *   parameters:
  *
- *   - HTTP GET "class" actions: `Resource.action([parameters], [success], [error])`
- *   - non-GET "class" actions: `Resource.action([parameters], postData, [success], [error])`
+ *   - HTTP GET "class" actions: `LibraryResource.action([parameters], [success], [error])`
+ *   - non-GET "class" actions: `LibraryResource.action([parameters], postData, [success], [error])`
  *   - non-GET instance actions:  `instance.$action([parameters], [success], [error])`
  *
  *   Success callback is called with (value, responseHeaders) arguments. Error callback is called
@@ -199,7 +199,7 @@ function shallowClearAndCopy(src, dst) {
  *   Class actions return empty instance (with additional properties below).
  *   Instance actions return promise of the action.
  *
- *   The Resource instances and collection have these additional properties:
+ *   The LibraryResource instances and collection have these additional properties:
  *
  *   - `$promise`: the {@link ng.$q promise} of the original server interaction that created this
  *     instance or collection.
@@ -216,7 +216,7 @@ function shallowClearAndCopy(src, dst) {
  *     returned by the interceptor.
  *
  *   - `$resolved`: `true` after first server interaction is completed (either with success or
- *      rejection), `false` before that. Knowing if the Resource has been resolved is useful in
+ *      rejection), `false` before that. Knowing if the LibraryResource has been resolved is useful in
  *      data-binding.
  *
  * @example
@@ -303,7 +303,7 @@ function shallowClearAndCopy(src, dst) {
  * # Creating a custom 'PUT' request
  * In this example we create a custom method on our resource to make a PUT request
  * ```js
- *    var app = angular.module('app', ['ngResource', 'ngRoute']);
+ *    var app = angular.module('app', ['ngLibraryResource', 'ngRoute']);
  *
  *    // Some APIs expect a PUT request in the format URL/object/ID
  *    // Here we are creating an 'update' method
@@ -329,7 +329,7 @@ function shallowClearAndCopy(src, dst) {
  *    }]);
  * ```
  */
-angular.module('ngResource', ['ng']).
+angular.module('ngLibraryResource', ['ng']).
   factory('$resource', ['$http', '$q', function($http, $q) {
 
     var DEFAULT_ACTIONS = {
@@ -557,7 +557,7 @@ angular.module('ngResource', ['ng']).
                     value.push(new Resource(item));
                   } else {
                     // Valid JSON values may be string literals, and these should not be converted
-                    // into objects. These items will not have access to the Resource prototype
+                    // into objects. These items will not have access to the LibraryResource prototype
                     // methods, but unfortunately there
                     value.push(item);
                   }

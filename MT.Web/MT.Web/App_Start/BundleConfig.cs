@@ -34,6 +34,7 @@ namespace MT.Web.App_Start
                 "~/Scripts/filters/*.js",
                 "~/Scripts/directives/*.js",
                 "~/Scripts/controllers/*.js",
+                "~/Scripts/libs/ng-table.js",
 
                 "~/Scripts/libs/angular-sham-spinner-0.0.10.js"));
         }

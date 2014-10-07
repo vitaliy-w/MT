@@ -1,0 +1,70 @@
+﻿@using System.Web.UI.WebControls
+@using MT.Web.Infrastructure.Extensions
+@model IEnumerable<MT.ModelEntities.Entities.LocalizationResource>
+
+
+
+<link type="text/css" href="~/Content/bootstrap.css" rel="stylesheet" />
+<script type="text/javascript" src="~/Scripts/angular.js"></script>
+<script type="text/javascript" src="~/Scripts/ng-table.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+
+
+
+
+<div ng-controller="DemoCtrl" ng-app="main">
+
+    <br />
+    <br />
+    <br />
+    <label>Добавить новый ресурс локализации</label>
+    <form class="form-horizontal" role="form" action="#" method="POST">
+        <div class="form-group">
+            <label for="inputName3" class="col-sm-2 control-label">Ключ</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="inputName3" name="resourceKey" placeholder="Ключ" required="true">
+            </div>
+        </div>
+
+        <div id="_section">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Значение</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="inputEmail3" name="LocalizedResource" placeholder="Значение" required="true">
+                </div>
+
+                <label for="inputName3" class="col-sm-2 control-label" name="ResourceCultureCode">Культура</label>
+                <div class="col-sm-4">
+                    <select>
+                        <option>ru-RU</option>
+                        <option>en-US</option>
+                    </select>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="fottr" class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">Сохранить</button>
+                <button type="button" class="btn btn-success" ng-click="cloneAll()">Добавить значение</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<script>
+
+    var app = angular.module('main', ['ngTable']).
+        controller('DemoCtrl', function ($scope) {
+            $scope.cloneAll = function () {
+                $('#fottr').before($('#_section').clone(true));
+
+                var lst = $('input');
+                lst[lst.length - 3].name = 'LocalizedResource' + (lst.length - 5);
+            }
+        });
+
+</script>

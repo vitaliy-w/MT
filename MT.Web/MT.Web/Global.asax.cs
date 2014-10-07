@@ -1,10 +1,10 @@
-﻿using System.Data.Entity;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
-using MT.DataAccess.EntityFramework;
+using MT.Utility.Localization.AttributeAdapters;
+using MT.Utility.Localization.Attributes;
 using MT.Web.App_Start;
 using MT.Web.Infrastructure;
 
@@ -18,10 +18,19 @@ namespace MT.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+
+            RegisterAttributeAdapters();
             SetupIocContainer();
-            Database.SetInitializer<MentorDataContext>(null);
         }
 
+        private static void RegisterAttributeAdapters()
+        {
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(LocalizedCompareAttribute), typeof(LocalizedCompareAttributeAdapter));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(LocalizedEmailAttribute), typeof(LocalizedEmailAttributeAdapter));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(LocalizedRangeAttribute), typeof(LocalizedRangeAttributeAdapter));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(LocalizedRegularExpressionAttribute), typeof(LocalizedRegularExpressionAttributeAdapter));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(LocalizedRequiredAttribute), typeof(LocalizedRequiredAttributeAdapter));
+        }
 
         private static void SetupIocContainer()
         {

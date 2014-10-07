@@ -1,0 +1,62 @@
+﻿@using MT.ModelEntities.Enums
+@using MT.Web.Infrastructure
+@using MT.Web.Infrastructure.Extensions
+@model MT.ModelEntities.Entities.LibraryResource
+
+@{
+    ViewBag.Title = "Create LibraryResource";
+    const string formName = "createLibraryResourceForm";
+
+    var resource = new NgModelPathOptions();
+    resource.Prefix = "resource";
+}
+
+<h2>Create LibraryResource</h2>
+
+<div id="main" ng-controller="createLibraryResourceController">
+    <form id="@formName" name="@formName" validable-form>
+        <div class="form-horizontal">
+            <h4>New LibraryResource</h4>
+            <hr />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxDirectiveFor(model => model.Name, new { ng_model = "resource.name" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Access, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListDirective("Access", new AccessLevelsEnum(), new { ng_model = "resource.access" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Url, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxDirectiveFor(model => model.Url, new { ng_model = "resource.link" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxDirectiveFor(model => model.Description, new { ng_model = "resource.description" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ButtonDirective("Create", new
+                        {
+                            ng_click = String.Format("create('{0}')", formName)
+                        })
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+</div>
+<script src="~/Views/LibraryResource/CreateResourceController.js"></script>
