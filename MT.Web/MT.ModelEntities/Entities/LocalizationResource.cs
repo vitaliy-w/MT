@@ -5,7 +5,7 @@ namespace MT.ModelEntities.Entities
     /// <summary>
     /// Describes the text of different languages and cultures.
     /// </summary>
-    public class LocalisationResource
+    public class LocalizationResource
     {
         /// <summary>
         ///  Строка, которая являеться уникальным индефикатором для конкретного текста.

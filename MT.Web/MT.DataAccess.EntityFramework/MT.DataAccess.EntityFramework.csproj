@@ -51,16 +51,12 @@
     <Compile Include="DataAccessFactory.cs" />
     <Compile Include="IDataAccessFactory.cs" />
     <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="Migrations\201410070656402_initdb.cs" />
+    <Compile Include="Migrations\201410070656402_initdb.Designer.cs">
+      <DependentUpon>201410070656402_initdb.cs</DependentUpon>
+    </Compile>
     <Compile Include="UnitOfWork.cs" />
     <Compile Include="MentorDataContext.cs" />
-    <Compile Include="Migrations\201409191051227_create_table_user.cs" />
-    <Compile Include="Migrations\201409191051227_create_table_user.Designer.cs">
-      <DependentUpon>201409191051227_create_table_user.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201409191052348_user_remove_dtStamp.cs" />
-    <Compile Include="Migrations\201409191052348_user_remove_dtStamp.Designer.cs">
-      <DependentUpon>201409191052348_user_remove_dtStamp.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,11 +71,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201409191051227_create_table_user.resx">
-      <DependentUpon>201409191051227_create_table_user.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201409191052348_user_remove_dtStamp.resx">
-      <DependentUpon>201409191052348_user_remove_dtStamp.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201410070656402_initdb.resx">
+      <DependentUpon>201410070656402_initdb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -25,7 +25,7 @@ namespace MT.DataAccess.EntityFramework
 
         public DbSet<Resource> Resources { get; set; }
 
-        public DbSet<LocalisationResource>  LocalisationResources { get; set; }
+        public DbSet<LocalizationResource>  LocalizationResources { get; set; }
 
 
     }
