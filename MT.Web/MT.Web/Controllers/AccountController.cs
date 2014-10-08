@@ -1,7 +1,13 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using DotNetOpenAuth.AspNet;
+using Microsoft.Web.WebPages.OAuth;
 using MT.DataAccess.EntityFramework;
+using MT.DomainLogic;
+using MT.DomainLogic.AccountService;
 using MT.ModelEntities.Entities;
 
 namespace MT.Web.Controllers
@@ -9,11 +15,18 @@ namespace MT.Web.Controllers
     public class AccountController : Controller
     {
 
-        private IUnitOfWork db;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IAccountService _accountService;
 
-        public AccountController(IUnitOfWork unitOfWork)
+        public AccountController(IUnitOfWork unitOfWork, IAccountService accountService)
         {
-            this.db = unitOfWork;
+            _unitOfWork = unitOfWork;
+            _accountService = accountService;
+        }
+
+        public ActionResult Index()
+        {
+            return View();
         }
 
         //
@@ -23,30 +36,70 @@ namespace MT.Web.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Регистрирует нового пользователя
+        /// </summary>
+        /// <param name="user">новый пользователь полученный с формы регистрации</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Register(User user)
         {
             if (ModelState.IsValid)
             {
-                user.Created = DateTime.Now;
-                db.Add(user);
-                db.Commit();
-                return RedirectToAction("Index", "Test");
+                _accountService.RegisterUser(user);
+                _unitOfWork.Commit();
             }
 
             return View(user);
         }
 
-        public JsonResult CheckUserName(string userName)
+        /// <summary>
+        /// вызывается на стороне клиента и провиряет уникальность поля "Email" когда пользовательзаполняет форму регистрации 
+        /// </summary>
+        /// <param name="email">значение из поля "Email" которе вводит пользователь</param>
+        /// <returns></returns>
+        public JsonResult CheckEmail(string email)
         {
-            var result = db.Get<User>().Any(u => u.UserName == userName);
+            var result = _accountService.CheckEmail(email);
             return Json(!result, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult CheckEmail(string email)
+        #region Регистрация через сервисы
+
+        [HttpPost]
+        public ActionResult ExternalRegister(string provider)
         {
-            var result = db.Get<User>().Any(u => u.Email == email);
-            return Json(!result, JsonRequestBehavior.AllowGet);
+
+            return new ExternalLoginResult(provider, Url.Action("ExternalRegisterCallback"));
         }
-	}
+
+        public ActionResult ExternalRegisterCallback()
+        {
+            AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalRegisterCallback"));
+            if (result.IsSuccessful)
+            {
+                _accountService.RegisterExternalUser(result.ProviderUserId, result.UserName, result.Provider);
+                _unitOfWork.Commit();
+            }
+            return View();
+        }
+
+        internal class ExternalLoginResult : ActionResult
+        {
+            public ExternalLoginResult(string provider, string returnUrl)
+            {
+                Provider = provider;
+                ReturnUrl = returnUrl;
+            }
+
+            public string Provider { get; private set; }
+            public string ReturnUrl { get; private set; }
+
+            public override void ExecuteResult(ControllerContext context)
+            {
+                OAuthWebSecurity.RequestAuthentication(Provider, ReturnUrl);
+            }
+        }
+        #endregion
+    }
 }
