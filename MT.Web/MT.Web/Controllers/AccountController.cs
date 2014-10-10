@@ -2,18 +2,26 @@
 using System.Linq;
 using System.Web.Mvc;
 using MT.DataAccess.EntityFramework;
+using MT.DomainLogic;
 using MT.ModelEntities.Entities;
+using MT.Web.Models;
 
 namespace MT.Web.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IAccountService _accountService;
 
-        private IUnitOfWork db;
-
-        public AccountController(IUnitOfWork unitOfWork)
+        public AccountController(IUnitOfWork unitOfWork, IAccountService accountService)
         {
-            this.db = unitOfWork;
+            _unitOfWork = unitOfWork;
+            _accountService = accountService;
+        }
+
+        public ActionResult Index()
+        {
+            return View();
         }
 
         //
@@ -23,30 +31,48 @@ namespace MT.Web.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Регистрирует нового пользователя
+        /// </summary>
+        /// <param name="user">новый пользователь полученный с формы регистрации</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Register(User user)
+        public ActionResult Register(RegisterViewModel user)
         {
             if (ModelState.IsValid)
             {
-                user.Created = DateTime.Now;
-                db.Add(user);
-                db.Commit();
-                return RedirectToAction("Index", "Test");
+                _accountService.RegisterUser(RegisterModelToUser(user));
+                _unitOfWork.Commit();
             }
 
             return View(user);
         }
 
-        public JsonResult CheckUserName(string userName)
+        /// <summary>
+        /// вызывается на стороне клиента и провиряет уникальность поля "Email" когда пользовательзаполняет форму регистрации 
+        /// </summary>
+        /// <param name="email">значение из поля "Email" которе вводит пользователь</param>
+        /// <returns></returns>
+        public JsonResult CheckEmail(string email)
         {
-            var result = db.Get<User>().Any(u => u.UserName == userName);
+            var result = _accountService.CheckEmail(email);
             return Json(!result, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult CheckEmail(string email)
+
+        /// <summary>
+        /// делает маппинг из модели вьюхи (Register) в User
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        private User RegisterModelToUser(RegisterViewModel model)
         {
-            var result = db.Get<User>().Any(u => u.Email == email);
-            return Json(!result, JsonRequestBehavior.AllowGet);
+            return new User()
+            {
+                Email = model.Email,
+                Password = model.Password
+
+            };
         }
 	}
 }

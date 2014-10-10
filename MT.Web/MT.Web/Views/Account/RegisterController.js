@@ -9,7 +9,6 @@ angular.module('mtApp').controller('registerController',
             // Вызываем метод сервиса работы с запросамы к серверу и передаем ему данные о юзере.
             // $scope в данном варианте содержит необходимое поле userName, которое принимает модель в параметре екшена.
             registerService.saveUser({
-                userName: $scope.userName,
                 email: $scope.email,
                 password: $scope.password,
                 confirmPassword: $scope.confirmPassword
@@ -25,9 +24,10 @@ angular.module('mtApp').factory('registerService', function (httpService) {
     return {
         // В фабрике описываем только 1 метод - сохранение пользователя.
         saveUser: function (user) {
-            // Посылаем пост в екшен Create контроллера Test на cервер с данными о юзере.
-            return httpService.post('Account/Register', user);
-
+            // пост запрос с редиректом на '/Account/Index'
+            return httpService.post('Account/Register', user).then(function () {
+                window.location = window.location.origin + '/Account/Index';
+            });
         }
     };
 });
