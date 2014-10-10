@@ -117,6 +117,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\libs\angular-sham-spinner-0.0.10.css" />
+    <Content Include="Content\libs\ng-tags-input.bootstrap.css" />
+    <Content Include="Content\libs\ng-tags-input.css" />
+    <Content Include="Content\libs\ng-tags-input.min.css" />
     <Content Include="Content\Mt.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -145,7 +148,9 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\application.js" />
     <Content Include="Scripts\controllers\errorController.js" />
+    <Content Include="Scripts\controllers\tagsInputController.js" />
     <Content Include="Scripts\directives\errorMessage.js" />
+    <Content Include="Scripts\directives\tagsInput.js" />
     <Content Include="Scripts\directives\validation.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
@@ -168,6 +173,7 @@
     <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\extentions\string.js" />
     <Content Include="Scripts\i18n\angular-locale_en-us.js" />
     <Content Include="Scripts\i18n\angular-locale_ru-ru.js" />
     <Content Include="Scripts\i18n\angular-locale_uk-ua.js" />
@@ -184,14 +190,18 @@
     <Content Include="Scripts\libs\jquery.validate.js" />
     <Content Include="Scripts\libs\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\libs\ng-table.js" />
+    <Content Include="Scripts\libs\ng-tags-input.js" />
+    <Content Include="Scripts\libs\ng-tags-input.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\services\errorService.js" />
     <Content Include="Scripts\services\httpService.js" />
     <Content Include="Scripts\services\navigationService.js" />
     <Content Include="Scripts\services\validationService.js" />
+    <Content Include="Views\Controls\TagController.js" />
     <Content Include="Views\LibraryResource\CreateResourceController.js" />
     <Content Include="Views\Account\RegisterController.js" />
     <Content Include="Views\Templates\error-message.html" />
+    <Content Include="Views\Templates\tags-input.html" />
     <Content Include="Views\Test\CreateController.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -204,6 +214,7 @@
     <Compile Include="Controllers\ControlsController.cs" />
     <Compile Include="Controllers\LibraryResourceController.cs" />
     <Compile Include="Controllers\ProjectRequestController.cs" />
+    <Compile Include="Controllers\TechnologyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -215,6 +226,8 @@
     <Compile Include="Infrastructure\NgModelPathOptions.cs" />
     <Compile Include="Infrastructure\Extensions\AngularHtmlHelperExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Class1.cs" />
+    <Content Include="Scripts\services\tagsInputService.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -235,6 +248,7 @@
     <Content Include="Views\LibraryResource\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\ProjectRequest\Create.cshtml" />
+    <Content Include="Views\Controls\Tag.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -247,6 +261,7 @@
     <Folder Include="Areas\Management\Models\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\filters\" />
+    <Folder Include="Views\Technology\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MT.DataAccess.EntityFramework\MT.DataAccess.EntityFramework.csproj">

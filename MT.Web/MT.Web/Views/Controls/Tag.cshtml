@@ -1,0 +1,10 @@
+﻿@model MT.Web.ViewModels.TagViewModel
+@using MT.Web.Infrastructure.Extensions
+
+@{
+    ViewBag.Title = "Tag";
+}
+
+<h2>Tag</h2>
+
+@Html.TagsInputDirectiveFor(model => model.Tags)

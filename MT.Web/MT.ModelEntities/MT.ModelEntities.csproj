@@ -53,6 +53,7 @@
     <Compile Include="Entities\LocalizationResource.cs" />
     <Compile Include="Entities\ProjectRequest.cs" />
     <Compile Include="Entities\LibraryResource.cs" />
+    <Compile Include="Entities\Technology.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\AccessLevelsEnum.cs" />
     <Compile Include="Enums\AlertTypesEnum.cs" />
