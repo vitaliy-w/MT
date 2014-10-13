@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using MT.DataAccess.EntityFramework;
 using MT.DomainLogic;
 using MT.ModelEntities.Entities;
-using MT.Web.Models;
+using MT.Web.ViewModels;
 
 namespace MT.Web.Controllers
 {
@@ -32,16 +32,16 @@ namespace MT.Web.Controllers
         }
 
         /// <summary>
-        /// Регистрирует нового пользователя
+        /// Creates a new user
         /// </summary>
-        /// <param name="user">новый пользователь полученный с формы регистрации</param>
+        /// <param name="user">a new user which is passed from user form</param>
         /// <returns></returns>
         [HttpPost]
         public ActionResult Register(RegisterViewModel user)
         {
             if (ModelState.IsValid)
             {
-                _accountService.RegisterUser(RegisterModelToUser(user));
+                _accountService.RegisterUser(new User(){Email = user.Email, Password = user.Password});
                 _unitOfWork.Commit();
             }
 
@@ -49,9 +49,9 @@ namespace MT.Web.Controllers
         }
 
         /// <summary>
-        /// вызывается на стороне клиента и провиряет уникальность поля "Email" когда пользовательзаполняет форму регистрации 
+        /// verifies the existence of such E-mail in the database 
         /// </summary>
-        /// <param name="email">значение из поля "Email" которе вводит пользователь</param>
+        /// <param name="email"></param>
         /// <returns></returns>
         public JsonResult CheckEmail(string email)
         {
@@ -59,20 +59,5 @@ namespace MT.Web.Controllers
             return Json(!result, JsonRequestBehavior.AllowGet);
         }
 
-
-        /// <summary>
-        /// делает маппинг из модели вьюхи (Register) в User
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        private User RegisterModelToUser(RegisterViewModel model)
-        {
-            return new User()
-            {
-                Email = model.Email,
-                Password = model.Password
-
-            };
-        }
 	}
 }

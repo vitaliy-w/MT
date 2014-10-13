@@ -21,6 +21,14 @@
             public const string LibraryResourceUrlRequiredValidationMsg = "LibraryResource_Url_RequiredValidationMsg";
             public const string TechnologyNameRequiredValidationMsg = "Technology_Name_RequiredValidationMsg";
             public const string TechnologyNameRangeValidationMsg = "Technology_Name_RangeValidationMsg";
+
+            public const string UserPasswordRequiredValidationMsg = "User_Password_RequiredValidationMsg";
+            public const string UserEmailRegularExpressionValidationMsg = "User_Email_RegularExpressionValidationMsg";
+            public const string UserConfirmPasswordCompareValidationMsg = "User_ConfirmPassword_CompareValidationMsg";
+            public const string UserEmailRequiredValidationMsg = "User_Email_RequiredValidationMsg";
+            public const string UserEmailRangeValidationMsg = "User_Email_RangeValidationMsg";
+            public const string UserPasswordRangeValidationMsg = "User_Password_RangeValidationMsg";
+
         }
     }
 }

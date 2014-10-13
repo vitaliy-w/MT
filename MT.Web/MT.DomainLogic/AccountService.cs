@@ -15,9 +15,9 @@ namespace MT.DomainLogic
         }
 
         /// <summary>
-        /// метод который вызывается при регистрации пользователя через форму
+        /// add a new user
         /// </summary>
-        /// <param name="user">новый пользователь с формы регистрации</param>
+        /// <param name="user">new user</param>
         public void RegisterUser(User user)
         {
             user.Created = DateTime.Now;
@@ -26,10 +26,10 @@ namespace MT.DomainLogic
 
 
         /// <summary>
-        /// проверяет есть ли такая почта в базе
+        /// verifies the existence of such E-mail in the database 
         /// </summary>
-        /// <param name="email">значение с текстбокса формы</param>
-        /// <returns>true - если такая почта уже есть в базе</returns>
+        /// <param name="email"></param>
+        /// <returns>true - if this Email is already in the database</returns>
         public bool CheckEmail(string email)
         {
             var result = _unitOfWork.Get<User>().Any(u => u.Email == email);
