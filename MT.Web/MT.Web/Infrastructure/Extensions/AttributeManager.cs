@@ -56,19 +56,6 @@ namespace MT.Web.Infrastructure.Extensions
             }
         }
 
-        private static string BuildPath(string name, NgModelPathOptions ngModelPathOptions)
-        {
-            var jsOpt = ngModelPathOptions ?? new NgModelPathOptions();
-
-            var parts = name.Split('.').Select(s => s.ToCamelCase()).Skip(jsOpt.SkipParts).ToList();
-
-            if (!string.IsNullOrEmpty(jsOpt.Prefix))
-                parts.Insert(0, jsOpt.Prefix);
-
-            var path = string.Join(".", parts);
-            return path;
-        }
-
         /// <summary>
         /// AddClassAttribute метод для безопасного добавления CSS класса к словарю атрибут-значение.
         /// </summary>
@@ -86,12 +73,10 @@ namespace MT.Web.Infrastructure.Extensions
                 attributes["class"] = cssClass;
             }
         }
-
         
         /// <summary>
         /// Перегруженный метод AddClassAttribute для добавления CSS класса в зависимости от значения AlertTypesEnum
         /// </summary>
-        
         public static void AddClassAttribute(IDictionary<string, object> attributes, AlertTypesEnum type)
         {
 
@@ -122,6 +107,17 @@ namespace MT.Web.Infrastructure.Extensions
 
         }
 
+        private static string BuildPath(string name, NgModelPathOptions ngModelPathOptions)
+        {
+            var jsOpt = ngModelPathOptions ?? new NgModelPathOptions();
 
+            var parts = name.Split('.').Select(s => s.ToCamelCase()).Skip(jsOpt.SkipParts).ToList();
+
+            if (!string.IsNullOrEmpty(jsOpt.Prefix))
+                parts.Insert(0, jsOpt.Prefix);
+
+            var path = string.Join(".", parts);
+            return path;
+        }
     }
 }

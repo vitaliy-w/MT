@@ -16,6 +16,7 @@ namespace MT.DataAccess.EntityFramework
             : base(connectionString)
         {
             Database.SetInitializer<MentorDataContext>(new DropCreateDatabaseIfModelChanges<MentorDataContext>());
+
             // Sets the default command timeout 1.5 minutes.
             ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = 90;
         }
@@ -27,6 +28,11 @@ namespace MT.DataAccess.EntityFramework
 		public DbSet<LibraryResource> Resources { get; set; }
 
 		public DbSet<LocalizationResource>  LocalizationResources { get; set; }
+
+        /// <summary>
+        /// The technologies which are supported by our service.
+        /// </summary>
+        public DbSet<Technology> Technologies { get; set; } 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

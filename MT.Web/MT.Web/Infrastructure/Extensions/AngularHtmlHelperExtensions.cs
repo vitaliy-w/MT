@@ -14,7 +14,8 @@ namespace MT.Web.Infrastructure.Extensions
     {
         public static MvcHtmlString TextBoxDirectiveFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TProperty>> expression, object htmlAttributes = null,
-            NgModelPathOptions ngModelPathOptions = null, ControlSizesEnum type = ControlSizesEnum.Medium, bool isTextArea = false)
+            NgModelPathOptions ngModelPathOptions = null, ControlSizesEnum type = ControlSizesEnum.Medium,
+            bool isTextArea = false)
         {
             var attributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
 
@@ -29,8 +30,8 @@ namespace MT.Web.Infrastructure.Extensions
             return htmlHelper.TextBoxFor(expression, attributes);
         }
 
-        public static MvcHtmlString ButtonDirective(this HtmlHelper htmlHelper, string text, object htmlAttributes = null, NgModelPathOptions ngModelPathOptions = null,
-            ButtonTypesEnum type = ButtonTypesEnum.Submit)
+        public static MvcHtmlString ButtonDirective(this HtmlHelper htmlHelper, string text, object htmlAttributes = null, 
+            NgModelPathOptions ngModelPathOptions = null, ButtonTypesEnum type = ButtonTypesEnum.Submit)
         {
             var attributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
 
@@ -53,7 +54,8 @@ namespace MT.Web.Infrastructure.Extensions
         /// <param name="name">Ім'я контрола</param>
         /// <param name="enumType">Тип Enum з якого потрібно зформувати DropDownList</param>
 
-        public static MvcHtmlString DropDownListDirective(this HtmlHelper htmlHelper, string name, Enum enumType, object htmlAttributes = null, NgModelPathOptions ngModelPathOptions = null)
+        public static MvcHtmlString DropDownListDirective(this HtmlHelper htmlHelper, string name, Enum enumType, 
+            object htmlAttributes = null, NgModelPathOptions ngModelPathOptions = null)
         {
             var attributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
             var accessLevelList = new SelectList(Enum.GetNames(enumType.GetType()));
@@ -67,7 +69,8 @@ namespace MT.Web.Infrastructure.Extensions
         /// <param name="text">Текст, который будет выведен пользователю.</param>
         /// <param name="type">Перечисление типа AlertsEnum задающее стилевое оформление сообщения.</param>
 
-        public static MvcHtmlString AlertDirective(this HtmlHelper helper, string text, object htmlAttributes = null, AlertTypesEnum type = AlertTypesEnum.Warning)
+        public static MvcHtmlString AlertDirective(this HtmlHelper helper, string text, object htmlAttributes = null,
+            AlertTypesEnum type = AlertTypesEnum.Warning)
         {
             var alertDiv = new TagBuilder("div");
             var attributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
@@ -84,6 +87,33 @@ namespace MT.Web.Infrastructure.Extensions
             return new HtmlString(JsonConvert.SerializeObject(obj));
         }
 
+
+        public static MvcHtmlString TagsInputDirectiveFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, 
+            Expression<Func<TModel, TProperty>> expression, object htmlAttributes = null, NgModelPathOptions ngModelPathOptions = null)
+        {
+            return DirectiveFor(htmlHelper, expression, "mt-tags-input", htmlAttributes, ngModelPathOptions);
+        }
+
+        public static MvcHtmlString DirectiveFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, 
+            Expression<Func<TModel, TProperty>> expression, string directiveName, object htmlAttributes = null, 
+            NgModelPathOptions ngModelPathOptions = null, string tagName = "div")
+        {
+            var attributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            string name = ExpressionHelper.GetExpressionText(expression);
+            string containerName = String.Format("{0}.{1}", directiveName, name);
+
+            AttributeManager.AddNgModelAttribute(attributes, name, ngModelPathOptions);
+
+            var tagBuilder = new TagBuilder(tagName);
+            tagBuilder.MergeAttribute(directiveName, "");
+            tagBuilder.MergeAttribute("name", containerName);
+            tagBuilder.MergeAttributes(attributes);
+
+            ModelMetadata metadata = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
+            tagBuilder.MergeAttributes(htmlHelper.GetUnobtrusiveValidationAttributes(containerName, metadata));
+
+            return MvcHtmlString.Create(tagBuilder.ToString());
+        }
     }
 
 

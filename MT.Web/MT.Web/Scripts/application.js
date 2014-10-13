@@ -1,5 +1,5 @@
 ﻿(function () {
-    var dependencies = ['ngSanitize'];
+    var dependencies = ['ngSanitize', 'ngTagsInput'];
     angular.module('mtApp', dependencies);
 })();
 

@@ -21,7 +21,9 @@ namespace MT.Web.App_Start
                 "~/Content/Site.css",
                 "~/Content/Mt.css",
                 "~/Content/bootstrap.css",
-                "~/Content/libs/angular-sham-spinner-0.0.10.css"));
+                "~/Content/libs/angular-sham-spinner-0.0.10.css",
+                "~/Content/libs/ng-tags-input.css",
+                "~/Content/libs/ng-tags-input.bootstrap.css"));
         }
 
         private static void RegisterAngular(BundleCollection bundles)
@@ -35,7 +37,7 @@ namespace MT.Web.App_Start
                 "~/Scripts/directives/*.js",
                 "~/Scripts/controllers/*.js",
                 "~/Scripts/libs/ng-table.js",
-
+                "~/Scripts/libs/ng-tags-input.js",
                 "~/Scripts/libs/angular-sham-spinner-0.0.10.js"));
         }
 
@@ -50,7 +52,8 @@ namespace MT.Web.App_Start
             bundles.Add(new ScriptBundle("~/Scripts/bundles-libs").Include(
                 "~/Scripts/libs/jquery-1.10.2.js",
                 "~/Scripts/libs/jquery.validate.js",
-                "~/Scripts/libs/jquery.validate.unobtrusive.js"));
+                "~/Scripts/libs/jquery.validate.unobtrusive.js",
+                "~/Scripts/extentions/string.js"));
         }
     }
 }
