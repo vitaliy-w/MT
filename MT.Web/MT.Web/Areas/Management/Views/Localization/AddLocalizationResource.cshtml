@@ -1,0 +1,65 @@
+﻿@using System.ComponentModel
+@using MT.ModelEntities.Entities
+@using MT.ModelEntities.Enums
+@using MT.Web.Infrastructure.Extensions
+@{
+    ViewBag.Title = "TestView";
+}
+@{ const string formName = "createLocalizationResource";}
+@model LocalizationResource
+
+<div id="main" ng-controller="createLocalizationResource">
+    <form id="@formName" name="@formName" validable-form>
+        <div class="form-horizontal">
+            <div class="form-group">
+                @Html.LabelForDirective(model => model.ResourceKey, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxDirectiveFor(model => model.ResourceKey, new { ng_model = "resource.ResourceKey" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelForDirective(model => model.ResourceCultureCode, new { @class = "control-label col-md-2" })
+                <div class="col-sm-4">
+                    @Html.DropDownListDirective("ResourceCultureCodes", new ResourceCultureCodeTypesEnum(), "Выберите локаль", new { ng_model = "resource.ResourceCultureCodes[0]" })
+                </div>
+                @Html.LabelForDirective(model => model.LocalizedResource, new { @class = "control-label col-md-2" })
+                <div class="col-sm-4">
+                    @Html.TextBoxDirectiveFor(model => model.LocalizedResource, new { ng_model = "resource.LocalizedResources[0]" })
+                    <input type="button" class="btn btn-success" value="+" ng-click="isSectionVisible[0]=true" />
+                </div>
+            </div>
+            <div class="form-group" ng-show="isSectionVisible[0]">
+                @Html.LabelForDirective(model => model.ResourceCultureCode, new { @class = "control-label col-md-2" })
+                <div class="col-sm-4">
+                    @Html.DropDownListDirective("ResourceCultureCodes", new ResourceCultureCodeTypesEnum(), "Выберите локаль", new { ng_model = "resource.ResourceCultureCodes[1]" })
+                </div>
+                @Html.LabelForDirective(model => model.LocalizedResource, new { @class = "control-label col-md-2" })
+                <div class="col-sm-4">
+                    @Html.TextBoxDirectiveFor(model => model.LocalizedResource, new { ng_model = "resource.LocalizedResources[1]" })
+                    <input type="button" class="btn btn-success" value="-" ng-click="isSectionVisible[0]=false" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ButtonDirective("Save", new { ng_click = String.Format("create('{0}')", formName) })
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <div id="alertSucces" ng-show="isSuccessVisible">
+        @Html.AlertDirective("ALl is ok my master!", null, AlertTypesEnum.Succes)
+    </div>
+
+    <div id="alertDanger" ng-show="isWarningVisible">
+        @Html.AlertDirective("Something goes wrong, nothing added to DB", null, AlertTypesEnum.Danger)
+    </div>
+
+
+</div>
+
+
+<script src="~/Areas/Management/Views/Localization/AddLocalizationResource.js"></script>
+
+
