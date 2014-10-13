@@ -12,28 +12,28 @@
     <form id="@formName" name="@formName" validable-form>
         <div class="form-horizontal">
             <div class="form-group">
-                @Html.LabelFor(model => model.ResourceKey, new { @class = "control-label col-md-2" })
+                @Html.LabelForDirective(model => model.ResourceKey, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.TextBoxDirectiveFor(model => model.ResourceKey, new { ng_model = "resource.ResourceKey" })
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.ResourceCultureCode, new { @class = "control-label col-md-2" })
+                @Html.LabelForDirective(model => model.ResourceCultureCode, new { @class = "control-label col-md-2" })
                 <div class="col-sm-4">
                     @Html.DropDownListDirective("ResourceCultureCodes", new ResourceCultureCodeTypesEnum(), "Выберите локаль", new { ng_model = "resource.ResourceCultureCodes[0]" })
                 </div>
-                @Html.LabelFor(model => model.LocalizedResource, new { @class = "control-label col-md-2" })
+                @Html.LabelForDirective(model => model.LocalizedResource, new { @class = "control-label col-md-2" })
                 <div class="col-sm-4">
                     @Html.TextBoxDirectiveFor(model => model.LocalizedResource, new { ng_model = "resource.LocalizedResources[0]" })
                     <input type="button" class="btn btn-success" value="+" ng-click="isSectionVisible[0]=true" />
                 </div>
             </div>
             <div class="form-group" ng-show="isSectionVisible[0]">
-                @Html.LabelFor(model => model.ResourceCultureCode, new { @class = "control-label col-md-2" })
+                @Html.LabelForDirective(model => model.ResourceCultureCode, new { @class = "control-label col-md-2" })
                 <div class="col-sm-4">
                     @Html.DropDownListDirective("ResourceCultureCodes", new ResourceCultureCodeTypesEnum(), "Выберите локаль", new { ng_model = "resource.ResourceCultureCodes[1]" })
                 </div>
-                @Html.LabelFor(model => model.LocalizedResource, new { @class = "control-label col-md-2" })
+                @Html.LabelForDirective(model => model.LocalizedResource, new { @class = "control-label col-md-2" })
                 <div class="col-sm-4">
                     @Html.TextBoxDirectiveFor(model => model.LocalizedResource, new { ng_model = "resource.LocalizedResources[1]" })
                     <input type="button" class="btn btn-success" value="-" ng-click="isSectionVisible[0]=false" />
@@ -41,12 +41,22 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    @Html.ButtonDirective("Save", new { ng_click = String.Format("create('{0}')", formName)})
+                    @Html.ButtonDirective("Save", new { ng_click = String.Format("create('{0}')", formName) })
                 </div>
             </div>
         </div>
     </form>
-    <div id="msg_from_server"></div>
+
+
+    <div id="alertSucces" ng-show="isSuccessVisible">
+        @Html.AlertDirective("ALl is ok my master!", null, AlertTypesEnum.Succes)
+    </div>
+
+    <div id="alertDanger" ng-show="isWarningVisible">
+        @Html.AlertDirective("Something goes wrong, nothing added to DB", null, AlertTypesEnum.Danger)
+    </div>
+
+
 </div>
 
 

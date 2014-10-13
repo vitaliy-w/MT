@@ -142,6 +142,13 @@ namespace MT.Web.Infrastructure.Extensions
             return new MvcHtmlString(link.ToString());
         }
 
+
+        public static MvcHtmlString LabelForDirective<TModel, TValue>(this HtmlHelper<TModel> helper,Expression<Func<TModel, TValue>> expression, object htmlAttributes)
+        {
+            return helper.LabelFor(expression, htmlAttributes);
+        }
+        
+
     }
 
 

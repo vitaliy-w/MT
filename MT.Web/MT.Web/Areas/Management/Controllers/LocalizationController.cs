@@ -3,17 +3,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MT.DataAccess.EntityFramework;
+using MT.DomainLogic.Localization;
 using MT.ModelEntities.Entities;
 using MT.ModelEntities.Enums;
+using MT.Utility.Json;
 using MT.Utility.OtherTools;
 using MT.Web.Infrastructure.Extensions;
 using MT.Web.Models;
+using MT.Utility.OtherTools;
 
 namespace MT.Web.Areas.Management.Controllers
 {
     public class LocalizationController : Controller
     {
         private IUnitOfWork db;
+        private ILocalizationResourceService _localizationResourceService;
 
         /// <summary>
         /// Метод для заполнения пустой базы данных тестовыми значениями. Убрать перед релизом. 
@@ -30,9 +34,10 @@ namespace MT.Web.Areas.Management.Controllers
             db.Commit();
         }
 
-        public LocalizationController(IUnitOfWork unitOfWork)
+        public LocalizationController(IUnitOfWork unitOfWork, ILocalizationResourceService localizationService)
         {
             this.db = unitOfWork;
+           _localizationResourceService = localizationService;
             // InitEmptyDb();
 
         }
@@ -61,36 +66,35 @@ namespace MT.Web.Areas.Management.Controllers
         /// </summary>
 
         [HttpPost]
-        public HtmlString Create(LocalizationResourceViewModel result)
+        public string Create(LocalizationResourceViewModel result)
         {
 
             if (!ModelState.IsValid)
             {
-                return AngularHtmlHelperExtensions.AlertDirective(null, "Model is invalid", null, AlertTypesEnum.Danger);
+                return new ErrorModel("Error", 0).ToJson();
             }
 
-            int itemsAddedToDB = 0;
-            for (int i = 0; i < result.LocalizedResources.Length; i++)
-            {
-                var localizationResource = new LocalizationResource
-                {
-                    ResourceKey = result.ResourceKey,
-                    ResourceCultureCode = result.ResourceCultureCodes[i].GetEnumStringValue(),
-                    LocalizedResource = result.LocalizedResources[i]
-                };
 
-                var isPresent = db.Get<LocalizationResource>().Any(resource => ((resource.ResourceKey == localizationResource.ResourceKey)
-                                                                             &&
-                                                                             (resource.ResourceCultureCode == localizationResource.ResourceCultureCode)));
-                if (!isPresent) //if ResourceKey and ResourceCultureCode wasn't found in DB.
-                {
-                    itemsAddedToDB++;
-                    db.Add(localizationResource);
-                }
-            }
-            if (itemsAddedToDB <= 0) return AngularHtmlHelperExtensions.AlertDirective(null, "All items already exist in DB. Nothing added", null, AlertTypesEnum.Warning);
+            int addedEntryies = _localizationResourceService.SafeAddUniqueEntry(result.GetLocalizationResources());
+            if (addedEntryies<1)  return new ErrorModel("Error", 0).ToJson();
+
+
             db.Commit();
-            return AngularHtmlHelperExtensions.AlertDirective(null, String.Format("{0} values was added succesfully", itemsAddedToDB), null, AlertTypesEnum.Succes);
+            return null;
+
+
         }
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
