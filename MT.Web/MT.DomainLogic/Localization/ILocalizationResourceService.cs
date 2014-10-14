@@ -7,7 +7,7 @@ namespace MT.DomainLogic.Localization
     {
         void Create(LocalizationResource libraryResource);
 
-        int SafeAddUniqueEntry(IEnumerable<LocalizationResource> resources);
+        int AddUniqueEntry(IEnumerable<LocalizationResource> resources);
 
     }
 }

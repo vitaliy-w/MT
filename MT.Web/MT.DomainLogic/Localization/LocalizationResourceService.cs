@@ -20,7 +20,10 @@ namespace MT.DomainLogic.Localization
             _unitOfWork.Add(libraryResource);
         }
 
-        public int SafeAddUniqueEntry(IEnumerable<LocalizationResource> resources)
+        /// <summary>
+        /// Adds new entries to data base if they are not already exist and returns quantity succesfully added items.
+        /// </summary>
+        public int AddUniqueEntry(IEnumerable<LocalizationResource> resources)
         {
             int itemsAddedToDb = 0;
             foreach (var resource in resources)

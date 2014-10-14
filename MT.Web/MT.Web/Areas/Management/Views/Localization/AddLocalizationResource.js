@@ -2,7 +2,7 @@
 function ($scope, validationService, createLocalizationService) {
 
     $scope.resource = {};
-    $scope.isSectionVisible = [false];
+    $scope.isSectionVisible = [false];  //array of sections that displays fields for new entry.
     $scope.isWarningVisible = false;
     $scope.isSuccessVisible = false;
 

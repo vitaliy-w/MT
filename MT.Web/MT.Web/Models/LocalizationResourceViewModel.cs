@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using MT.ModelEntities.Entities;
 using MT.ModelEntities.Enums;
@@ -29,7 +28,7 @@ namespace MT.Web.Models
         public ResourceCultureCodeTypesEnum[] ResourceCultureCodes { get; set; }
 
         /// <summary>
-        /// Localized resource.
+        /// Array of the localized resources.
         /// </summary>
         [LocalizedRequired("LocalizedResource is required.")]
         public string[] LocalizedResources { get; set; }

@@ -2,7 +2,7 @@
 @model IEnumerable<MT.ModelEntities.Entities.LocalizationResource>
 <link type="text/css" href="~/Content/Mt.css" rel="stylesheet" />
 
-<div ng-controller="renderNGTable" ng-app="mtApp">
+<div ng-controller="renderNGTable">
     <p><strong>Page:</strong> {{tableParams.page()}}</p>
     <p><strong>Count per page:</strong> {{tableParams.count()}}</p>
     <table ng-table="tableParams" class="table">

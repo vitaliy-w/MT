@@ -4,21 +4,17 @@ namespace MT.Utility.OtherTools
 {
     public class ErrorModel
     {
-        private readonly List<string> _errorMessagesList = new List<string>() { "Model is invalid" };
+        public readonly List<string> ErrorMessagesList = new List<string>();
 
-        private readonly List<string> _errorKeysList = new List<string>() { "Model" };
-
-        public string ErrorMessage { get; set; }
-
-        public string ErrorKey { get; set; }
+        public readonly List<string> ErrorKeysList = new List<string>();
 
         public string Header { get; set; }
 
-        public ErrorModel(string header, int errorNumber)
+        public ErrorModel(string header, List<string> errorMessagesList, List<string> errorKeysList)
         {
             Header = header;
-            ErrorMessage = _errorMessagesList[errorNumber];
-            ErrorKey = _errorKeysList[errorNumber];
+            ErrorMessagesList = errorMessagesList;
+            ErrorKeysList = errorKeysList;
         }
 
 
