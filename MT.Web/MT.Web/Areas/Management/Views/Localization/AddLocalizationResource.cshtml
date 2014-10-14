@@ -1,8 +1,6 @@
-﻿@using System.ComponentModel
-@using MT.ModelEntities.Entities
+﻿@using MT.ModelEntities.Entities
 @using MT.ModelEntities.Enums
 @using MT.Web.Infrastructure.Extensions
-@using MT.Web.Infrastructure.Extensions.HtmlElementTypes
 @{
     ViewBag.Title = "TestView";
 }
@@ -50,7 +48,7 @@
 
 
     <div id="alertSucces" ng-show="isSuccessVisible">
-        @Html.AlertDirective("ALl is ok my master!", null, AlertTypesEnum.Succes)
+        @Html.AlertDirective("ALl is ok my Master!", null, AlertTypesEnum.Succes)
     </div>
 
     <div id="alertDanger" ng-show="isWarningVisible">

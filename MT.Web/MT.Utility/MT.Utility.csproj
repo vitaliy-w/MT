@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnumExtesions.cs" />
     <Compile Include="Json\JsonExtensions.cs" />
     <Compile Include="Json\JsonNetResult.cs" />
     <Compile Include="Json\PartialViewJsonResultConverter.cs" />
@@ -98,7 +99,6 @@
     <Compile Include="Localization\Services\LocalizationResourceCache.cs" />
     <Compile Include="Localization\Services\LocalizationResourceServiceSingleton.cs" />
     <Compile Include="OtherTools\ErrorModel.cs" />
-    <Compile Include="OtherTools\OtherTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtensions.cs" />
   </ItemGroup>

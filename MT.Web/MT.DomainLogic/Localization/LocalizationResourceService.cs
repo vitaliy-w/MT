@@ -23,15 +23,13 @@ namespace MT.DomainLogic.Localization
         /// <summary>
         /// Adds new entries to data base if they are not already exist and returns quantity succesfully added items.
         /// </summary>
-        public int AddUniqueEntry(IEnumerable<LocalizationResource> resources)
+        public int Create(IEnumerable<LocalizationResource> resources)
         {
             int itemsAddedToDb = 0;
             foreach (var resource in resources)
             {
-                var isPresent = _unitOfWork.Get<LocalizationResource>().Any(entry => ((entry.ResourceKey == resource.ResourceKey)
-                                                                             &&
-                                                                             (entry.ResourceCultureCode == resource.ResourceCultureCode)));
-                if (!isPresent)
+
+                if (!IsPresent(resource))
                 {
                     _unitOfWork.Add(resource);
                     itemsAddedToDb++;
@@ -41,6 +39,17 @@ namespace MT.DomainLogic.Localization
             return itemsAddedToDb;
         }
 
+        /// <summary>
+        /// Checks if item already present in database.
+        /// </summary>
+
+        private bool IsPresent(LocalizationResource resource)
+        {
+            var isPresent = _unitOfWork.Get<LocalizationResource>().Any(entry => ((entry.ResourceKey == resource.ResourceKey)
+                                                                             &&
+                                                                             (entry.ResourceCultureCode == resource.ResourceCultureCode)));
+            return isPresent;
+        }
 
     }
 }

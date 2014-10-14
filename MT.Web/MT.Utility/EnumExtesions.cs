@@ -1,15 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 using MT.Utility.Localization.Attributes;
 
-namespace MT.Utility.OtherTools
+namespace MT.Utility
 {
-    public static class OtherTools
+    public static class EnumExtesions
     {
-        /// <summary>
-        /// Returns string value of the enum
-        /// </summary>
-
         public static string GetEnumStringValue(this object value)
         {
             Type type = value.GetType();
@@ -22,4 +22,3 @@ namespace MT.Utility.OtherTools
         }
     }
 }
-    

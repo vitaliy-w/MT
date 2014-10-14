@@ -58,7 +58,7 @@ namespace MT.Web.Areas.Management.Controllers
             }
 
 
-            int addedEntryies = _localizationResourceService.AddUniqueEntry(result.GetLocalizationResources());
+            int addedEntryies = _localizationResourceService.Create(result.GetLocalizationResources());
             if (addedEntryies < 1) return new ErrorModel("Error", new List<string>() { "All reosources already added to DB" }, new List<string>() { "0" }).ToJson();
 
 

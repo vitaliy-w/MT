@@ -4,9 +4,8 @@ namespace MT.Utility.OtherTools
 {
     public class ErrorModel
     {
-        public readonly List<string> ErrorMessagesList = new List<string>();
-
-        public readonly List<string> ErrorKeysList = new List<string>();
+        public IList<string> ErrorMessagesList { get; set; }
+        public IList<string> ErrorKeysList { get; set; }
 
         public string Header { get; set; }
 
