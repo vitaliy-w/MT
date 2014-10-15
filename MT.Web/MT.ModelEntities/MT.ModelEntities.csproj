@@ -57,6 +57,7 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\AccessLevelsEnum.cs" />
     <Compile Include="Enums\AlertTypesEnum.cs" />
+    <Compile Include="Enums\ResourceCultureCodeTypesEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
