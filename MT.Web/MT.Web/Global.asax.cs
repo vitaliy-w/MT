@@ -3,6 +3,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
+using MT.DomainLogic.Localization;
 using MT.Utility.Localization.AttributeAdapters;
 using MT.Utility.Localization.Attributes;
 using MT.Web.App_Start;
@@ -38,6 +39,8 @@ namespace MT.Web
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             builder.RegisterModule<AutofacWebTypesModule>();
             builder.RegisterModule<MtAutofacModule>();
+
+
             IContainer container = builder.Build();
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

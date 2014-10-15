@@ -1,14 +1,10 @@
 ﻿@using MT.Web.Infrastructure.Extensions
 @model IEnumerable<MT.ModelEntities.Entities.LocalizationResource>
-
-
 <link type="text/css" href="~/Content/Mt.css" rel="stylesheet" />
 
-
-<div ng-controller="renderTable" ng-app="mtApp">
+<div ng-controller="renderNGTable">
     <p><strong>Page:</strong> {{tableParams.page()}}</p>
     <p><strong>Count per page:</strong> {{tableParams.count()}}</p>
-
     <table ng-table="tableParams" class="table">
         <tr ng-repeat="resource in $data">
             <td data-title="'Название ресурса'">{{resource.ResourceKey}}</td>
@@ -19,21 +15,20 @@
 </div>
 
 
-@*<script src="~/Scripts/craeteTable.js" type="text/javascript"></script>*@
 
 <script type="text/javascript">
-    var app = angular.module('mtApp', ['ngTable']).
-        controller('renderTable', function ($scope, ngTableParams) {
-            var obj = '@Html.ToJson(Model)';
-            var data = JSON.parse(obj);
-            $scope.tableParams = new ngTableParams({
-                page: 1,            // show first page
-                count: 10           // count per page
-            }, {
-                total: data.length, // length of data
-                getData: function ($defer, params) {
-                    $defer.resolve(data.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                }
-            });
+    var app = angular.module('mtApp').
+    controller('renderNGTable', function ($scope, ngTableParams) {
+        var obj = '@Html.ToJson(Model)';
+        var data = JSON.parse(obj);
+        $scope.tableParams = new ngTableParams({
+            page: 1, // show first page
+            count: 10 // count per page
+        }, {
+            total: data.length, // length of data
+            getData: function ($defer, params) {
+                $defer.resolve(data.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+            }
         });
+    });
 </script>
