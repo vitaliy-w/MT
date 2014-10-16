@@ -25,6 +25,7 @@ namespace MT.Web.Infrastructure
             builder.RegisterType<LibraryResourceService>().As<ILibraryResourceService>();
             builder.RegisterType<LocalizationResourceService>().As<ILocalizationResourceService>();
             builder.RegisterType<TechnologyService>().As<ITechnologyService>();
+            builder.RegisterType<UserLoginService>().As<IUserLoginService>();
         }
     }
 }

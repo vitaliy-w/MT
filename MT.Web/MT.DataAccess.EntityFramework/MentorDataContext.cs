@@ -29,6 +29,10 @@ namespace MT.DataAccess.EntityFramework
 
 		public DbSet<LocalizationResource>  LocalizationResources { get; set; }
 
+        public DbSet<UserLoginHistory> UserLoginHistories { get; set; }
+
+        public DbSet<UserBan> UserBans { get; set; }
+
         /// <summary>
         /// The technologies which are supported by our service.
         /// </summary>
