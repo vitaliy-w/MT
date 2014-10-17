@@ -1,0 +1,102 @@
+﻿@using MT.ModelEntities.Enums
+@using MT.Web.Infrastructure.Extensions
+@{
+    ViewBag.Title = "Index";
+    const string formName = "addUserInfo";
+    @model MT.ModelEntities.Entities.UserInfo
+}
+
+<h2>Index</h2>
+<div class="container-fluid">
+    <div class="row">
+        @{Html.RenderPartial("_leftSide");}
+        <div style="float: left" ng-controller="addUserInfo">
+            <form class="form-horizontal" role="form" id="@formName" name="@formName" validable-form>
+                <div class="form-group">
+                    @Html.LabelForDirective(x => x.Name, new { @class = "col-sm-4 control-label", style = "float:left" })
+                    <div class="col-sm-8">
+                        @Html.TextBoxDirectiveFor(x => x.Name, new { ng_model = "userInfo.Name", placeholder = "Enter your first name", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelForDirective(x => x.SecondName, new { @class = "col-sm-4 control-label", style = "float:left" })
+                    <div class="col-sm-8">
+                        @Html.TextBoxDirectiveFor(x => x.SecondName, new { ng_model = "userInfo.SecondName", placeholder = "Enter your second name", @class = "form-control" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div>
+                            <label>
+                                Man:
+                                @Html.RadioButtonFor(x => x.IsMan, true, new { @class = "radio-inline", ng_model = "userInfo.IsMan" })
+                                Not a Man:
+                                @Html.RadioButtonFor(x => x.IsMan, false, new { @class = "radio-inline", ng_model = "userInfo.IsMan" })
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        @Html.ButtonDirective("Save", new { ng_click = String.Format("create('{0}')", formName), @class = "btn btn-default" })
+                    </div>
+                </div>
+            </form>
+
+            <div id="alertSucces" ng-show="isSuccessVisible">
+                @Html.AlertDirective(@"{{messageFromServer}}", null, AlertTypesEnum.Succes)
+            </div>
+
+            <div id="alertDanger" ng-show="isWarningVisible">
+                @Html.AlertDirective(@"{{messageFromServer}}", null, AlertTypesEnum.Danger)
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    angular.module('mtApp').controller('addUserInfo',
+function ($scope, validationService, addUserInfoService) {
+
+    $scope.userInfo = {};
+    $scope.userInfo.Name = "";
+    $scope.userInfo.SecondName = "";
+    $scope.userInfo.IsMan = false;
+
+
+    // formName - form name for validation
+    $scope.create = function (formName) {
+
+
+        if (!validationService.isValid(formName))
+            return;
+        addUserInfoService.saveResource($scope, $scope.userInfo);
+
+    };
+});
+
+    // Fabric method for saving LibraryResource instance using httpService
+    angular.module('mtApp').factory('addUserInfoService', function (httpService) {
+        return {
+            saveResource: function (scope, resource) {
+                return httpService.post('PersonalCabinet/Create', resource).then(function (responce) {
+
+                    if (responce.header == "Error") {
+                        scope.isWarningVisible = true;
+                    }
+
+                    else {
+                        scope.isSuccessVisible = true;
+                    }
+
+                    scope.messageFromServer = responce.errorMessagesList[0];
+
+                });
+            }
+        };
+    });
+</script>

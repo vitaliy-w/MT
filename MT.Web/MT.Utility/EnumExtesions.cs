@@ -10,6 +10,10 @@ namespace MT.Utility
 {
     public static class EnumExtesions
     {
+        
+        /// <summary>
+        /// Returns string value of the Enum's attribute.
+        /// </summary>
         public static string GetEnumStringValue(this object value)
         {
             Type type = value.GetType();

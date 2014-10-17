@@ -48,11 +48,11 @@
 
 
     <div id="alertSucces" ng-show="isSuccessVisible">
-        @Html.AlertDirective("ALl is ok my Master!", null, AlertTypesEnum.Succes)
+        @Html.AlertDirective(@"{{messageFromServer}}", null, AlertTypesEnum.Succes)
     </div>
 
     <div id="alertDanger" ng-show="isWarningVisible">
-        @Html.AlertDirective("Something goes wrong, nothing added to DB", null, AlertTypesEnum.Danger)
+        @Html.AlertDirective(@"{{messageFromServer}}", null, AlertTypesEnum.Danger)
     </div>
 
 

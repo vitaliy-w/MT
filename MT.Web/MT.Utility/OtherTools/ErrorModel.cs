@@ -2,6 +2,10 @@
 
 namespace MT.Utility.OtherTools
 {
+    
+    /// <summary>
+    /// Represents object contains list of errors, keys and header.
+    /// </summary>
     public class ErrorModel
     {
         public IList<string> ErrorMessagesList { get; set; }

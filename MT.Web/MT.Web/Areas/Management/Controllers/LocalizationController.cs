@@ -21,7 +21,6 @@ namespace MT.Web.Areas.Management.Controllers
         {
             this.db = unitOfWork;
             _localizationResourceService = localizationService;
-            // InitEmptyDb();
 
         }
         /// <summary>
@@ -36,7 +35,7 @@ namespace MT.Web.Areas.Management.Controllers
 
 
         /// <summary>
-        /// Page for adding new resources/
+        /// Page for adding new resources.
         /// </summary>
         public ActionResult AddLocalizationResource()
         {
@@ -47,23 +46,29 @@ namespace MT.Web.Areas.Management.Controllers
         /// <summary>
         /// Checks new resource from client and add it to data base if correct.
         /// </summary>
-
         [HttpPost]
         public string Create(LocalizationResourceViewModel result)
         {
 
             if (!ModelState.IsValid)
             {
-                return new ErrorModel("Error", new List<string>() { "Model is invalid" }, new List<string>() { "0" }).ToJson();
+                ErrorModel modelIsInvalidError = new ErrorModel("Error", new List<string>() { "Model is invalid" }, new List<string>() { "0" });
+                return modelIsInvalidError.ToJson();
             }
 
 
             int addedEntryies = _localizationResourceService.Create(result.GetLocalizationResources());
-            if (addedEntryies < 1) return new ErrorModel("Error", new List<string>() { "All reosources already added to DB" }, new List<string>() { "0" }).ToJson();
-
+            if (addedEntryies < 1)
+            {
+                ErrorModel allResourcesAddedError= new ErrorModel("Error", new List<string>() { "All resources already added to DB" }, new List<string>() { "0" });
+                return allResourcesAddedError.ToJson(); 
+            }
 
             db.Commit();
-            return null;
+
+
+            ErrorModel noError = new ErrorModel("Succes", new List<string>() { "Resources added succesfully" }, new List<string>() { "0" });
+            return noError.ToJson();
 
 
         }
