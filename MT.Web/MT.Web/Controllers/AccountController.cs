@@ -2,18 +2,26 @@
 using System.Linq;
 using System.Web.Mvc;
 using MT.DataAccess.EntityFramework;
+using MT.DomainLogic;
 using MT.ModelEntities.Entities;
+using MT.Web.ViewModels;
 
 namespace MT.Web.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IAccountService _accountService;
 
-        private IUnitOfWork db;
-
-        public AccountController(IUnitOfWork unitOfWork)
+        public AccountController(IUnitOfWork unitOfWork, IAccountService accountService)
         {
-            this.db = unitOfWork;
+            _unitOfWork = unitOfWork;
+            _accountService = accountService;
+        }
+
+        public ActionResult Index()
+        {
+            return View();
         }
 
         //
@@ -23,30 +31,33 @@ namespace MT.Web.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Creates a new user
+        /// </summary>
+        /// <param name="user">a new user which is passed from user form</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Register(User user)
+        public ActionResult Register(RegisterViewModel user)
         {
             if (ModelState.IsValid)
             {
-                user.Created = DateTime.Now;
-                db.Add(user);
-                db.Commit();
-                return RedirectToAction("Index", "Test");
+                _accountService.RegisterUser(new User(){Email = user.Email, Password = user.Password});
+                _unitOfWork.Commit();
             }
 
             return View(user);
         }
 
-        public JsonResult CheckUserName(string userName)
+        /// <summary>
+        /// verifies the existence of such E-mail in the database 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public JsonResult CheckEmail(string email)
         {
-            var result = db.Get<User>().Any(u => u.UserName == userName);
+            var result = _accountService.CheckEmail(email);
             return Json(!result, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult CheckEmail(string email)
-        {
-            var result = db.Get<User>().Any(u => u.Email == email);
-            return Json(!result, JsonRequestBehavior.AllowGet);
-        }
 	}
 }
