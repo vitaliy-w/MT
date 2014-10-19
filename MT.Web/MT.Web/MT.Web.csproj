@@ -214,6 +214,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ControlsController.cs" />
     <Compile Include="Controllers\LibraryResourceController.cs" />
+    <Compile Include="Controllers\PersonalCabinetController.cs" />
     <Compile Include="Controllers\ProjectRequestController.cs" />
     <Compile Include="Controllers\TechnologyController.cs" />
     <Compile Include="Global.asax.cs">
@@ -253,6 +254,8 @@
     <Content Include="Views\ProjectRequest\Create.cshtml" />
     <Content Include="Views\Controls\Tag.cshtml" />
     <Content Include="Scripts\libs\ng-table.map" />
+    <Content Include="Views\PersonalCabinet\Index.cshtml" />
+    <Content Include="Views\PersonalCabinet\_leftSide.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

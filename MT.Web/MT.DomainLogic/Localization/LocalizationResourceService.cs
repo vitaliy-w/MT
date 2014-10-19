@@ -43,7 +43,7 @@ namespace MT.DomainLogic.Localization
         /// Checks if item already present in database.
         /// </summary>
 
-        private bool IsPresent(LocalizationResource resource)
+        public bool IsPresent(LocalizationResource resource)
         {
             var isPresent = _unitOfWork.Get<LocalizationResource>().Any(entry => ((entry.ResourceKey == resource.ResourceKey)
                                                                              &&
