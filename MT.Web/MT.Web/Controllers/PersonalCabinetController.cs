@@ -52,23 +52,25 @@ namespace MT.Web.Controllers
             }
 
 
-            //int addedEntryies = _localizationResourceService.Create(result.GetLocalizationResources());
-            // if (addedEntryies < 1)
-            // {
-            //     ErrorModel allResourcesAddedError = new ErrorModel("Error", new List<string>() { "All resources already added to DB" }, new List<string>() { "0" });
-            //     return allResourcesAddedError.ToJson();
-            // }
+            try
+            {
+                _userInfoService.Add(userInfo);
+                db.Commit();
 
-            // db.Commit();
+            }
+            catch (Exception)
+            {
 
-
-            // ErrorModel noError = new ErrorModel("Succes", new List<string>() { "Resources added succesfully" }, new List<string>() { "0" });
-            // return noError.ToJson();
-
+                ErrorModel errorAddingtoDB = new ErrorModel("Error", new List<string>() { "Some troubles with DB happened, try to add your info later." }, new List<string>() { "0" });
+                return errorAddingtoDB.ToJson();
+            }
             ErrorModel noError = new ErrorModel("Succes", new List<string>() { "Resources added succesfully" }, new List<string>() { "0" });
+
             return noError.ToJson();
+
+
         }
-        
+
 
 
     }
