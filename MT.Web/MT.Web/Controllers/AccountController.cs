@@ -11,15 +11,20 @@ namespace MT.Web.Controllers
 {
     public class AccountController : Controller
     {
-
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IUserLoginService _userLoginService;
-
-        public AccountController(IUnitOfWork unitOfWork, IUserLoginService userLoginService)
+        private readonly IAccountService _accountService;
+		private readonly IUserLoginService _userLoginService;
+		
+		public AccountController(IUnitOfWork unitOfWork, IAccountService accountService, IUserLoginService userLoginService)
         {
             _unitOfWork = unitOfWork;
-            _userLoginService = userLoginService;
+            _accountService = accountService;
         }
+
+        public ActionResult Index()
+        {
+            return View();
+		}
 
         //
         // GET: /Account/
@@ -28,34 +33,37 @@ namespace MT.Web.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Creates a new user
+        /// </summary>
+        /// <param name="user">a new user which is passed from user form</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Register(User user)
+        public ActionResult Register(RegisterViewModel user)
         {
             if (ModelState.IsValid)
             {
-                user.Created = DateTime.Now;
-                _unitOfWork.Add(user);
+                _accountService.RegisterUser(new User(){Email = user.Email, Password = user.Password});
                 _unitOfWork.Commit();
-                return RedirectToAction("LoginHistory", "Account");
             }
 
             return View(user);
         }
 
-        public JsonResult CheckUserName(string userName)
-        {
-            var result = _unitOfWork.Get<User>().Any(u => u.UserName == userName);
-            return Json(!result, JsonRequestBehavior.AllowGet);
-        }
-
+        /// <summary>
+        /// verifies the existence of such E-mail in the database 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public JsonResult CheckEmail(string email)
         {
-            var result = _unitOfWork.Get<User>().Any(u => u.Email == email);
+            var result = _accountService.CheckEmail(email);
             return Json(!result, JsonRequestBehavior.AllowGet);
         }
 
-
-        //----------------------------------------------------------------------------------------
+	}
+	
+	//----------------------------------------------------------------------------------------
         //User Authorization Section
 
         public ActionResult LoginHistory()
@@ -135,4 +143,5 @@ namespace MT.Web.Controllers
             return Json(message);
         }
     }
+
 }

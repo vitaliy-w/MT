@@ -1,15 +1,44 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@using System.Web.Optimization
+@using MT.Web.Infrastructure.Extensions
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" class="ng-app:mtApp" ng-app="mtApp">
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <meta name="viewport" content="width=device-width" />
+
+    <title>@ViewBag.Title</title>
+
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    @Scripts.Render("~/Scripts/bundles-libs")
+    @Scripts.Render("~/Scripts/bundles-angular")
 
     @Styles.Render("~/Content/styles")
-    @Scripts.Render("~/Scripts/bundles-angular")
-    @Scripts.Render("~/Scripts/bundles-libs")
+
+    <script>
+        angular.module('mtApp').value('rootPath', '@Url.Content("~/")');
+
+        // It's a listener of errors and validation errors events.
+        angular.module('mtApp').value('broadcastIds', { error: 'errorEvent', validation: 'validationEvent' });
+
+        angular.module('mtApp').factory('errorModel', function () {
+            return {
+                model: {},
+                validationTitle: 'Validation Error(s)'
+            };
+        });
+    </script>
 </head>
 <body>
+    <sham-spinner text="Loading..."></sham-spinner>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -18,9 +47,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Index", "Index", "Localization", new { area = "Management" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Create", "Create", "Localization", new { area = "Management" }, new { @class = "navbar-brand" })
-
+                @Html.ActionLink("Mentor-Trainee", "Index", "Test", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav"></ul>
@@ -29,14 +56,21 @@
     </div>
 
     <div class="container body-content">
+        <div mt-error-container class="mrg-top-st">
+            <div mt-error-message></div>
+            <div ng-controller="errorController"></div>
+        </div>
+
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            @Html.ActionLinkDirective("Get all localisation resources", "Index", "Localization", "Management")
+            @Html.ActionLinkDirective("Add new localisation resources", "AddLocalizationResource", "Localization", "Management")
+            <p>&copy; UniConst</p>
         </footer>
     </div>
 
-
-    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>

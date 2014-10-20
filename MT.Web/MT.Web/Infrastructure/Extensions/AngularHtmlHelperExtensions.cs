@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Web;
@@ -63,6 +63,19 @@ namespace MT.Web.Infrastructure.Extensions
         }
 
         /// <summary>
+        /// Перегруженный метод DropDownListDirective. Принимает имя, которые должно показываться пользователю при инициализации списка.
+        /// Но, вместо этого, показывает только enum и пустое место. Нужно гармонизировать обе версии метода. Один сделать для отображения только enum.
+        /// Второй, для отображения enum и дополнительного сообщения.
+        /// </summary>
+        /// <param name="dispalyName"></param>
+        public static MvcHtmlString DropDownListDirective(this HtmlHelper htmlHelper, string name, Enum enumType, string dispalyName, object htmlAttributes = null, NgModelPathOptions ngModelPathOptions = null)
+        {
+            var attributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            var listOfOptions = new SelectList(Enum.GetNames(enumType.GetType()));
+            return htmlHelper.DropDownList(name, listOfOptions, dispalyName, attributes);
+        }
+
+        /// <summary>
         /// Контрол предназначен для показа сообщения пользователю в виде HTML разметки типа div.
         /// Контрол подключает к себе CSS стили из Bootstrap.css и из MT.css и использует перечисление AlertsEnum для определения стилевого оформления.
         ///  </summary>
@@ -114,6 +127,28 @@ namespace MT.Web.Infrastructure.Extensions
 
             return MvcHtmlString.Create(tagBuilder.ToString());
         }
+
+        /// <summary>
+        /// Creates links accepting parametrs and css-class
+        /// </summary>
+        public static HtmlString ActionLinkDirective(this HtmlHelper helper, string text, string action = "index", string controller = "home", string area = null, object htmlAttributes = null, string css_class = null)
+        {
+            var link = new TagBuilder("a") { InnerHtml = text };
+            if (!String.IsNullOrEmpty(css_class)) link.AddCssClass(css_class);
+            var attributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            if (!attributes.ContainsKey("href")) { attributes.Add("href", !String.IsNullOrEmpty(area) ? String.Format(@"/{0}/{1}/{2}", area, controller, action) : String.Format(@"/{0}/{1}", controller, action)); }
+            link.MergeAttributes(attributes);
+
+            return new MvcHtmlString(link.ToString());
+        }
+
+
+        public static MvcHtmlString LabelForDirective<TModel, TValue>(this HtmlHelper<TModel> helper,Expression<Func<TModel, TValue>> expression, object htmlAttributes)
+        {
+            return helper.LabelFor(expression, htmlAttributes);
+        }
+        
+
     }
 
 
