@@ -16,67 +16,30 @@ namespace MT.DomainLogic
 
         public bool ValidateUser(string email, string password)
         {
-            return _unitOfWork.Get<User>().Any(u => u.Email == email && u.Password == password);
+            return _unitOfWork.Get<User>().Any(u => u.Email == email.ToLower() && u.Password == password);
         }
 
-        public void SetUserLoginHistory(int userId, DateTime date, bool result)
+        public void UserLoginHistory(UserLoginHistory userLoginHistory)
         {
-            _unitOfWork.Add(new UserLoginHistory { UserId = userId, LoginDate = date, LoginResult = result });
+            _unitOfWork.Add(userLoginHistory);
         }
 
-        public int GetUserIdFromEmail(string email)
+        public User GetUserFromEmail(string email)
         {
-            try
-            {
-                return _unitOfWork.Get<User>().Where(u => u.Email == email).Select(u => u.Id).First();
-            }
-            catch (Exception)
-            {
-
-                return -1;
-            }
+            return _unitOfWork.Get<User>().FirstOrDefault(u => u.Email == email.ToLower());
         }
 
-        public bool UserIsBan(int userId)
+        public UserBan GetUserBan(int userId)
         {
-            return _unitOfWork.Get<UserBan>().Where(u => u.UserId == userId).Select(u => u.UserIsBan).First();
+            return _unitOfWork.Get<UserBan>().First(u => u.UserId == userId);
         }
 
-        public void SetUserBan(int userId, bool ban)
+        public int GetBanTime(UserBan userBan)
         {
-            var userBan = _unitOfWork.Get<UserBan>().First(u => u.UserId == userId);
-            userBan.UserIsBan = ban;
-        }
-
-        public TimeSpan GetBanTime(int userId)
-        {
-            var startBanTime = _unitOfWork.Get<UserBan>().Where(u => u.UserId == userId).Select(u => u.StartBanTime).First();
+            var startBanTime = userBan.StartBanTime;
             var timeNow = DateTime.Now;
             var banTime = timeNow - startBanTime;
-            return banTime;
-        }
-
-        public void SetStartBanTime(int userId)
-        {
-            var userBan = _unitOfWork.Get<UserBan>().First(u => u.UserId == userId);
-            userBan.StartBanTime = DateTime.Now;
-        }
-
-        public int GetCountAttempt(int userId)
-        {
-            return _unitOfWork.Get<UserBan>().Where(u => u.UserId == userId).Select(u => u.AttemptCount).First();
-        }
-
-        public void SetCountAttemptToPlusOne(int userId)
-        {
-            var userBan = _unitOfWork.Get<UserBan>().First(u => u.UserId == userId);
-            userBan.AttemptCount++;
-        }
-
-        public void SetCountAttemptToZero(int userId)
-        {
-            var userBan = _unitOfWork.Get<UserBan>().First(u => u.UserId == userId);
-            userBan.AttemptCount = 0;
+            return (int)banTime.TotalMinutes;
         }
     }
 }

@@ -10,13 +10,13 @@
 
 
 angular.module('mtApp').factory('loginService',
-    function (httpService) {
+    function (httpService, errorService) {
         return {
             userLogin: function ($scope, user, returnUrl) {
                 return httpService.post('Account/Login', user).then(
                     function(message) {
-                        $scope.message = message;
-                        if ($scope.message.status) window.location = returnUrl;
+                        if (message.status) window.location = returnUrl;
+                        errorService.showError($scope, message.text);
                     }
                 );
             }

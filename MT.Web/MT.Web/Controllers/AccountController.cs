@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.Configuration;
 using System.Web.Mvc;
 using System.Web.Security;
 using MT.DataAccess.EntityFramework;
@@ -13,18 +13,19 @@ namespace MT.Web.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAccountService _accountService;
-		private readonly IUserLoginService _userLoginService;
-		
-		public AccountController(IUnitOfWork unitOfWork, IAccountService accountService, IUserLoginService userLoginService)
+        private readonly IUserLoginService _userLoginService;
+
+        public AccountController(IUnitOfWork unitOfWork, IAccountService accountService, IUserLoginService userLoginService)
         {
             _unitOfWork = unitOfWork;
             _accountService = accountService;
+            _userLoginService = userLoginService;
         }
 
         public ActionResult Index()
         {
             return View();
-		}
+        }
 
         //
         // GET: /Account/
@@ -43,7 +44,7 @@ namespace MT.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _accountService.RegisterUser(new User(){Email = user.Email, Password = user.Password});
+                _accountService.RegisterUser(new User() { Email = user.Email, Password = user.Password });
                 _unitOfWork.Commit();
             }
 
@@ -59,17 +60,6 @@ namespace MT.Web.Controllers
         {
             var result = _accountService.CheckEmail(email);
             return Json(!result, JsonRequestBehavior.AllowGet);
-        }
-
-	}
-	
-	//----------------------------------------------------------------------------------------
-        //User Authorization Section
-
-        public ActionResult LoginHistory()
-        {
-            var model = _unitOfWork.Get<UserLoginHistory>().ToList();
-            return View(model);
         }
 
         [AllowAnonymous]
@@ -90,58 +80,64 @@ namespace MT.Web.Controllers
         {
             if (!ModelState.IsValid) return View(userAuth);
 
-            var userId = _userLoginService.GetUserIdFromEmail(userAuth.Email);
+            var user = _userLoginService.GetUserFromEmail(userAuth.Email);
             var message = new { text = "Login success!", status = true };
 
-            if (userId < 0)
+            if (user == null)
             {
-                message = new { text = "Current user is not registered", status = false };
+                message = new { text = "The user name or password provided is incorrect", status = false };
                 return Json(message);
             }
 
-            var userIsBan = _userLoginService.UserIsBan(userId);
-            var banTime = _userLoginService.GetBanTime(userId).Hours;
+            var userBan = _userLoginService.GetUserBan(user.Id);
             var validateUser = _userLoginService.ValidateUser(userAuth.Email, userAuth.Password);
-            var countAttempt = _userLoginService.GetCountAttempt(userId);
-            
-            if (userIsBan)
+            var banTime = _userLoginService.GetBanTime(userBan);
+            var banInterval = Int32.Parse(ConfigurationManager.AppSettings["BanInterval"]);
+            var maxAttemptValue = Int32.Parse(ConfigurationManager.AppSettings["MaxAttemptValue"]);
+            var userLoginHistory = new UserLoginHistory { UserId = user.Id, LoginDate = DateTime.Now, LoginResult = false };
+
+            if (userBan.UserIsBan)
             {
-                if (banTime < 2)
+                if (banTime < banInterval)
                 {
-                    message = new { text = "Current user is banned", status = false};
+                    message = new { text = "Current user is banned", status = false };
                     return Json(message);
                 }
             }
 
             if (!validateUser)
             {
-                _userLoginService.SetUserLoginHistory(userId, DateTime.Now, false);
-                if (countAttempt < 5)
+                _userLoginService.UserLoginHistory(userLoginHistory);
+
+                if (userBan.AttemptCount < maxAttemptValue) userBan.AttemptCount++;
+
+                if (userBan.AttemptCount == maxAttemptValue)
                 {
-                    _userLoginService.SetCountAttemptToPlusOne(userId);
+                    userBan.UserIsBan = true;
+                    userBan.StartBanTime = DateTime.Now;
+                    userBan.AttemptCount = 0;
                     _unitOfWork.Commit();
 
-                    message = new { text = "The user name or password provided is incorrect", status = false };
+                    message = new { text = "Current user is banned", status = false };
                     return Json(message);
                 }
 
-                _userLoginService.SetUserBan(userId, true);
-                _userLoginService.SetStartBanTime(userId);
-                _userLoginService.SetCountAttemptToZero(userId);
                 _unitOfWork.Commit();
 
-                message = new { text = "Current user is banned", status = false };
+                message = new { text = "The user name or password provided is incorrect", status = false };
                 return Json(message);
             }
 
             FormsAuthentication.SetAuthCookie(userAuth.Email, false);
-            _userLoginService.SetUserBan(userId, false);
-            _userLoginService.SetCountAttemptToZero(userId);
-            _userLoginService.SetUserLoginHistory(userId, DateTime.Now, true);
+            if (banTime > banInterval) userBan.UserIsBan = false;
+
+            userBan.AttemptCount = 0;
+            userLoginHistory.LoginResult = true;
+            _userLoginService.UserLoginHistory(userLoginHistory);
             _unitOfWork.Commit();
 
             return Json(message);
         }
     }
-
 }
+

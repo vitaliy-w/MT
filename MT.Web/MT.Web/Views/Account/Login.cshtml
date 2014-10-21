@@ -1,17 +1,14 @@
-﻿@*@using MT.Web.Infrastructure*@
-@using MT.Web.Infrastructure.Extensions
+﻿@using MT.Web.Infrastructure.Extensions
 @model MT.Web.ViewModels.UserAuthorization
 
 @{
     ViewBag.Title = "Log in";
     const string formName = "userLoginForm";
-    //var user = new NgModelPathOptions { Prefix = "user" };
 }
 
 <h2>User Login</h2>
 
 <div id="main" ng-controller="loginController" ng-init="returnUrl ='@ViewBag.ReturnUrl'">
-    <h3>{{message.text}}</h3>
     <form id="@formName" name="@formName" validable-form>
         <div class="form-horizontal">
             <hr />
