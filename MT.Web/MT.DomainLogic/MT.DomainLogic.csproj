@@ -77,6 +77,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountService.cs" />
+    <Compile Include="IAccountService.cs" />
     <Compile Include="ILibraryResourceService.cs" />
     <Compile Include="IProjectRequestService.cs" />
     <Compile Include="ITechnologyService.cs" />
