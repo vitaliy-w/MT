@@ -12,12 +12,12 @@ namespace MT.Web.Controllers
     public class PersonalCabinetController : Controller
     {
         private IUnitOfWork db;
-        private IUserInfoService _userInfoService;
+        private IUserService _userService;
 
-        public PersonalCabinetController(IUnitOfWork unitOfWork, IUserInfoService userInfoService)
+        public PersonalCabinetController(IUnitOfWork unitOfWork, IUserService userService)
         {
             this.db = unitOfWork;
-            _userInfoService = userInfoService;
+            _userService = userService;
         }
 
         /// <summary>
@@ -40,37 +40,50 @@ namespace MT.Web.Controllers
 
 
         /// <summary>
-        /// Adds new UserInfo to DB and returns status.
+        /// Adds new UserInfo to DB or edit Users already existed information and returns status.
         /// </summary>
         [HttpPost]
         public string Create(UserInfo userInfo)
         {
+        
             if (!ModelState.IsValid)
             {
-                ErrorModel modelIsInvalidError = new ErrorModel("Error", new List<string>() { "Model is invalid" }, new List<string>() { "0" });
+
+                ErrorModel modelIsInvalidError = new ErrorModel("Error", new List<string>(), new List<string>());
+                
+                foreach (var item in ModelState)
+                {
+                    foreach (var error in item.Value.Errors)
+                    {
+                        modelIsInvalidError.ErrorKeysList.Add(item.Key);
+                        modelIsInvalidError.ErrorMessagesList.Add(error.ErrorMessage);
+                    }
+                }
+
                 return modelIsInvalidError.ToJson();
             }
 
-
+            userInfo.Id = 1; //temporary user's id for testing DB.
+            
             try
             {
-                _userInfoService.Add(userInfo);
+                _userService.Add(userInfo);
                 db.Commit();
-
             }
             catch (Exception)
             {
 
-                ErrorModel errorAddingtoDB = new ErrorModel("Error", new List<string>() { "Some troubles with DB happened, try to add your info later." }, new List<string>() { "0" });
+                ErrorModel errorAddingtoDB = new ErrorModel("Error", new List<string>() { "Some troubles with DB happened, try to add your info later." }, new List<string>() { "DataBaseError" });
                 return errorAddingtoDB.ToJson();
             }
-            ErrorModel noError = new ErrorModel("Succes", new List<string>() { "Resources added succesfully" }, new List<string>() { "0" });
-
-            return noError.ToJson();
+            
+            JsonNetResult succesResult = new JsonNetResult(new { header = "Succes", message = "Resources added succesfully" });
+            return succesResult.ToJson();
 
 
         }
 
+       
 
 
     }

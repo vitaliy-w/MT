@@ -21,6 +21,26 @@
             public const string LibraryResourceUrlRequiredValidationMsg = "LibraryResource_Url_RequiredValidationMsg";
             public const string TechnologyNameRequiredValidationMsg = "Technology_Name_RequiredValidationMsg";
             public const string TechnologyNameRangeValidationMsg = "Technology_Name_RangeValidationMsg";
+            
+            //userInfo Required block.
+            public const string UserInfoRequiredValidationMsg = "UserInfo_Name_RequiredValidationMsg";
+            
+            // UserInfo DisplayName block.
+            public const string UserInfoNameDispalyName = "UserInfo_Name_DispalyName";
+            public const string UserInfoCountryOfOriginDispalyName = "UserInfo_CountryOfOrigin_DispalyName";
+            public const string UserInfoCityDispalyName = "UserInfo_City_DispalyName";
+            public const string UserInfoSecondNameDisplayName = "UserInfo_SecondName_DisplayName";
+            public const string UserInfoIsManDisplayName = "UserInfo_IsMan_DisplayName";
+            public const string UserInfoDateOfBirthDisplayName = "UserInfo_DateOfBirth_DisplayName";
+
+            //Common messages.
+            public const string CommonMaxStringLength5 = "Common_MaxString_Length_5";
+            public const string CommonMaxStringLength10 = "Common_MaxString_Length_10";
+            public const string CommonMaxStringLength30 = "Common_MaxString_Length_30";
+            public const string CommonMaxStringLength50 = "Common_MaxString_Length_50";
+            
+
+
         }
     }
 }

@@ -4,12 +4,12 @@ using MT.ModelEntities.Entities;
 
 namespace MT.DomainLogic.PersonalCabinet
 {
-    
-    public class UserInfoService : IUserInfoService
+
+    public class UserService : IUserService
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public UserInfoService(IUnitOfWork unitOfWork)
+        public UserService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -17,13 +17,17 @@ namespace MT.DomainLogic.PersonalCabinet
         /// <summary>
         /// Edits entry using it's ID.
         /// </summary>
-        
-        public void Edit(UserInfo userInfo)
+        private void Edit(UserInfo userInfo)
         {
-            var oop = _unitOfWork.Get<UserInfo>().First(x => x.Id == userInfo.Id);
-            oop = userInfo;
-        }
+            var oop = _unitOfWork.Get<UserInfo>().Single(x => x.Id == userInfo.Id);
 
+            oop.IsMan = userInfo.IsMan;
+            oop.Name = userInfo.Name;
+            oop.SecondName = userInfo.SecondName;
+            oop.DateOfBirth = userInfo.DateOfBirth;
+            oop.City = userInfo.City;
+            oop.CountryOfOrigin = userInfo.CountryOfOrigin;
+        }
 
         /// <summary>
         /// Creates new userInfo or edit already existed entry.
@@ -43,7 +47,7 @@ namespace MT.DomainLogic.PersonalCabinet
         /// </summary>
         public bool IsPresent(UserInfo userInfo)
         {
-            var isPresent = _unitOfWork.Get<UserInfo>().Any(x => x.Id == userInfo.Id);
+            bool isPresent = _unitOfWork.Get<UserInfo>().Any(x => x.Id == userInfo.Id);
             return isPresent;
         }
 

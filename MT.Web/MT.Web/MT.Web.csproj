@@ -198,9 +198,11 @@
     <Content Include="Scripts\services\httpService.js" />
     <Content Include="Scripts\services\navigationService.js" />
     <Content Include="Scripts\services\validationService.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls-0.11.2.js" />
     <Content Include="Views\Controls\TagController.js" />
     <Content Include="Views\LibraryResource\CreateResourceController.js" />
     <Content Include="Views\Account\RegisterController.js" />
+    <Content Include="Views\PersonalCabinet\addUserInfoController.js" />
     <Content Include="Views\Templates\error-message.html" />
     <Content Include="Views\Templates\tags-input.html" />
     <Content Include="Views\Test\CreateController.js" />

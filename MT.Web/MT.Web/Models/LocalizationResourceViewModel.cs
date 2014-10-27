@@ -20,7 +20,7 @@ namespace MT.Web.Models
         /// </summary>
 
         [LocalizedRequired("Key is required")]
-        [StringLength(100, ErrorMessage = "Too much chareacters")]
+        [StringLength(100, ErrorMessage = "Too much characters")]
 
         public string ResourceKey { get; set; }
 
