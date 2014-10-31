@@ -34,7 +34,7 @@ namespace MT.DomainLogic.PersonalCabinet
         /// </summary>
         public void Add(UserInfo userInfo)
         {
-            if (!IsPresent(userInfo))
+            if (!IsPresent(userInfo.Id))
             {
                 _unitOfWork.Add(userInfo);
             }
@@ -45,9 +45,9 @@ namespace MT.DomainLogic.PersonalCabinet
         /// <summary>
         /// Checks if item already present in database.
         /// </summary>
-        public bool IsPresent(UserInfo userInfo)
+        public bool IsPresent(int id)
         {
-            bool isPresent = _unitOfWork.Get<UserInfo>().Any(x => x.Id == userInfo.Id);
+            bool isPresent = _unitOfWork.Get<UserInfo>().Any(x => x.Id == id);
             return isPresent;
         }
 

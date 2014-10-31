@@ -73,18 +73,15 @@ namespace MT.Web.Controllers
             catch (Exception)
             {
 
-                ErrorModel errorAddingtoDB = new ErrorModel("Error", new List<string>() { "Some troubles with DB happened, try to add your info later." }, new List<string>() { "DataBaseError" });
+                var errorAddingtoDB = new ErrorModel("Error", new List<string>() { "Some troubles with DB happened, try to add your info later." }, new List<string>() { "DataBaseError" });
                 return errorAddingtoDB.ToJson();
             }
             
-            JsonNetResult succesResult = new JsonNetResult(new { header = "Succes", message = "Resources added succesfully" });
+            var succesResult = new JsonNetResult(new { header = "Succes", message = "Resources added succesfully" });
             return succesResult.ToJson();
 
 
         }
-
-       
-
 
     }
 }

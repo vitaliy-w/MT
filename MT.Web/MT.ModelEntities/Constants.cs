@@ -32,6 +32,7 @@
             public const string UserInfoSecondNameDisplayName = "UserInfo_SecondName_DisplayName";
             public const string UserInfoIsManDisplayName = "UserInfo_IsMan_DisplayName";
             public const string UserInfoDateOfBirthDisplayName = "UserInfo_DateOfBirth_DisplayName";
+            public const string UserInfoUTCZoneDisplayName = "UserInfo_UTCZone_DisplayName";
 
             //Common messages.
             public const string CommonMaxStringLength5 = "Common_MaxString_Length_5";

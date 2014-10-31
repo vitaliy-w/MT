@@ -67,12 +67,20 @@ namespace MT.Web.Infrastructure.Extensions
         /// Но, вместо этого, показывает только enum и пустое место. Нужно гармонизировать обе версии метода. Один сделать для отображения только enum.
         /// Второй, для отображения enum и дополнительного сообщения.
         /// </summary>
-        /// <param name="dispalyName"></param>
         public static MvcHtmlString DropDownListDirective(this HtmlHelper htmlHelper, string name, Enum enumType, string dispalyName, object htmlAttributes = null, NgModelPathOptions ngModelPathOptions = null)
         {
             var attributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
             var listOfOptions = new SelectList(Enum.GetNames(enumType.GetType()));
             return htmlHelper.DropDownList(name, listOfOptions, dispalyName, attributes);
+        }
+
+        /// <summary>
+        /// Перегруженный метод DropDownListDirective. Работает с IEnumerable закрытый типом SelectListItem
+        /// </summary>
+        public static MvcHtmlString DropDownListDirective(this HtmlHelper htmlHelper, string name, IEnumerable<SelectListItem> listOfOptions, object htmlAttributes = null, NgModelPathOptions ngModelPathOptions = null)
+        {
+            var attributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            return htmlHelper.DropDownList(name, listOfOptions, attributes);
         }
 
         /// <summary>
@@ -147,7 +155,11 @@ namespace MT.Web.Infrastructure.Extensions
         {
             return helper.LabelFor(expression, htmlAttributes);
         }
-        
+
+        public static MvcHtmlString TextAreaForDirective<TModel, TValue>(this HtmlHelper<TModel> helper,Expression<Func<TModel, TValue>> expression, object htmlAttributes)
+        {
+            return helper.TextAreaFor(expression, htmlAttributes);
+        }
 
     }
 

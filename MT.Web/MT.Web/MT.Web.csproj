@@ -202,7 +202,7 @@
     <Content Include="Views\Controls\TagController.js" />
     <Content Include="Views\LibraryResource\CreateResourceController.js" />
     <Content Include="Views\Account\RegisterController.js" />
-    <Content Include="Views\PersonalCabinet\addUserInfoController.js" />
+    <Content Include="Views\PersonalCabinet\privateInfoController.js" />
     <Content Include="Views\Templates\error-message.html" />
     <Content Include="Views\Templates\tags-input.html" />
     <Content Include="Views\Test\CreateController.js" />
@@ -216,7 +216,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ControlsController.cs" />
     <Compile Include="Controllers\LibraryResourceController.cs" />
-    <Compile Include="Controllers\PersonalCabinetController.cs" />
+    <Compile Include="Controllers\PersonalCabinet\EducationController.cs" />
+    <Compile Include="Controllers\PersonalCabinet\PersonalCabinetController.cs" />
     <Compile Include="Controllers\ProjectRequestController.cs" />
     <Compile Include="Controllers\TechnologyController.cs" />
     <Compile Include="Global.asax.cs">
@@ -229,6 +230,7 @@
     <Compile Include="Infrastructure\Extensions\HtmlElementTypes\ControlSizesEnum.cs" />
     <Compile Include="Infrastructure\NgModelPathOptions.cs" />
     <Compile Include="Infrastructure\Extensions\AngularHtmlHelperExtensions.cs" />
+    <Compile Include="Infrastructure\UTC.cs" />
     <Compile Include="Models\LocalizationResourceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Class1.cs" />
@@ -257,7 +259,8 @@
     <Content Include="Views\Controls\Tag.cshtml" />
     <Content Include="Scripts\libs\ng-table.map" />
     <Content Include="Views\PersonalCabinet\Index.cshtml" />
-    <Content Include="Views\PersonalCabinet\_leftSide.cshtml" />
+    <Content Include="Views\Shared\_leftSide.cshtml" />
+    <Content Include="Views\Education\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

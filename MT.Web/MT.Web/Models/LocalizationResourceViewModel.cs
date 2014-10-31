@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using MT.ModelEntities.Entities;
 using MT.ModelEntities.Enums;
 using MT.Utility;
 using MT.Utility.Localization.Attributes;
-using MT.Utility.OtherTools;
 
 namespace MT.Web.Models
 {
@@ -55,6 +55,8 @@ namespace MT.Web.Models
             return listOfLocalizationResources;
 
         }
+
+      
 
     }
 }
