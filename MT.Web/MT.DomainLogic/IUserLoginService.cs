@@ -24,7 +24,7 @@ namespace MT.DomainLogic
         /// Retrieves the instance of User from given email
         /// </summary>
         /// <param name="email">User's email</param>
-        User GetUserFromEmail(string email);
+        User GetUserByEmail(string email);
         
         /// <summary>
         /// Retrieves the instance of UserBan from given user ID
@@ -37,6 +37,6 @@ namespace MT.DomainLogic
         /// Retrives time when user was banned
         /// </summary>
         /// <param name="userBan">Instance of UserBan</param>
-        int GetBanTime(UserBan userBan);
+        TimeSpan GetBanTime(UserBan userBan);
 }
 }

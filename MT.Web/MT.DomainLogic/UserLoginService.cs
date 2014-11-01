@@ -24,7 +24,7 @@ namespace MT.DomainLogic
             _unitOfWork.Add(userLoginHistory);
         }
 
-        public User GetUserFromEmail(string email)
+        public User GetUserByEmail(string email)
         {
             return _unitOfWork.Get<User>().FirstOrDefault(u => u.Email == email.ToLower());
         }
@@ -34,12 +34,12 @@ namespace MT.DomainLogic
             return _unitOfWork.Get<UserBan>().First(u => u.UserId == userId);
         }
 
-        public int GetBanTime(UserBan userBan)
+        public TimeSpan GetBanTime(UserBan userBan)
         {
             var startBanTime = userBan.StartBanTime;
             var timeNow = DateTime.Now;
             var banTime = timeNow - startBanTime;
-            return (int)banTime.TotalMinutes;
+            return banTime;
         }
     }
 }

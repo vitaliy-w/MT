@@ -4,11 +4,13 @@
 @{
     ViewBag.Title = "Log in";
     const string formName = "userLoginForm";
+    var returnUrl = ViewBag.ReturnUrl;
 }
 
 <h2>User Login</h2>
 
-<div id="main" ng-controller="loginController" ng-init="returnUrl ='@ViewBag.ReturnUrl'">
+@*<div id="main" ng-controller="loginController" ng-init="returnUrl ='@ViewBag.ReturnUrl'">*@
+<div id="main" ng-controller="loginController">
     <form id="@formName" name="@formName" validable-form>
         <div class="form-horizontal">
             <hr />

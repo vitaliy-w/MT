@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Configuration;
+using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using MT.DataAccess.EntityFramework;
 using MT.DomainLogic;
 using MT.ModelEntities.Entities;
+using MT.Utility;
+using MT.Utility.Json;
 using MT.Web.ViewModels;
+using MT.Utility.Localization.Services;
 
 namespace MT.Web.Controllers
 {
@@ -63,9 +69,8 @@ namespace MT.Web.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login()
         {
-            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -76,22 +81,24 @@ namespace MT.Web.Controllers
         /// <param name="returnUrl">The Url where user is went from</param>
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Login(UserAuthorization userAuth, string returnUrl)
+        public ActionResult Login(UserAuthorization userAuth)
         {
             if (!ModelState.IsValid) return View(userAuth);
 
-            var user = _userLoginService.GetUserFromEmail(userAuth.Email);
-            var message = new { text = "Login success!", status = true };
+            var user = _userLoginService.GetUserByEmail(userAuth.Email);
+            var jsonNetResult = new JsonNetResult();
+            jsonNetResult.Data = new { Message = LocalizationResourceServiceSingleton.Current.GetValue("Login success!"), Login = true };
+             
 
             if (user == null)
             {
-                message = new { text = "The user name or password provided is incorrect", status = false };
-                return Json(message);
+                jsonNetResult.Data = new { Message = LocalizationResourceServiceSingleton.Current.GetValue("The user name or password provided is incorrect"), Login = false };
+                return jsonNetResult;
             }
 
             var userBan = _userLoginService.GetUserBan(user.Id);
             var validateUser = _userLoginService.ValidateUser(userAuth.Email, userAuth.Password);
-            var banTime = _userLoginService.GetBanTime(userBan);
+            var banTime = (int)_userLoginService.GetBanTime(userBan).TotalMinutes;
             var banInterval = Int32.Parse(ConfigurationManager.AppSettings["BanInterval"]);
             var maxAttemptValue = Int32.Parse(ConfigurationManager.AppSettings["MaxAttemptValue"]);
             var userLoginHistory = new UserLoginHistory { UserId = user.Id, LoginDate = DateTime.Now, LoginResult = false };
@@ -100,8 +107,8 @@ namespace MT.Web.Controllers
             {
                 if (banTime < banInterval)
                 {
-                    message = new { text = "Current user is banned", status = false };
-                    return Json(message);
+                    jsonNetResult.Data = new { Message = LocalizationResourceServiceSingleton.Current.GetValue("Current user is banned"), Login = false };
+                    return jsonNetResult;
                 }
             }
 
@@ -118,14 +125,14 @@ namespace MT.Web.Controllers
                     userBan.AttemptCount = 0;
                     _unitOfWork.Commit();
 
-                    message = new { text = "Current user is banned", status = false };
-                    return Json(message);
+                    jsonNetResult.Data = new { Message = LocalizationResourceServiceSingleton.Current.GetValue("Current user is banned"), Login = false };
+                    return jsonNetResult;
                 }
 
                 _unitOfWork.Commit();
 
-                message = new { text = "The user name or password provided is incorrect", status = false };
-                return Json(message);
+                jsonNetResult.Data = new { Message = LocalizationResourceServiceSingleton.Current.GetValue("The user name or password provided is incorrect"), Login = false };
+                return jsonNetResult;
             }
 
             FormsAuthentication.SetAuthCookie(userAuth.Email, false);
@@ -136,7 +143,7 @@ namespace MT.Web.Controllers
             _userLoginService.UserLoginHistory(userLoginHistory);
             _unitOfWork.Commit();
 
-            return Json(message);
+            return jsonNetResult;
         }
     }
 }
