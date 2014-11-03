@@ -1,12 +1,13 @@
 ﻿angular.module('mtApp').controller('loginController',
-   function ($scope, validationService, loginService, redirectService) {
+   function ($scope, validationService, loginService, queryStringDataProvider) {
 
        $scope.login = function (formName) {
            if (!validationService.isValid(formName))
                return;
            loginService.userLogin($scope, $scope.user).then(function (message) {
                if (message.isLogedIn) {
-                   redirectService.redirectToUrl("ReturnUrl");
+                   var paramValue = queryStringDataProvider.getParamValue("ReturnUrl");
+                   if (paramValue) window.location = paramValue ;
                }
            });
        };
@@ -27,15 +28,16 @@ angular.module('mtApp').factory('loginService',
         };
     });
 
-angular.module('mtApp').factory('redirectService',
+angular.module('mtApp').factory('queryStringDataProvider',
     function () {
         return {
-            redirectToUrl: function (returnUrl) {
+            getParamValue: function (queryStringParameter) {
                 var search = window.location.search;
                 var params = search.split("?")[1].split("&");
                 for (var i = 0; i < params.length; i++) {
                     var currPar = params[i].split("=");
-                    if (currPar[0].toLowerCase == returnUrl.toLowerCase) window.location = decodeURIComponent(currPar[1]);
+                    if (currPar[0].toLowerCase == queryStringParameter.toLowerCase)
+                        return decodeURIComponent(currPar[1]);
                 }
             }
         };
