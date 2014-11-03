@@ -100,7 +100,6 @@
     <Compile Include="Localization\Attributes\LocalizedEmailAttribute.cs" />
     <Compile Include="Localization\Attributes\LocalizedDisplayNameAttribute.cs" />
     <Compile Include="Localization\Attributes\LocalizedRequiredAttribute.cs" />
-    <Compile Include="Localization\Attributes\LocalizedStringLength.cs" />
     <Compile Include="Localization\Attributes\LocalizedUrlAttribute.cs" />
     <Compile Include="Localization\Services\AdoReader.cs" />
     <Compile Include="Localization\Services\CultureService.cs" />

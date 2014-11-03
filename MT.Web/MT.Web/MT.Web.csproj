@@ -216,7 +216,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ControlsController.cs" />
     <Compile Include="Controllers\LibraryResourceController.cs" />
-    <Compile Include="Controllers\PersonalCabinet\EducationController.cs" />
     <Compile Include="Controllers\PersonalCabinet\PersonalCabinetController.cs" />
     <Compile Include="Controllers\ProjectRequestController.cs" />
     <Compile Include="Controllers\TechnologyController.cs" />
