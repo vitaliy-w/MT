@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using MT.ModelEntities.Entities;
 using MT.ModelEntities.Enums;
 using MT.Utility;
 using MT.Utility.Localization.Attributes;
-using MT.Utility.OtherTools;
 
 namespace MT.Web.Models
 {
@@ -20,7 +20,7 @@ namespace MT.Web.Models
         /// </summary>
 
         [LocalizedRequired("Key is required")]
-        [StringLength(100, ErrorMessage = "Too much chareacters")]
+        [StringLength(100, ErrorMessage = "Too much characters")]
 
         public string ResourceKey { get; set; }
 
@@ -55,6 +55,8 @@ namespace MT.Web.Models
             return listOfLocalizationResources;
 
         }
+
+      
 
     }
 }

@@ -38,7 +38,9 @@ namespace MT.Web.App_Start
                 "~/Scripts/controllers/*.js",
                 "~/Scripts/libs/ng-table.js",
                 "~/Scripts/libs/ng-tags-input.js",
-                "~/Scripts/libs/angular-sham-spinner-0.0.10.js"));
+                "~/Scripts/libs/angular-sham-spinner-0.0.10.js",
+                "~/Scripts/angular-ui/ui-bootstrap.js"
+               ));
         }
 
         //private static void RegisterJSON(BundleCollection bundles)

@@ -1,0 +1,98 @@
+﻿@using MT.ModelEntities.Enums
+@using MT.Web.Infrastructure
+@using MT.Web.Infrastructure.Extensions
+@{
+    ViewBag.Title = "Index";
+    const string formName = "addUserInfo";
+    @model MT.ModelEntities.Entities.UserInfo
+}
+
+<script src="~/Scripts/angular-ui/ui-bootstrap-tpls-0.11.2.js"></script>
+
+<h2>Index</h2>
+
+
+<div class="container-fluid">
+
+
+
+    <div class="row" ng-controller="privateInfoController">
+
+        <div id="alertSucces" ng-show="isSuccessVisible">
+            @Html.AlertDirective("", new { ng_bind_html = "messageFromServer" }, AlertTypesEnum.Succes)
+        </div>
+
+
+        @{Html.RenderPartial("_leftSide");}
+        <div class="float-left">
+
+
+            <form class="form-horizontal" role="form" id="@formName" name="@formName" validable-form>
+                <div class="form-group">
+                    @Html.LabelForDirective(x => x.Name, new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-8">
+                        @Html.TextBoxDirectiveFor(x => x.Name, new { ng_model = "userInfo.Name", placeholder = "Enter your first name", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelForDirective(x => x.SecondName, new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-8">
+                        @Html.TextBoxDirectiveFor(x => x.SecondName, new { ng_model = "userInfo.SecondName", placeholder = "Enter your second name", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.DateOfBirth, new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="userInfo.DateOfBirth" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                    </div>
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </div>
+                <div class="form-group">
+                    @Html.LabelForDirective(x => x.IsMan, new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-8">
+                        Man:
+                        @Html.RadioButtonFor(x => x.IsMan, true, new { @class = "radio-inline", ng_model = "userInfo.IsMan" })
+                        Woman:
+                        @Html.RadioButtonFor(x => x.IsMan, false, new { @class = "radio-inline", ng_model = "userInfo.IsMan" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelForDirective(x => x.UTCZone, new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-8">
+                        @Html.DropDownListDirective("UTCZone", UTC.UTCZones, new { ng_model = "userInfo.UTCZone", @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelForDirective(x => x.City, new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-8">
+                        @Html.TextBoxDirectiveFor(x => x.City, new { ng_model = "userInfo.City", placeholder = "Choose your city", @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelForDirective(x => x.CountryOfOrigin, new { @class = "col-sm-4 control-label" })
+                    <div class="col-sm-8">
+                        @Html.TextBoxDirectiveFor(x => x.CountryOfOrigin, new { ng_model = "userInfo.CountryOfOrigin", placeholder = "Choose your country", @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        @Html.ButtonDirective("Save", new { ng_click = String.Format("create('{0}')", formName), @class = "btn btn-default" })
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Views/PersonalCabinet/privateInfoController.js"></script>
+
+
+
+
+

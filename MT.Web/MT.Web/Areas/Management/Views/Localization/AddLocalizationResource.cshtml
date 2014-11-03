@@ -48,16 +48,15 @@
 
 
     <div id="alertSucces" ng-show="isSuccessVisible">
-        @Html.AlertDirective("ALl is ok my Master!", null, AlertTypesEnum.Succes)
+        @Html.AlertDirective("", new { ng_bind_html = "messageFromServer" }, AlertTypesEnum.Succes)
     </div>
 
     <div id="alertDanger" ng-show="isWarningVisible">
-        @Html.AlertDirective("Something goes wrong, nothing added to DB", null, AlertTypesEnum.Danger)
+        @Html.AlertDirective("", new { ng_bind_html = "messageFromServer" }, AlertTypesEnum.Danger)
     </div>
 
 
 </div>
-
 
 <script src="~/Areas/Management/Views/Localization/AddLocalizationResource.js"></script>
 

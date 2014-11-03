@@ -3,6 +3,7 @@ using Autofac;
 using MT.DataAccess.EntityFramework;
 using MT.DomainLogic;
 using MT.DomainLogic.Localization;
+using MT.DomainLogic.PersonalCabinet;
 
 namespace MT.Web.Infrastructure
 {
@@ -23,6 +24,7 @@ namespace MT.Web.Infrastructure
 
             builder.RegisterType<ProjectRequestService>().As<IProjectRequestService>();
             builder.RegisterType<LibraryResourceService>().As<ILibraryResourceService>();
+            builder.RegisterType<UserService>().As<IUserService>();
             builder.RegisterType<LocalizationResourceService>().As<ILocalizationResourceService>();
             builder.RegisterType<TechnologyService>().As<ITechnologyService>();
             builder.RegisterType<AccountService>().As<IAccountService>();
