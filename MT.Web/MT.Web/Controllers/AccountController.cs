@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using MT.DataAccess.EntityFramework;
 using MT.DomainLogic;
+using MT.ModelEntities;
 using MT.ModelEntities.Entities;
 using MT.Utility;
 using MT.Utility.Json;
@@ -86,13 +87,13 @@ namespace MT.Web.Controllers
             if (!ModelState.IsValid) return View(userAuth);
 
             var user = _userLoginService.GetUserByEmail(userAuth.Email);
+            
             var jsonNetResult = new JsonNetResult();
-            jsonNetResult.Data = new { Message = LocalizationResourceServiceSingleton.Current.GetValue("Login success!"), Login = true };
+            jsonNetResult.Data = new { Message = LocalizationResourceServiceSingleton.Current.GetValue(Constants.Entities.UserNameOrPasswordIncorrectMsg), IsLogedIn = false };
              
 
             if (user == null)
             {
-                jsonNetResult.Data = new { Message = LocalizationResourceServiceSingleton.Current.GetValue("The user name or password provided is incorrect"), Login = false };
                 return jsonNetResult;
             }
 
@@ -107,7 +108,7 @@ namespace MT.Web.Controllers
             {
                 if (banTime < banInterval)
                 {
-                    jsonNetResult.Data = new { Message = LocalizationResourceServiceSingleton.Current.GetValue("Current user is banned"), Login = false };
+                    jsonNetResult.Data = new { Message = LocalizationResourceServiceSingleton.Current.GetValue(Constants.Entities.UserBannedMsg), IsLogedIn = false };
                     return jsonNetResult;
                 }
             }
@@ -125,13 +126,12 @@ namespace MT.Web.Controllers
                     userBan.AttemptCount = 0;
                     _unitOfWork.Commit();
 
-                    jsonNetResult.Data = new { Message = LocalizationResourceServiceSingleton.Current.GetValue("Current user is banned"), Login = false };
+                    jsonNetResult.Data = new { Message = LocalizationResourceServiceSingleton.Current.GetValue(Constants.Entities.UserBannedMsg), IsLogedIn = false };
                     return jsonNetResult;
                 }
 
                 _unitOfWork.Commit();
 
-                jsonNetResult.Data = new { Message = LocalizationResourceServiceSingleton.Current.GetValue("The user name or password provided is incorrect"), Login = false };
                 return jsonNetResult;
             }
 
@@ -143,6 +143,7 @@ namespace MT.Web.Controllers
             _userLoginService.UserLoginHistory(userLoginHistory);
             _unitOfWork.Commit();
 
+            jsonNetResult.Data = new { Message = LocalizationResourceServiceSingleton.Current.GetValue(Constants.Entities.LoginSuccessMsg), IsLogedIn = true };
             return jsonNetResult;
         }
     }

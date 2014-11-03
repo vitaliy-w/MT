@@ -29,6 +29,9 @@
             public const string UserEmailRangeValidationMsg = "User_Email_RangeValidationMsg";
             public const string UserPasswordRangeValidationMsg = "User_Password_RangeValidationMsg";
 
+            public const string UserNameOrPasswordIncorrectMsg = "User_Name_Or_Password_IncorrectMsg";
+            public const string UserBannedMsg = "User_BannedMsg";
+            public const string LoginSuccessMsg = "Login_SuccessMsg";
         }
     }
 }
