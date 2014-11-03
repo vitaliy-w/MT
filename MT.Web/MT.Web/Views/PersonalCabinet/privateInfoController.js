@@ -6,7 +6,7 @@ function ($scope, validationService, privateInfoControllerService, datePickerOpt
     $scope.userInfo.SecondName = "";
     $scope.userInfo.IsMan = false;
     $scope.userInfo.DateOfBirth = null;
-    $scope.userInfo.UTCZone = '+0';
+    $scope.userInfo.UTCZone = '0';
     
 
     $("#Name").focus();
