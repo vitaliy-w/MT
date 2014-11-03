@@ -86,12 +86,14 @@
     <Compile Include="Json\JsonNetResult.cs" />
     <Compile Include="Json\PartialViewJsonResultConverter.cs" />
     <Compile Include="Json\PartialViewJsonResult.cs" />
+    <Compile Include="Localization\AttributeAdapters\Copy of LocalizedRangeAttributeAdapter.cs" />
     <Compile Include="Localization\AttributeAdapters\LocalizedRegularExpressionAttributeAdapter.cs" />
     <Compile Include="Localization\AttributeAdapters\LocalizedEmailAttributeAdapter.cs" />
     <Compile Include="Localization\AttributeAdapters\LocalizedCompareAttributeAdapter.cs" />
     <Compile Include="Localization\AttributeAdapters\LocalizedRangeAttributeAdapter.cs" />
     <Compile Include="Localization\AttributeAdapters\LocalizedRequiredAttributeAdapter.cs" />
     <Compile Include="Localization\Attributes\EnumDisplayNameAttribute.cs" />
+    <Compile Include="Localization\Attributes\LocalizedLenghtAttribute.cs" />
     <Compile Include="Localization\Attributes\LocalizedRegularExpressionAttribute.cs" />
     <Compile Include="Localization\Attributes\LocalizedCompareAttribute.cs" />
     <Compile Include="Localization\Attributes\LocalizedRangeAttribute.cs" />
