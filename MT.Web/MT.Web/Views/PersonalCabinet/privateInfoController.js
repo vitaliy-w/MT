@@ -1,13 +1,15 @@
 ﻿angular.module('mtApp').controller('privateInfoController',
-function ($scope, validationService, privateInfoControllerService) {
+function ($scope, validationService, privateInfoControllerService, datePickerOptions, errorService) {
 
     $scope.userInfo = {};
     $scope.userInfo.Name = "";
     $scope.userInfo.SecondName = "";
     $scope.userInfo.IsMan = false;
     $scope.userInfo.DateOfBirth = null;
-    $scope.userInfo.UTCZone = null;
+    $scope.userInfo.UTCZone = '+0';
+    
 
+    $("#Name").focus();
 
     $scope.today = function () {
         $scope.userInfo.DateOfBirth = new Date();
@@ -22,30 +24,22 @@ function ($scope, validationService, privateInfoControllerService) {
         $scope.opened = true;
     };
 
-    $scope.dateOptions = {
-        formatYear: 'yy',
-        startingDay: 1
-    };
-
-    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.dateOptions = datePickerOptions;
+    $scope.formats = datePickerOptions.formats;
     $scope.format = $scope.formats[0];
 
     $scope.showResult = function (responce) {
+
         if (responce.header == "Error") {
-
-            for (var i = 0; i < responce.errorMessagesList.length; i++) {
-
-                $scope.messageFromServer += responce.errorMessagesList[i] + " ";
-            }
-
-
-            $scope.isWarningVisible = true;
+            errorService.showError($scope, responce.errorMessagesList);
         }
 
         else {
             $scope.isSuccessVisible = true;
             $scope.messageFromServer = responce.data.message;
         }
+
+        
     };
 
     // formName - form name for validation
@@ -65,10 +59,7 @@ angular.module('mtApp').factory('privateInfoControllerService', function (httpSe
     return {
         saveResource: function (scope, resource, showResult) {
             return httpService.post('PersonalCabinet/Create', resource).then(function (responce) {
-
                 showResult(responce);
-
-              
             });
         }
 

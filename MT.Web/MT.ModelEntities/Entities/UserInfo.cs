@@ -55,7 +55,7 @@ namespace MT.ModelEntities.Entities
         /// Represents current User's UTCZone.
         /// </summary>
         [LocalizedDisplayName(Constants.Entities.UserInfoUTCZoneDisplayName)]
-        public int UTCZone { get; set; }
+        public int? UTCZone { get; set; }
 
 
     }

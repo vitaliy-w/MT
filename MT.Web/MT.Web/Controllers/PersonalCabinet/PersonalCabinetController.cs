@@ -45,12 +45,12 @@ namespace MT.Web.Controllers
         [HttpPost]
         public string Create(UserInfo userInfo)
         {
-        
+
             if (!ModelState.IsValid)
             {
 
                 ErrorModel modelIsInvalidError = new ErrorModel("Error", new List<string>(), new List<string>());
-                
+
                 foreach (var item in ModelState)
                 {
                     foreach (var error in item.Value.Errors)
@@ -64,7 +64,7 @@ namespace MT.Web.Controllers
             }
 
             userInfo.Id = 1; //temporary user's id for testing DB.
-            
+
             try
             {
                 _userService.Add(userInfo);
@@ -76,7 +76,7 @@ namespace MT.Web.Controllers
                 var errorAddingtoDB = new ErrorModel("Error", new List<string>() { "Some troubles with DB happened, try to add your info later." }, new List<string>() { "DataBaseError" });
                 return errorAddingtoDB.ToJson();
             }
-            
+
             var succesResult = new JsonNetResult(new { header = "Succes", message = "Resources added succesfully" });
             return succesResult.ToJson();
 

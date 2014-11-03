@@ -33,6 +33,9 @@
                 validationTitle: 'Validation Error(s)'
             };
         });
+
+        // Use this option to configurate datePicker
+        angular.module('mtApp').value('datePickerOptions', { formatYear: 'yy', startingDay: 1, formats: ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'] });
     </script>
 </head>
 <body>
