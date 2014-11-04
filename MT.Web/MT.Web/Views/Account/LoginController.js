@@ -7,13 +7,13 @@
            loginService.userLogin($scope, $scope.user).then(function (message) {
                if (message.isLogedIn) {
                    var paramValue = queryStringDataProvider.getParamValue("ReturnUrl");
-                   if (paramValue) window.location = paramValue ;
+                   if (paramValue) window.location = paramValue;
                }
            });
        };
    });
 
-
+//Service for sending instance of UserAuthorization entity to server
 angular.module('mtApp').factory('loginService',
     function (httpService, errorService) {
         return {
@@ -28,9 +28,12 @@ angular.module('mtApp').factory('loginService',
         };
     });
 
+//Service for parsing query string and get values from its parameters
 angular.module('mtApp').factory('queryStringDataProvider',
     function () {
         return {
+            //queryStringParameter - Name of parameter from query string
+            //Return - Value of queryStringParameter
             getParamValue: function (queryStringParameter) {
                 var search = window.location.search;
                 var params = search.split("?")[1].split("&");

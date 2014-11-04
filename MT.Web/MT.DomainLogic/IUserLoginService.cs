@@ -17,7 +17,7 @@ namespace MT.DomainLogic
         /// <summary>
         /// Records user's login attempt
         /// </summary>
-        /// <param name="userLoginHistory">User's ID</param>
+        /// <param name="userLoginHistory">Instance of UserLoginHistory</param>
         void UserLoginHistory(UserLoginHistory userLoginHistory);
 
         /// <summary>
@@ -30,7 +30,6 @@ namespace MT.DomainLogic
         /// Retrieves the instance of UserBan from given user ID
         /// </summary>
         /// <param name="userId">User ID</param>
-        /// <returns>Instance of UserBan</returns>
         UserBan GetUserBan(int userId);
         
         /// <summary>

@@ -79,7 +79,6 @@ namespace MT.Web.Controllers
         /// Provides the authorization functionality for registered users
         /// </summary>
         /// <param name="userAuth">The UserAuthorization instance that is sent from the login form</param>
-        /// <param name="returnUrl">The Url where user is went from</param>
         [HttpPost]
         [AllowAnonymous]
         public ActionResult Login(UserAuthorization userAuth)
@@ -87,10 +86,8 @@ namespace MT.Web.Controllers
             if (!ModelState.IsValid) return View(userAuth);
 
             var user = _userLoginService.GetUserByEmail(userAuth.Email);
-            
             var jsonNetResult = new JsonNetResult();
             jsonNetResult.Data = new { Message = LocalizationResourceServiceSingleton.Current.GetValue(Constants.Entities.UserNameOrPasswordIncorrectMsg), IsLogedIn = false };
-             
 
             if (user == null)
             {
