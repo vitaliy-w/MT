@@ -33,6 +33,8 @@ namespace MT.DataAccess.EntityFramework
 
         public DbSet<UserBan> UserBans { get; set; }
 
+        public DbSet<UserInfo> UserInformation { get; set; }
+
         /// <summary>
         /// The technologies which are supported by our service.
         /// </summary>

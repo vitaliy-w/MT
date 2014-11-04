@@ -21,6 +21,7 @@
             public const string LibraryResourceUrlRequiredValidationMsg = "LibraryResource_Url_RequiredValidationMsg";
             public const string TechnologyNameRequiredValidationMsg = "Technology_Name_RequiredValidationMsg";
             public const string TechnologyNameRangeValidationMsg = "Technology_Name_RangeValidationMsg";
+<<<<<<< HEAD
 
             public const string UserPasswordRequiredValidationMsg = "User_Password_RequiredValidationMsg";
             public const string UserEmailRegularExpressionValidationMsg = "User_Email_RegularExpressionValidationMsg";
@@ -28,10 +29,7 @@
             public const string UserEmailRequiredValidationMsg = "User_Email_RequiredValidationMsg";
             public const string UserEmailRangeValidationMsg = "User_Email_RangeValidationMsg";
             public const string UserPasswordRangeValidationMsg = "User_Password_RangeValidationMsg";
-
-            public const string UserNameOrPasswordIncorrectMsg = "User_Name_Or_Password_IncorrectMsg";
-            public const string UserBannedMsg = "User_BannedMsg";
-            public const string LoginSuccessMsg = "Login_SuccessMsg";
+=======
             
             //userInfo Required block.
             public const string UserInfoRequiredValidationMsg = "UserInfo_Name_RequiredValidationMsg";
@@ -51,6 +49,9 @@
             public const string CommonMaxStringLength30 = "Common_MaxString_Length_30";
             public const string CommonMaxStringLength50 = "Common_MaxString_Length_50";
             
+
+>>>>>>> 98667c2d8f1908c8b442c611fa78c4e29c6e323e
+
         }
     }
 }

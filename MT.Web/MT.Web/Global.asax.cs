@@ -31,6 +31,8 @@ namespace MT.Web
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(LocalizedRangeAttribute), typeof(LocalizedRangeAttributeAdapter));
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(LocalizedRegularExpressionAttribute), typeof(LocalizedRegularExpressionAttributeAdapter));
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(LocalizedRequiredAttribute), typeof(LocalizedRequiredAttributeAdapter));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(LocalizedStringLengthAttribute), typeof(LocalizedStringLengthAttributeAdapter));
+
         }
 
         private static void SetupIocContainer()

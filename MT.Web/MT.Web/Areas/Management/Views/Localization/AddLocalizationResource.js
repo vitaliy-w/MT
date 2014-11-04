@@ -6,11 +6,10 @@ function ($scope, validationService, createLocalizationService) {
     $scope.isWarningVisible = false;
     $scope.isSuccessVisible = false;
 
-    $scope.resource.LocalizedResources = [];  //Немного уличной магии. Если не создавать массив явно, не сработает dataBinding в контроллере.
+    $scope.resource.LocalizedResources = [];  //Если явно не создавать массив, ангуляр его не будет биндить на вьюху.
     $scope.resource.ResourceCultureCodes = [];
 
-
-    // formName - form name for validation
+   // formName - form name for validation
     $scope.create = function (formName) {
 
         $scope.isWarningVisible = false;
@@ -18,8 +17,8 @@ function ($scope, validationService, createLocalizationService) {
 
         if (!validationService.isValid(formName))
             return;
-        createLocalizationService.saveResource($scope,$scope.resource);
 
+        createLocalizationService.saveResource($scope, $scope.resource);
     };
 });
 
@@ -36,8 +35,7 @@ angular.module('mtApp').factory('createLocalizationService', function (httpServi
                 else {
                     scope.isSuccessVisible = true;
                 }
-
-
+                scope.messageFromServer = responce.errorMessagesList[0];
             });
         }
     };

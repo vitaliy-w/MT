@@ -1,4 +1,4 @@
-﻿@using System.Web.Optimization
+﻿*@using System.Web.Optimization
 <!DOCTYPE html>
 <html xmlns:ng="http://angularjs.org" class="ng-app:mtApp" ng-app="mtApp">
 <head>
@@ -33,42 +33,47 @@
                 validationTitle: 'Validation Error(s)'
             };
         });
+
+        // Use this option to configurate datePicker
+        angular.module('mtApp').value('datePickerOptions', { formatYear: 'yy', startingDay: 1, formats: ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'] });
     </script>
 </head>
-    <body>
-        <sham-spinner text="Loading..."></sham-spinner>
-        
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Mentor-Trainee", "Index", "Test", null, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                    </ul>
-                </div>
+<body>
+    <sham-spinner text="Loading..."></sham-spinner>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Mentor-Trainee", "Index", "Test", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav"></ul>
             </div>
         </div>
+    </div>
 
-        <div class="container body-content">
-            <div mt-error-container class="mrg-top-st">
-                <div mt-error-message></div>
-                <div ng-controller="errorController"></div>
-            </div>
+    <div class="container body-content">
+        <div mt-error-container class="mrg-top-st">
+            <div mt-error-message></div>
+            <div ng-controller="errorController"></div>
+        </div>
 
-            @RenderBody()
-            <hr />
+        @RenderBody()
+
+        <div style="clear:both">
+        <hr />
             <footer>
                 <p>&copy; UniConst</p>
             </footer>
         </div>
+    </div>
 
-        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-        <script src="~/Scripts/bootstrap.min.js"></script>
-    </body>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
 </html>

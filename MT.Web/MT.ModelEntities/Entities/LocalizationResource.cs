@@ -8,11 +8,7 @@ namespace MT.ModelEntities.Entities
     /// <summary>
     /// Describes the text of different languages and cultures.
     /// </summary>
-<<<<<<< HEAD
-    public class LocalizationResource
-=======
     public class LocalizationResource : IKeyValueEntity
->>>>>>> upstream/master
     {
         /// <summary>
         ///  Строка, которая являеться уникальным индефикатором для конкретного текста.
@@ -20,7 +16,7 @@ namespace MT.ModelEntities.Entities
         /// </summary>>
         [Key, Column(Order = 0)]
         [LocalizedRequired(Constants.Entities.LibraryResourceNameRequiredValidationMsg)]
-        [StringLength(100, ErrorMessage = "More than 100 in ResourceKey symbols are not allowed")]
+        [LocalizedStringLength(50, Constants.Entities.CommonMaxStringLength50)]
         public string ResourceKey { get; set; }
 
         /// <summary>
@@ -29,7 +25,7 @@ namespace MT.ModelEntities.Entities
         /// </summary>
         [Key, Column(Order = 1)]
         [LocalizedRequired(Constants.Entities.LibraryResourceNameRequiredValidationMsg)]
-        [StringLength(5, ErrorMessage = "More than 5 symbols in ResourceCulture Code are not allowed")]
+        [LocalizedStringLength(5, Constants.Entities.CommonMaxStringLength5)]
         public string ResourceCultureCode { get; set; }
 
 

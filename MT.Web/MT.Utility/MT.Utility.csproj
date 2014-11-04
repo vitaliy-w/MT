@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -75,16 +76,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnumExtesions.cs" />
+    <Compile Include="Extensions\ConfigurationManagerExtensions.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\DateTimePeriodType.cs" />
+    <Compile Include="Extensions\DateTimePeriodTypeHelper.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\DateTimePeriod.cs" />
     <Compile Include="Json\JsonExtensions.cs" />
     <Compile Include="Json\JsonNetResult.cs" />
     <Compile Include="Json\PartialViewJsonResultConverter.cs" />
     <Compile Include="Json\PartialViewJsonResult.cs" />
+    <Compile Include="Localization\AttributeAdapters\Copy of LocalizedRangeAttributeAdapter.cs" />
     <Compile Include="Localization\AttributeAdapters\LocalizedRegularExpressionAttributeAdapter.cs" />
     <Compile Include="Localization\AttributeAdapters\LocalizedEmailAttributeAdapter.cs" />
     <Compile Include="Localization\AttributeAdapters\LocalizedCompareAttributeAdapter.cs" />
     <Compile Include="Localization\AttributeAdapters\LocalizedRangeAttributeAdapter.cs" />
     <Compile Include="Localization\AttributeAdapters\LocalizedRequiredAttributeAdapter.cs" />
     <Compile Include="Localization\Attributes\EnumDisplayNameAttribute.cs" />
+    <Compile Include="Localization\Attributes\LocalizedLenghtAttribute.cs" />
     <Compile Include="Localization\Attributes\LocalizedRegularExpressionAttribute.cs" />
     <Compile Include="Localization\Attributes\LocalizedCompareAttribute.cs" />
     <Compile Include="Localization\Attributes\LocalizedRangeAttribute.cs" />
@@ -105,9 +114,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Localization\Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
