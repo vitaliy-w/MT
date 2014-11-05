@@ -76,6 +76,7 @@
     <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.0\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
@@ -199,6 +200,7 @@
     <Content Include="Scripts\services\navigationService.js" />
     <Content Include="Scripts\services\validationService.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls-0.11.2.js" />
+    <Content Include="Views\Account\LoginController.js" />
     <Content Include="Views\Controls\TagController.js" />
     <Content Include="Views\LibraryResource\CreateResourceController.js" />
     <Content Include="Views\Account\RegisterController.js" />
@@ -234,6 +236,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\TagViewModel.cs" />
+    <Compile Include="ViewModels\UserAuthorization.cs" />
     <Content Include="Scripts\services\tagsInputService.js" />
   </ItemGroup>
   <ItemGroup>
@@ -260,6 +263,7 @@
     <Content Include="Views\PersonalCabinet\Index.cshtml" />
     <Content Include="Views\Shared\_leftSide.cshtml" />
     <Content Include="Views\Education\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

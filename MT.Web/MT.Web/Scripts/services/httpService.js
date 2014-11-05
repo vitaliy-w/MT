@@ -15,7 +15,12 @@
 
         return {
             post: function (url, data) {
-                return doQuery(function () { return $http.post(rootPath + url, data); });
+                
+                return doQuery(function () { return $http.post(rootPath + url, data); }).then(
+                    function (jsonNetResult) {
+                        if (jsonNetResult.redirectUrl) window.location = jsonNetResult.redirectUrl;
+                        return jsonNetResult;
+                    });
             },
 
             get: function (url) {

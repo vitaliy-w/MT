@@ -25,9 +25,13 @@ namespace MT.DataAccess.EntityFramework
 
         public DbSet<ProjectRequest> PostYourRequests { get; set; }
 
-        public DbSet<LibraryResource> Resources { get; set; }
+		public DbSet<LibraryResource> Resources { get; set; }
 
-        public DbSet<LocalizationResource> LocalizationResources { get; set; }
+		public DbSet<LocalizationResource>  LocalizationResources { get; set; }
+
+        public DbSet<UserLoginHistory> UserLoginHistories { get; set; }
+
+        public DbSet<UserBan> UserBans { get; set; }
 
         public DbSet<UserInfo> UserInformation { get; set; }
 

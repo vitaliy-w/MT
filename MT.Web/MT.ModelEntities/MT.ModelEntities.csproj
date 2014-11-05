@@ -55,7 +55,9 @@
     <Compile Include="Entities\LibraryResource.cs" />
     <Compile Include="Entities\Technology.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserBan.cs" />
     <Compile Include="Entities\UserInfo.cs" />
+    <Compile Include="Entities\UserLoginHistory.cs" />
     <Compile Include="Enums\AccessLevelsEnum.cs" />
     <Compile Include="Enums\AlertTypesEnum.cs" />
     <Compile Include="Enums\ResourceCultureCodeTypesEnum.cs" />
