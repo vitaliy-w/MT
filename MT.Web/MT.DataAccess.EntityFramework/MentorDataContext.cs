@@ -35,6 +35,8 @@ namespace MT.DataAccess.EntityFramework
 
         public DbSet<UserInfo> UserInformation { get; set; }
 
+        public DbSet<UserEducation> UserEducations { get; set; }
+
         /// <summary>
         /// The technologies which are supported by our service.
         /// </summary>

@@ -51,7 +51,22 @@
             public const string CommonMaxStringLength10 = "Common_MaxString_Length_10";
             public const string CommonMaxStringLength30 = "Common_MaxString_Length_30";
             public const string CommonMaxStringLength50 = "Common_MaxString_Length_50";
+            public const string CommonMaxStringLength140 = "Common_MaxString_Length_140";
+
+            //User education DispalyName block
+            public const string UserEducationEducationLevelDisplayName = "UserEducation_EducationLevel_DisplayName";
+            public const string UserEducationNameOfSchoolDisplayName = "UserEducation_NameOfSchool_DisplayName";
+            public const string UserEducationSpecializationDisplayName = "UserEducation_Specialization_DisplayName";
+            public const string UserEducationYearStartsFromDisplayName = "UserEducation_YearStartsFrom_DisplayName";
+            public const string UserEducationMonthStartsFromDisplayName = "UserEducation_MonthStartsFrom_DisplayName";
+            public const string UserEducationMonthEndsFromDisplayName = "UserEducation_MonthEndsFrom_DisplayName";
+            public const string UserEducationYearEndsFromDisplayName = "UserEducation_YearEndsFrom_DisplayName";
+            public const string UserEducationAdditionalInformationDisplayName = "UserEducatio_nAdditionalInformation_DisplayName";
             
+            //User education Required block
+            public const string UserEducationNameOfSchoolRequried = "UserEducation_NameOfSchool_Requried";
+            public const string UserEducationSpecializationRequried = "UserEducation_Specialization_Requried";
+
         }
     }
 }

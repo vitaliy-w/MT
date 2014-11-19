@@ -1,0 +1,204 @@
+﻿@using MT.Web.Infrastructure
+@using MT.Web.Infrastructure.Extensions
+@using MT.ModelEntities.Enums
+
+
+@{
+    ViewBag.Title = "Your education";
+    const string formName = "addUserEducation";
+    @model  List<MT.Web.Models.UserEducationViewModel>
+
+}
+
+<script>angular.module('mtApp').value('modelFromServer', @Html.ToJson(Model));</script>
+
+<div class="container-fluid">
+    <div class="row" ng-controller="userEducationController">
+
+        <div id="alertSucces" ng-show="isSuccessVisible">
+            @Html.AlertDirective("", new { ng_bind_html = "messageFromServer" }, AlertTypesEnum.Succes)
+        </div>
+
+        @{ Html.RenderPartial("_leftSide"); }
+        <div style="float: left">
+            <form class="form-horizontal" role="form" id="@formName" name="@formName" validable-form>
+                <!--first block-->
+                <div>
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[0].EducationLevel, new { @class = "col-sm-4 control-label", style = "float:left" })
+                        <div class="col-sm-8">
+                            @Html.DropDownListFor(x => x[0].EducationLevel, EducationLevel.EducationLeveList, new { @class = "form-control", id = "x[0].EducationLevel", ng_model = "UserEducationList[0].EducationLevel" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[0].NameOfSchool, new { @class = "col-sm-4 control-label", style = "float:left" })
+                        <div class="col-sm-8">
+                            @Html.TextBoxDirectiveFor(x => x[0].NameOfSchool, new { ng_model = "UserEducationList[0].NameOfSchool", placeholder = "Enter your name of school", @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[0].Specialization, new { @class = "col-sm-4 control-label", style = "float:left" })
+                        <div class="col-sm-8">
+                            @Html.TextBoxDirectiveFor(x => x[0].Specialization, new { ng_model = "UserEducationList[0].Specialization", placeholder = "Enter your specialization", @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[0].MonthStartsFrom, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            <div class="col-sm-9 row">
+                                @Html.DropDownListFor(x => x[0].MonthStartsFrom, MonthList.Months, new { @class = "form-control", id = "x[0].MonthStartsFrom", ng_model = "UserEducationList[0].MonthStartsFrom" })
+                            </div>
+                            <div class="col-sm-5 row float-right">
+                                @Html.TextBoxDirectiveFor(x => x[0].YearStartsFrom, new { @class = "form-control", ng_model = "UserEducationList[0].YearStartsFrom" })
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[0].MonthEndsFrom, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            <div class="col-sm-9 row">
+                                @Html.DropDownListFor(x => x[0].MonthEndsFrom, MonthList.Months, new { @class = "form-control", id = "x[0].MonthEndsFrom", ng_model = "UserEducationList[0].MonthEndsFrom" })
+                            </div>
+                            <div class="col-sm-5 row float-right">
+                                @Html.TextBoxDirectiveFor(x => x[0].YearEndsFrom, new { @class = "form-control", ng_model = "UserEducationList[0].YearEndsFrom" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[0].AdditionalInformation, new { @class = "col-sm-4 control-label", style = "float:left" })
+                        @Html.TextAreaForDirective(x => x[0].AdditionalInformation, new { @class = "form-control", rows = 3, ng_model = "UserEducationList[0].AdditionalInformation" })
+                    </div>
+                    <input type="hidden" value="1" ng-model='UserEducationList[0].EducationId' />
+                    <a ng-click="showSecondSection('@formName')" href="#">Add more information</a>
+                    <hr />
+                </div>
+                <!--end first block-->
+                <!-- second block-->
+                <div ng-show="IsVisibleSection[1]">
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[1].EducationLevel, new { @class = "col-sm-4 control-label", style = "float:left" })
+                        <div class="col-sm-8">
+                            @Html.DropDownListFor(x => x[1].EducationLevel, EducationLevel.EducationLeveList, new { @class = "form-control", id = "x[1].EducationLevel", ng_model = "UserEducationList[1].EducationLevel" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[1].NameOfSchool, new { @class = "col-sm-4 control-label", style = "float:left" })
+                        <div class="col-sm-8">
+                            @Html.TextBoxDirectiveFor(x => x[1].NameOfSchool, new { ng_model = "UserEducationList[1].NameOfSchool", placeholder = "Enter your name of school", @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[1].Specialization, new { @class = "col-sm-4 control-label", style = "float:left" })
+                        <div class="col-sm-8">
+                            @Html.TextBoxDirectiveFor(x => x[1].Specialization, new { ng_model = "UserEducationList[1].Specialization", placeholder = "Enter your specialization", @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[1].MonthStartsFrom, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            <div class="col-sm-9 row">
+                                @Html.DropDownListFor(x => x[1].MonthStartsFrom, MonthList.Months, new { @class = "form-control", id = "x[1].MonthStartsFrom", ng_model = "UserEducationList[1].MonthStartsFrom" })
+                            </div>
+                            <div class="col-sm-5 row float-right">
+                                @Html.TextBoxDirectiveFor(x => x[1].YearStartsFrom, new { @class = "form-control", ng_model = "UserEducationList[1].YearStartsFrom" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[1].MonthEndsFrom, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            <div class="col-sm-9 row">
+                                @Html.DropDownListFor(x => x[1].MonthEndsFrom, MonthList.Months, new { @class = "form-control", id = "x[1].MonthEndsFrom", ng_model = "UserEducationList[1].MonthEndsFrom" })
+                            </div>
+                            <div class="col-sm-5 row float-right">
+                                @Html.TextBoxDirectiveFor(x => x[1].YearEndsFrom, new { @class = "form-control", ng_model = "UserEducationList[1].YearEndsFrom" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[1].AdditionalInformation, new { @class = "col-sm-4 control-label", style = "float:left" })
+                        @Html.TextAreaForDirective(x => x[1].AdditionalInformation, new { @class = "form-control no-resize", rows = 3, ng_model = "UserEducationList[1].AdditionalInformation" })
+                    </div>
+                    <input type="hidden" value="2" ng-model='UserEducationList[1].EducationId' />
+                    <a ng-click="showThirdSection('@formName')" href="#">Add more information</a>
+                    <a class="float-right" ng-click="IsVisibleSection[1] = false" href="#">Hide this</a>
+                    <hr />
+                </div>
+                <!-- end second block-->
+                <!-- third block -->
+                <div ng-show="IsVisibleSection[2]">
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[2].EducationLevel, new { @class = "col-sm-4 control-label", style = "float:left" })
+                        <div class="col-sm-8">
+                            @Html.DropDownListFor(x => x[2].EducationLevel, EducationLevel.EducationLeveList, new { @class = "form-control", id = "x[2].EducationLevel", ng_model = "UserEducationList[2].EducationLevel" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[2].NameOfSchool, new { @class = "col-sm-4 control-label", style = "float:left" })
+                        <div class="col-sm-8">
+                            @Html.TextBoxDirectiveFor(x => x[2].NameOfSchool, new { ng_model = "UserEducationList[2].NameOfSchool", placeholder = "Enter your name of school", @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[2].Specialization, new { @class = "col-sm-4 control-label", style = "float:left" })
+                        <div class="col-sm-8">
+                            @Html.TextBoxDirectiveFor(x => x[2].Specialization, new { ng_model = "UserEducationList[2].Specialization", placeholder = "Enter your specialization", @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[2].MonthStartsFrom, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            <div class="col-sm-9 row">
+                                @Html.DropDownListFor(x => x[2].MonthStartsFrom, MonthList.Months, new { @class = "form-control", id = "x[2].MonthStartsFrom", ng_model = "UserEducationList[2].MonthStartsFrom" })
+                            </div>
+                            <div class="col-sm-5 row float-right">
+                                @Html.TextBoxDirectiveFor(x => x[2].YearStartsFrom, new { @class = "form-control", ng_model = "UserEducationList[2].YearStartsFrom" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[2].MonthEndsFrom, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            <div class="col-sm-9 row">
+                                @Html.DropDownListFor(x => x[2].MonthEndsFrom, MonthList.Months, new { @class = "form-control", id = "x[2].MonthEndsFrom", ng_model = "UserEducationList[2].MonthEndsFrom" })
+                            </div>
+                            <div class="col-sm-5 row float-right">
+                                @Html.TextBoxDirectiveFor(x => x[2].YearEndsFrom, new { @class = "form-control", ng_model = "UserEducationList[2].YearEndsFrom" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelForDirective(x => x[2].AdditionalInformation, new { @class = "col-sm-4 control-label", style = "float:left" })
+                        @Html.TextAreaForDirective(x => x[2].AdditionalInformation, new { @class = "form-control no-resize", rows = 3, ng_model = "UserEducationList[2].AdditionalInformation" })
+                    </div>
+                    <input type="hidden" value="3" ng-model='UserEducationList[2].EducationId' />
+                    <a class="float-right" ng-click="IsVisibleSection[2] = false" href="#">Hide this</a>
+                </div>
+                <!-- end third block-->
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        @Html.ButtonDirective("Save", new { ng_click = String.Format("create('{0}')", formName), @class = "btn btn-default" })
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="~/Views/Education/UserEducationController.js"> </script>

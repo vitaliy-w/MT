@@ -47,6 +47,18 @@ namespace MT.Web.Infrastructure.Extensions
             return MvcHtmlString.Create(builder.ToString());
         }
 
+       /// <summary>
+       /// 
+       /// </summary>
+        public static MvcHtmlString DropDownListDirectiveFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, string name, Enum enumType,
+         object htmlAttributes = null)
+        {
+            var attributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            var listToDisplay = new SelectList(Enum.GetNames(enumType.GetType()));
+            
+            return htmlHelper.DropDownListFor(expression, listToDisplay, name, attributes);
+        }
+
 
         /// <summary>
         /// Контрол формує в HTML розмітці елемент DropDownList з заданого типу Enum із заданими параметрами
@@ -54,7 +66,8 @@ namespace MT.Web.Infrastructure.Extensions
         /// <param name="name">Ім'я контрола</param>
         /// <param name="enumType">Тип Enum з якого потрібно зформувати DropDownList</param>
 
-        public static MvcHtmlString DropDownListDirective(this HtmlHelper htmlHelper, string name, Enum enumType, 
+        public static MvcHtmlString DropDownListDirective(this HtmlHelper htmlHelper, 
+            string name, Enum enumType, 
             object htmlAttributes = null, NgModelPathOptions ngModelPathOptions = null)
         {
             var attributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);

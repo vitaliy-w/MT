@@ -6814,3 +6814,5 @@ td.visible-print {
     display: none !important;
   }
 }
+
+.float-right  {float:right}

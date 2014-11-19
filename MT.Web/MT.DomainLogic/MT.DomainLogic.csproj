@@ -86,7 +86,9 @@
     <Compile Include="LibraryResourceService.cs" />
     <Compile Include="Localization\LocalizationResourceService.cs" />
     <Compile Include="Localization\ILocalizationResourceService.cs" />
+    <Compile Include="PersonalCabinet\IUserEducationService.cs" />
     <Compile Include="PersonalCabinet\IUserService.cs" />
+    <Compile Include="PersonalCabinet\UserEducationService.cs" />
     <Compile Include="PersonalCabinet\UserService.cs" />
     <Compile Include="ProjectRequestService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

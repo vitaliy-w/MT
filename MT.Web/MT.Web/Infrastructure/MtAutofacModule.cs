@@ -29,6 +29,7 @@ namespace MT.Web.Infrastructure
             builder.RegisterType<TechnologyService>().As<ITechnologyService>();
             builder.RegisterType<UserLoginService>().As<IUserLoginService>();
             builder.RegisterType<AccountService>().As<IAccountService>();
+            builder.RegisterType<UserEducationService>().As<IUserEducationService>();
 
         }
     }
