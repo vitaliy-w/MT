@@ -51,10 +51,11 @@
        $scope.create = function (formName) {
            if (!validationService.isValid(formName))
                return;
-           $scope.messageFromServer = "";
 
+           $scope.messageFromServer = "";
            var k = 0;
-           for (var i = 0; i < $scope.IsVisibleSection.length; i++) {
+
+           for (var i = 0; i < $scope.IsVisibleSection.length; i++) {   //Creating list for sending to server
                if ($scope.IsVisibleSection[i] == true) {
                    $scope.listForServer[k] = $scope.UserEducationList[i];
                    k++;

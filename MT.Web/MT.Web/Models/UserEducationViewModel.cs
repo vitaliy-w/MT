@@ -106,15 +106,15 @@ namespace MT.Web.Models
 
             return new UserEducation()
             {
-                AdditionalInformation = AdditionalInformation,
-                EducationLevel = EducationLevel,
-                EducationId = EducationId,
-                NameOfSchool = NameOfSchool,
-                MonthEndsFrom = MonthEndsFrom,
-                Specialization = Specialization,
-                MonthStartsFrom = MonthEndsFrom,
-                YearEndsFrom = YearEndsFrom,
-                YearStartsFrom = YearStartsFrom,
+                AdditionalInformation = this.AdditionalInformation,
+                EducationLevel = this.EducationLevel,
+                EducationId = this.EducationId,
+                NameOfSchool = this.NameOfSchool,
+                MonthEndsFrom = this.MonthEndsFrom,
+                Specialization = this.Specialization,
+                MonthStartsFrom = this.MonthEndsFrom,
+                YearEndsFrom = this.YearEndsFrom,
+                YearStartsFrom = this.YearStartsFrom,
                 UserEmail = userEmail
                 
             };

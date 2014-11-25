@@ -2,7 +2,6 @@
 using System.Linq;
 using MT.DataAccess.EntityFramework;
 using MT.ModelEntities.Entities;
-using MT.Utility.OtherTools;
 
 namespace MT.DomainLogic.PersonalCabinet
 {
@@ -37,12 +36,9 @@ namespace MT.DomainLogic.PersonalCabinet
         /// </summary>
         public List<UserEducation> GetList(string userEmail)
         {
-            var result = new List<UserEducation>() { new UserEducation(), new UserEducation(), new UserEducation() };
-            
-            if (!IsPresent(userEmail, 1)) return result;
-            var listFromDB = _unitOfWork.Get<UserEducation>().Where(x => x.UserEmail == userEmail).AsEnumerable().ToList();
-            result.PutRange(0, listFromDB);
-
+            if (!IsPresent(userEmail, 1)) return null;
+            List<UserEducation> result = _unitOfWork.Get<UserEducation>().Where(x => x.UserEmail == userEmail).ToList();
+    
             return result;
         }
 

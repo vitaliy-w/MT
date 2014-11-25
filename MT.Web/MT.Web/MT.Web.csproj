@@ -243,6 +243,7 @@
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\TagViewModel.cs" />
     <Compile Include="ViewModels\UserAuthorization.cs" />
+    <Compile Include="ViewModels\UserInfoViewModel.cs" />
     <Content Include="Scripts\services\tagsInputService.js" />
   </ItemGroup>
   <ItemGroup>

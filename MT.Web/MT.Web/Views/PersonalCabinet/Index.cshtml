@@ -4,14 +4,14 @@
 @{
     ViewBag.Title = "Index";
     const string formName = "addUserInfo";
-    @model MT.ModelEntities.Entities.UserInfo
+    @model MT.Web.ViewModels.UserInfoViewModel
 }
 
 <script src="~/Scripts/angular-ui/ui-bootstrap-tpls-0.11.2.js"></script>
 
 <h2>Index</h2>
 
-
+<script>angular.module('mtApp').value('modelFromServer', @Html.ToJson(Model));</script>
 <div class="container-fluid">
 
 
@@ -24,7 +24,7 @@
 
 
         @{Html.RenderPartial("_leftSide");}
-        <div class="float-left">
+        <div class="float-left" style="width: 440px">
 
 
             <form class="form-horizontal" role="form" id="@formName" name="@formName" validable-form>
@@ -51,9 +51,9 @@
                     @Html.LabelForDirective(x => x.IsMan, new { @class = "col-sm-4 control-label" })
                     <div class="col-sm-8">
                         Man:
-                        @Html.RadioButtonFor(x => x.IsMan, true, new { @class = "radio-inline", ng_model = "userInfo.IsMan" })
+                        @Html.RadioButtonFor(x => x.IsMan, "true", new { @class = "radio-inline", ng_model = "userInfo.IsMan" })
                         Woman:
-                        @Html.RadioButtonFor(x => x.IsMan, false, new { @class = "radio-inline", ng_model = "userInfo.IsMan" })
+                        @Html.RadioButtonFor(x => x.IsMan, "false", new { @class = "radio-inline", ng_model = "userInfo.IsMan" })
                     </div>
                 </div>
 
