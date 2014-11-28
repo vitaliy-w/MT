@@ -2,16 +2,19 @@
 function ($scope, validationService, privateInfoControllerService, datePickerOptions, errorService, modelFromServer) {
 
 
-    $scope.userInfo = new Object();
-    $scope.userInfo.Name = "";
-    $scope.userInfo.SecondName = "";
-    $scope.userInfo.IsMan = false;
-    $scope.userInfo.DateOfBirth = null;
-    $scope.userInfo.UTCZone = '0';
 
     if (modelFromServer != null) {
         $scope.userInfo = modelFromServer;
         $scope.userInfo.IsMan = modelFromServer.IsMan.toString();
+    } else 
+    {
+        $scope.userInfo = {
+            Name: "",
+            SecondName: "",
+            IsMan: false,
+            teOfBirth: null,
+            UTCZone: '0'
+        }
     }
     
     
