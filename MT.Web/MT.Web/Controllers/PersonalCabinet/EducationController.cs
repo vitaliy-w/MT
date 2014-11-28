@@ -6,6 +6,7 @@ using MT.DomainLogic.PersonalCabinet;
 using MT.ModelEntities.Entities;
 using MT.Utility.Json;
 using MT.Utility.OtherTools;
+using MT.Utility.Validation;
 using MT.Web.Models;
 
 namespace MT.Web.Controllers.PersonalCabinet
@@ -39,7 +40,7 @@ namespace MT.Web.Controllers.PersonalCabinet
         {
             if (!ModelState.IsValid)
             {
-                return ErrorModel.CreateErrorModelViaModelState(ModelState);
+                return ServerValidationService.CreateErrorModelViaModelState(ModelState);
             }
 
             var mail = Request.Cookies.GetUserMailFromFormsAuthentication();

@@ -1,14 +1,19 @@
 ﻿angular.module('mtApp').controller('privateInfoController',
 function ($scope, validationService, privateInfoControllerService, datePickerOptions, errorService, modelFromServer) {
 
+
+    $scope.userInfo = new Object();
+    $scope.userInfo.Name = "";
+    $scope.userInfo.SecondName = "";
+    $scope.userInfo.IsMan = false;
+    $scope.userInfo.DateOfBirth = null;
+    $scope.userInfo.UTCZone = '0';
+
+    if (modelFromServer != null) {
+        $scope.userInfo = modelFromServer;
+        $scope.userInfo.IsMan = modelFromServer.IsMan.toString();
+    }
     
-    //$scope.userInfo.Name = "";
-    //$scope.userInfo.SecondName = "";
-    //$scope.userInfo.IsMan = false;
-    //$scope.userInfo.DateOfBirth = null;
-    //$scope.userInfo.UTCZone = '0';
-    $scope.userInfo = modelFromServer;
-    $scope.userInfo.IsMan = modelFromServer.IsMan.toString();
     
    
 
@@ -17,7 +22,7 @@ function ($scope, validationService, privateInfoControllerService, datePickerOpt
     $scope.today = function () {
         $scope.userInfo.DateOfBirth = new Date();
     };
-    if ($scope.userInfo.DateOfBirth==null) $scope.today();
+    //if ($scope.userInfo.DateOfBirth==null) $scope.today();
 
 
     $scope.open = function ($event) {

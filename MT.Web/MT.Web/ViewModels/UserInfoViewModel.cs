@@ -88,12 +88,6 @@ namespace MT.Web.ViewModels
             };
         }
 
-        private int ConvertUTCtoInt(string utc)
-        {
-            int result = int.Parse(utc.Split(' ')[1]);
-            return result;
-
-        }
 
     }
 }

@@ -38,23 +38,7 @@ namespace MT.Utility.OtherTools
             ErrorKeysList = new List<string>() { errorKey };
         }
 
-        /// <summary>
-        /// Creates ErrorModel in JSon format from modelState.
-        /// </summary>
-        public static string CreateErrorModelViaModelState(IEnumerable<KeyValuePair<string, System.Web.Mvc.ModelState>> modelState)
-        {
-            var modelIsInvalidError = new ErrorModel(new List<string>(), new List<string>());
-
-            foreach (var item in modelState)
-            {
-                foreach (var error in item.Value.Errors)
-                {
-                    modelIsInvalidError.ErrorKeysList.Add(item.Key);
-                    modelIsInvalidError.ErrorMessagesList.Add(error.ErrorMessage);
-                }
-            }
-
-            return modelIsInvalidError.ToJson();
-        }
+        
+        
     }
 }
