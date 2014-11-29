@@ -1,23 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 using MT.DataAccess.EntityFramework;
+using MT.DomainLogic;
 using MT.DomainLogic.PersonalCabinet;
 using MT.ModelEntities.Entities;
 using MT.Utility.Json;
 using MT.Utility.OtherTools;
+using MT.Utility.Validation;
+using MT.Web.ViewModels;
 
-namespace MT.Web.Controllers
+namespace MT.Web.Controllers.PersonalCabinet
 {
+    [Authorize]
     public class PersonalCabinetController : Controller
     {
         private IUnitOfWork db;
         private IUserService _userService;
+        private IUserLoginService _userLoginService;
 
-        public PersonalCabinetController(IUnitOfWork unitOfWork, IUserService userService)
+        public PersonalCabinetController(IUnitOfWork unitOfWork, IUserService userService, IUserLoginService userLoginService)
         {
             this.db = unitOfWork;
             _userService = userService;
+            _userLoginService = userLoginService;
+
         }
 
         /// <summary>
@@ -25,7 +31,11 @@ namespace MT.Web.Controllers
         /// </summary>
         public ActionResult Index()
         {
-            return View();
+            var userMail = Request.Cookies.GetUserMailFromFormsAuthentication();
+            if (_userLoginService.GetUserByEmail(userMail) == null) return View();
+            var model = UserInfoViewModel.CreateFromUserInfo(_userService.Get(userMail));
+
+            return View(model);
         }
 
 
@@ -43,37 +53,28 @@ namespace MT.Web.Controllers
         /// Adds new UserInfo to DB or edit Users already existed information and returns status.
         /// </summary>
         [HttpPost]
-        public string Create(UserInfo userInfo)
+        public string Create(UserInfoViewModel userInfo)
         {
 
             if (!ModelState.IsValid)
             {
-
-                ErrorModel modelIsInvalidError = new ErrorModel("Error", new List<string>(), new List<string>());
-
-                foreach (var item in ModelState)
-                {
-                    foreach (var error in item.Value.Errors)
-                    {
-                        modelIsInvalidError.ErrorKeysList.Add(item.Key);
-                        modelIsInvalidError.ErrorMessagesList.Add(error.ErrorMessage);
-                    }
-                }
-
-                return modelIsInvalidError.ToJson();
+                return ServerValidationService.CreateErrorModelViaModelState(ModelState);
             }
 
-            userInfo.Id = 1; //temporary user's id for testing DB.
+            var userMail = Request.Cookies.GetUserMailFromFormsAuthentication();
+            if (_userLoginService.GetUserByEmail(userMail) == null) return new ErrorModel( "We cant find you in our DB" , "DB error").ToJson();
+
+            UserInfo result = userInfo.ConvertToUserInfoItem(userMail);
+            result.UserEmail = userMail;
 
             try
             {
-                _userService.Add(userInfo);
+                _userService.Add(result);
                 db.Commit();
             }
             catch (Exception)
             {
-
-                var errorAddingtoDB = new ErrorModel("Error", new List<string>() { "Some troubles with DB happened, try to add your info later." }, new List<string>() { "DataBaseError" });
+                var errorAddingtoDB = new ErrorModel("Some troubles with DB happened, try to add your info later." ,"DataBaseError" );
                 return errorAddingtoDB.ToJson();
             }
 
@@ -82,6 +83,7 @@ namespace MT.Web.Controllers
 
 
         }
+
 
     }
 }

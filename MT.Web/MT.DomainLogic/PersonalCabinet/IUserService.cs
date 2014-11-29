@@ -14,7 +14,13 @@ namespace MT.DomainLogic.PersonalCabinet
         /// <summary>
         /// Checks if current user's id already exists in the DB.
         /// </summary>
-        bool IsPresent(int id);
+        bool IsPresent(string userEmail);
+
+        
+        /// <summary>
+        /// Gets UserInfo via userEmail
+        /// </summary>
+        UserInfo Get(string userEmail);
 
     }
 }

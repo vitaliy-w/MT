@@ -202,6 +202,7 @@
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls-0.11.2.js" />
     <Content Include="Views\Account\LoginController.js" />
     <Content Include="Views\Controls\TagController.js" />
+    <Content Include="Views\Education\UserEducationController.js" />
     <Content Include="Views\LibraryResource\CreateResourceController.js" />
     <Content Include="Views\Account\RegisterController.js" />
     <Content Include="Views\PersonalCabinet\privateInfoController.js" />
@@ -218,25 +219,31 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ControlsController.cs" />
     <Compile Include="Controllers\LibraryResourceController.cs" />
+    <Compile Include="Controllers\PersonalCabinet\EducationController.cs" />
     <Compile Include="Controllers\PersonalCabinet\PersonalCabinetController.cs" />
     <Compile Include="Controllers\ProjectRequestController.cs" />
     <Compile Include="Controllers\TechnologyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\EducationLevel.cs" />
+    <Compile Include="Infrastructure\MonthList.cs" />
     <Compile Include="Infrastructure\MtAutofacModule.cs" />
     <Compile Include="Infrastructure\Extensions\AttributeManager.cs" />
     <Compile Include="Infrastructure\Extensions\HtmlElementTypes\ButtonTypesEnum.cs" />
     <Compile Include="Infrastructure\Extensions\HtmlElementTypes\HtmlAlertTypesEnum.cs" />
     <Compile Include="Infrastructure\Extensions\HtmlElementTypes\ControlSizesEnum.cs" />
+    <Compile Include="Infrastructure\MTAutorizationAttribute.cs" />
     <Compile Include="Infrastructure\NgModelPathOptions.cs" />
     <Compile Include="Infrastructure\Extensions\AngularHtmlHelperExtensions.cs" />
     <Compile Include="Infrastructure\UTC.cs" />
     <Compile Include="Models\LocalizationResourceViewModel.cs" />
+    <Compile Include="Models\UserEducationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\TagViewModel.cs" />
     <Compile Include="ViewModels\UserAuthorization.cs" />
+    <Compile Include="ViewModels\UserInfoViewModel.cs" />
     <Content Include="Scripts\services\tagsInputService.js" />
   </ItemGroup>
   <ItemGroup>
@@ -262,8 +269,8 @@
     <Content Include="Scripts\libs\ng-table.map" />
     <Content Include="Views\PersonalCabinet\Index.cshtml" />
     <Content Include="Views\Shared\_leftSide.cshtml" />
-    <Content Include="Views\Education\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Education\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

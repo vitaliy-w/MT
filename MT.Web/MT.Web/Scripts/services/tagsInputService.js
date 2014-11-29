@@ -3,11 +3,3 @@
         return tagsInputFactory.search(query);
     };
 }]);
-
-angular.module('ebamApp').factory('tagsInputFactory', function (httpService) {
-    return {
-        search: function (searchCriteria) {
-            return httpService.post('Technology/Search', { query: searchCriteria });
-        }
-    };
-});

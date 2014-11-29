@@ -135,12 +135,14 @@ namespace MT.Web.Controllers
             FormsAuthentication.SetAuthCookie(userAuth.Email, false);
             if (banTime > banInterval) userBan.UserIsBan = false;
 
+            
+
             userBan.AttemptCount = 0;
             userLoginHistory.LoginResult = true;
             _userLoginService.UserLoginHistory(userLoginHistory);
             _unitOfWork.Commit();
 
-            jsonNetResult.Data = new { Message = LocalizationResourceServiceSingleton.Current.GetValue(Constants.Entities.LoginSuccessMsg), IsLogedIn = true };
+            jsonNetResult.Data = new { Message = LocalizationResourceServiceSingleton.Current.GetValue(Constants.Entities.LoginSuccessMsg), IsLogedIn = true};
             return jsonNetResult;
         }
     }

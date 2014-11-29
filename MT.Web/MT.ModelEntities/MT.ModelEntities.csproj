@@ -56,6 +56,7 @@
     <Compile Include="Entities\Technology.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserBan.cs" />
+    <Compile Include="Entities\UserEducation.cs" />
     <Compile Include="Entities\UserInfo.cs" />
     <Compile Include="Entities\UserLoginHistory.cs" />
     <Compile Include="Enums\AccessLevelsEnum.cs" />
